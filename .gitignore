@@ -1,0 +1,23 @@
+# Projetos têm repositórios Git próprios
+projetos/*
+!projetos/_LEIAME.md
+
+# Segredos
+.env
+.env.*
+*.pem
+*.key
+
+# Obsidian: estado local da interface e lixeira
+BRAIN/.obsidian/workspace.json
+BRAIN/.obsidian/workspace-mobile.json
+BRAIN/.obsidian/cache
+BRAIN/.trash/
+
+# Claude Code: configurações pessoais
+.claude/settings.local.json*
+
+# Sistema operacional
+Thumbs.db
+desktop.ini
+.DS_Store
