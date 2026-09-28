@@ -9,6 +9,8 @@ tags: [ambiente, qualidade]
 ---
 # ADR-0009 Catálogo de qualidade
 
+> **Atualização 2026-09-28:** a parte de logs (formato e local) foi substituída por [[ADR-0012 Logs em Markdown fora do Git]].
+
 ## Contexto
 
 Com vários agentes, cada um verifica coisas diferentes e lacunas passam despercebidas. Bugs, erros e verificações precisam ser catalogados e consultáveis por todos.

@@ -2,6 +2,10 @@
 projetos/*
 !projetos/_LEIAME.md
 
+# Logs: telemetria fora do Git (só o _LEIAME é versionado)
+logs/*
+!logs/_LEIAME.md
+
 # Segredos
 .env
 .env.*

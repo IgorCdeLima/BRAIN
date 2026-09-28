@@ -10,7 +10,8 @@ O humano (Igor) é o Product Owner e o aprovador final. Idioma de trabalho: port
 | `BRAIN/` | Vault Obsidian: base de conhecimento | Bibliotecário (N3); demais agentes só em `BRAIN/00_Inbox`, se o perfil do papel permitir |
 | `BRAIN/60_Agentes`, `BRAIN/70_Workflows` | Regras dos agentes e processos | **Somente o humano** (N4) |
 | `agentes/` | Definições executáveis dos papéis | **Somente o humano** (N4) |
-| `operacao/tarefas`, `operacao/logs` | Estado operacional do trabalho | Agentes conforme o papel |
+| `operacao/tarefas` | Cartões de tarefa e handoffs | Agentes conforme o papel |
+| `logs/` | Telemetria automática (fora do Git) | **Somente os hooks** — agentes não escrevem aqui |
 | `operacao/qualidade` | Verificações, bugs e segurança do ambiente | Revisor, Segurança, Coordenador; demais só leem |
 | `projetos/<nome>` | Cada projeto é um repositório Git próprio | Conforme o papel, dentro do worktree da tarefa |
 

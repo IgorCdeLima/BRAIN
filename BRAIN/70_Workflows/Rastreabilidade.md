@@ -37,36 +37,47 @@ Consulta: `git log --format='%h %s%n%(trailers:key=Agente,key=Tarefa)'`.
 
 ## Branches
 
-`tarefa/T-0012-descricao-curta` — um branch (e um worktree do Orca) por tarefa.
+Um worktree do Orca por tarefa, com o nome `T-0012-descricao-curta` — o Orca usa esse nome para o branch. Os hooks do Git extraem o `T-####` do nome do branch.
 
-## Log de eventos (JSONL)
+## Logs (Markdown)
 
-Arquivos em `operacao/logs/`, um por mês, **somente acréscimo**:
+Gravados automaticamente por hooks do Claude Code em `D:\01_IA\logs` (cópia principal, **fora do Git**, somente acréscimo). Ver [[ADR-0012 Logs em Markdown fora do Git]].
 
-- `eventos-AAAA-MM.jsonl` — tudo o que acontece.
-- `erros-AAAA-MM.jsonl` — somente falhas (subconjunto, para consulta rápida).
+- `logs/sessoes/AAAA-MM/AAAA-MM-DD_HHMM_<agente>_<sessao>.md` — todos os eventos de uma sessão.
+- `logs/erros/AAAA-MM-DD.md` — somente falhas do dia, de todas as sessões.
 
-Um evento por linha:
+Arquivo de sessão:
 
-```json
-{"ts":"2026-09-28T14:03:00-03:00","agente":"dev","modelo":"claude-sonnet-5","tarefa":"T-0012","tipo":"teste_falhou","repo":"01_IA","commit":"4d0436b","ref":"BUG-0003","resumo":"3 testes falharam em auth","detalhe":"caminho/do/log/completo"}
+```markdown
+---
+tipo: log-sessao
+sessao: 1a2b3c4d
+agente: dev
+modelo: claude-sonnet-5
+inicio: 2026-09-28T14:05:02-03:00
+cwd: C:/Users/igorc/orca/workspaces/lab/T-0001-esqueleto
+branch: T-0001-esqueleto
+---
+# Sessão dev — 2026-09-28 14:05
+
+| Hora | Evento | Ferramenta | Resumo |
+|---|---|---|---|
+| 14:05:02 | inicio_sessao | — | startup · modo acceptEdits |
+| 14:07:40 | ferramenta_usada | Edit | app/main.py |
+| 14:08:11 | ferramenta_falhou | Bash | docker compose up: porta 5432 em uso |
+| 14:09:30 | permissao_negada | Bash | git push origin main |
 ```
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| `ts` | sim | Data e hora ISO 8601 com fuso |
-| `agente` | sim | Papel que gerou o evento |
-| `modelo` | não | Modelo usado |
-| `tarefa` | sim | `T-####` ou `F#-#.#` |
-| `tipo` | sim | Ver lista abaixo |
-| `repo` | sim | Repositório afetado |
-| `commit` | não | SHA relacionado |
-| `ref` | não | `BUG-`, `VER-`, `SEC-`, `ADR-` relacionado |
-| `resumo` | sim | Uma linha legível |
-| `detalhe` | não | Texto curto ou caminho para arquivo com a saída completa |
+Arquivo de erros do dia: colunas `Hora | Agente | Sessão | Evento | Ferramenta | Resumo`.
 
-Tipos: `tarefa_iniciada`, `tarefa_concluida`, `tarefa_bloqueada`, `escalonamento`, `commit`, `verificacao`, `teste_falhou`, `ferramenta_falhou`, `permissao_negada`, `bug_registrado`, `sec_registrado`, `conhecimento_proposto`.
+| Evento | Origem (hook) |
+|---|---|
+| `inicio_sessao` / `fim_sessao` | `SessionStart` / `SessionEnd` |
+| `ferramenta_usada` | `PostToolUse` (Edit, Write, Bash, PowerShell) — leituras não são registradas |
+| `ferramenta_falhou` | `PostToolUseFailure` |
+| `permissao_negada` | `PermissionDenied` |
+| `falha_modelo` | `StopFailure` (limite de uso, erro de servidor etc.) |
 
-**Nunca** registrar segredos em nenhum campo.
+Regras: o agente vem de `agent_type` (sessões iniciadas com `--agent`); `|` e quebras de linha são escapados; comandos são truncados e têm padrões de segredo mascarados. **Nunca** registrar segredos.
 
-A partir da fase 1, hooks do Claude Code gravam os eventos automaticamente (especialmente `ferramenta_falhou` e `permissao_negada`, que alimentam o ajuste de permissões).
+Eventos de processo (`tarefa_concluida`, `bug_registrado`, `conhecimento_proposto`…) não vão para o log: ficam registrados nos cartões de tarefa, nos commits e em `qualidade/`.
