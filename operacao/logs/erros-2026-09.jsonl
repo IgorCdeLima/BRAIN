@@ -1,0 +1,1 @@
+{"ts":"2026-09-28T12:40:00-03:00","agente":"humano","tarefa":"F0-0.12","tipo":"ferramenta_falhou","repo":"01_IA","resumo":"Hook SessionEnd do plugin 'viz' falhou (Hook cancelled) ao encerrar sessão do Claude no worktree teste-permissions","detalhe":"bash ${CLAUDE_PLUGIN_ROOT}/viz/hooks/session_end.sh; sem impacto no teste; origem: plugin instalado fora do projeto"}

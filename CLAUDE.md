@@ -7,7 +7,7 @@ O humano (Igor) é o Product Owner e o aprovador final. Idioma de trabalho: port
 
 | Pasta | O que é | Quem escreve |
 |---|---|---|
-| `BRAIN/` | Vault Obsidian: base de conhecimento | Bibliotecário (N3); demais agentes só em `BRAIN/00_Inbox` |
+| `BRAIN/` | Vault Obsidian: base de conhecimento | Bibliotecário (N3); demais agentes só em `BRAIN/00_Inbox`, se o perfil do papel permitir |
 | `BRAIN/60_Agentes`, `BRAIN/70_Workflows` | Regras dos agentes e processos | **Somente o humano** (N4) |
 | `agentes/` | Definições executáveis dos papéis | **Somente o humano** (N4) |
 | `operacao/tarefas`, `operacao/logs` | Estado operacional do trabalho | Agentes conforme o papel |
@@ -51,7 +51,8 @@ Cada pasta tem um `_LEIAME.md` com o propósito e as regras dela. Leia-o antes d
   Modelo: <modelo>
   ```
 
-- Trabalho de agente acontece em branch/worktree próprio; merge na `main` conforme aprovação.
+- Trabalho de agente acontece **sempre num worktree próprio criado pelo Orca**; merge na `main` conforme aprovação. A cópia principal `D:\01_IA` é do humano e do Bibliotecário.
+- Cada papel é iniciado com seu perfil de permissões: `claude --settings agentes/perfis/<papel>.json`. O perfil prevalece sobre a tabela acima.
 
 ## Qualidade
 
