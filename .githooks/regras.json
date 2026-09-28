@@ -1,0 +1,22 @@
+{
+  "protegidos": [
+    "CLAUDE.md",
+    ".claude/",
+    ".githooks/",
+    ".gitignore",
+    ".gitattributes",
+    "agentes/",
+    "ferramentas/",
+    "BRAIN/60_Agentes/",
+    "BRAIN/70_Workflows/",
+    "BRAIN/.obsidian/"
+  ],
+  "livres": [
+    "BRAIN/00_Inbox/"
+  ],
+  "restritos": {
+    "operacao/qualidade/": ["revisor", "seguranca", "coordenador"],
+    "BRAIN/": ["bibliotecario"],
+    "logs/": []
+  }
+}
