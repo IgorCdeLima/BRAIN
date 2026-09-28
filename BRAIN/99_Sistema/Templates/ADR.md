@@ -9,7 +9,7 @@ tags: []
 ---
 # {{title}}
 
-<!-- Nome do arquivo: ADR-####-titulo-curto. Status: proposta | aceita | rejeitada | substituida -->
+<!-- Nome do arquivo: "ADR-#### Título curto". Status: proposta | aceita | rejeitada | substituida -->
 
 ## Contexto
 
