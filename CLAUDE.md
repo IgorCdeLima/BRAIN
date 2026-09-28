@@ -53,7 +53,7 @@ Cada pasta tem um `_LEIAME.md` com o propósito e as regras dela. Leia-o antes d
   ```
 
 - Trabalho de agente acontece **sempre num worktree próprio criado pelo Orca**; merge na `main` conforme aprovação. A cópia principal `D:\01_IA` é do humano e do Bibliotecário.
-- Cada papel é iniciado com seu perfil de permissões: `claude --settings agentes/perfis/<papel>.json`. O perfil prevalece sobre a tabela acima.
+- Cada papel é iniciado pelo seu Quick Command no Orca, que define `IA_PAPEL` e roda `claude --agent <papel> --add-dir D:/01_IA/agentes --settings D:/01_IA/agentes/perfis/<papel>.json`. O perfil prevalece sobre a tabela acima. Fluxo completo em `BRAIN/70_Workflows/Fluxo de tarefa.md`.
 
 ## Qualidade
 
