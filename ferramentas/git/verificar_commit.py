@@ -43,7 +43,7 @@ def carregar_regras() -> dict:
     except FileNotFoundError:
         return {}
     except Exception as erro:
-        falhar(f"não consegui ler {arquivo}: {erro}")
+        falhar(f"nao consegui ler {arquivo}: {erro}")
 
 
 def casa(caminho: str, prefixo: str) -> bool:
@@ -56,7 +56,7 @@ def pre_commit(papel: str) -> None:
     violacoes = []
     for caminho in arquivos:
         if any(casa(caminho, p) for p in regras.get("protegidos", [])):
-            violacoes.append(f"{caminho} (área protegida: só o humano altera)")
+            violacoes.append(f"{caminho} (area protegida: so o humano altera)")
             continue
         if any(casa(caminho, p) for p in regras.get("livres", [])):
             continue
@@ -66,7 +66,7 @@ def pre_commit(papel: str) -> None:
                 break
     if violacoes:
         lista = "\n  - ".join(violacoes)
-        falhar(f"o papel '{papel}' não pode alterar:\n  - {lista}\nProponha a mudança em BRAIN/00_Inbox ou peça ao humano.")
+        falhar(f"o papel '{papel}' nao pode alterar:\n  - {lista}\nProponha a mudanca em BRAIN/00_Inbox ou peca ao humano.")
 
 
 def commit_msg(papel: str, arquivo_msg: str) -> None:
@@ -79,7 +79,7 @@ def commit_msg(papel: str, arquivo_msg: str) -> None:
             existentes[m.group(1)] = m.group(2).strip()
 
     if existentes.get("Agente") and existentes["Agente"] != papel:
-        falhar(f"o trailer 'Agente: {existentes['Agente']}' não corresponde ao papel da sessão ('{papel}').")
+        falhar(f"o trailer 'Agente: {existentes['Agente']}' nao corresponde ao papel da sessao ('{papel}').")
 
     tarefa = existentes.get("Tarefa") or os.environ.get("IA_TAREFA", "")
     if not tarefa:
