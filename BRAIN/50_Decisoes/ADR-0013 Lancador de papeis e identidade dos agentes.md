@@ -22,6 +22,12 @@ No piloto 1 da T-0001 todas as sessões rodaram **sem papel**: os worktrees fora
 5. **Papel Revisor** (modelo Opus, diferente do Dev) registra `VER/BUG/SEC` no branch da tarefa e move o cartão para `aprovada` ou `correcao`.
 6. **Repasse por arquivos:** cartão (status + Entrega + Revisão), commits e `qualidade/`. O humano só inicia cada papel. **Um VER vale para um commit.**
 
+## Ajustes após o primeiro uso (2026-09-28)
+
+- **Escrita do Revisor por lista de permissões:** uma regra `deny` com exceção `!` não liberou `qualidade/`. A restrição passou para um hook `PreToolUse` na definição do papel (`ferramentas/hooks/restringir_escrita.py`), que só permite escrita nos caminhos listados e nega na dúvida.
+- **Exceção `!` não desfaz regras absolutas:** `Read(//**/.env.*)` bloqueava também o `.env.example`. Nos perfis, o bloqueio de `.env.*` passou a ser relativo à pasta da sessão, onde a exceção funciona.
+- **Bibliotecário sem número de tarefa:** o hook recusava seus commits (não há `T-####` na `main`). O lançador define `IA_TAREFA=curadoria-AAAA-MM-DD` para ele.
+
 ## Alternativas consideradas
 
 | Alternativa | Prós | Contras |

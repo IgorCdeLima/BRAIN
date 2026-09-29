@@ -34,10 +34,8 @@
     ],
     "deny": [
       "Read(//**/.env)",
-      "Read(//**/.env.*)",
+      "Read(**/.env.*)",
       "Read(!**/.env.example)",
-      "Edit(**)",
-      "Edit(!qualidade/**)",
       "Edit(//d/01_IA/agentes/**)",
       "Edit(//d/01_IA/logs/**)",
       "Bash(git push*)",

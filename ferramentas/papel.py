@@ -19,6 +19,7 @@ import re
 import shutil
 import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 
 RAIZ = Path(r"D:\01_IA")
@@ -85,6 +86,8 @@ def main() -> None:
     if regra["local"] == "principal":
         if topo.resolve() != RAIZ.resolve() or branch != "main":
             parar(f"o {papel} trabalha na copia principal D:\\01_IA (branch main). Pasta atual: {topo} ({branch}).")
+        # Trabalho contínuo, sem cartão: a "tarefa" dos commits é a curadoria do dia.
+        tarefa = f"curadoria-{date.today():%Y-%m-%d}"
     else:
         if not em_worktree:
             parar(f"o {papel} trabalha num worktree de tarefa criado no Orca, nunca na copia principal. Pasta atual: {topo} ({branch}).")
