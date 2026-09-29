@@ -10,7 +10,7 @@ tags: []
 ---
 # T-#### — {{title}}
 
-<!-- Status: backlog → pronta → em-andamento → revisao → concluida (ou bloqueada).
+<!-- Status: backlog → pronta → em-andamento → revisao → (correcao → em-andamento → revisao) → aprovada → concluida (ou bloqueada).
      Tamanho: trivial | normal | grande. Arquivo: operacao/tarefas/T-####.md
      Worktree no Orca: T-####-descricao-curta -->
 
@@ -52,8 +52,10 @@ tags: []
 
 ## Revisão
 
-<!-- Preenchido pelo revisor (humano na fase 1). -->
+<!-- Preenchido pelo Revisor. Um VER por commit verificado. -->
 
 - **VER:**
+- **Commit verificado:**
 - **Resultado:**
-- **Merge:**
+- **Correções pedidas (se status correcao):**
+- **Merge (humano):**

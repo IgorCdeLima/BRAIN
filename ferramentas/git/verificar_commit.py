@@ -100,9 +100,22 @@ def commit_msg(papel: str, arquivo_msg: str) -> None:
         caminho.write_text(mensagem + separador + "\n".join(faltando) + "\n", encoding="utf-8")
 
 
+def sessao_claude_sem_papel() -> bool:
+    """Commit feito de dentro de uma sessão do Claude que não foi iniciada por um papel.
+
+    O Claude Code define CLAUDECODE=1 nos comandos que executa. Sessões do app
+    desktop (CLAUDE_CODE_ENTRYPOINT=claude-desktop) são acompanhadas pelo humano
+    no chat e contam como humanas.
+    """
+    return bool(os.environ.get("CLAUDECODE")) and os.environ.get("CLAUDE_CODE_ENTRYPOINT") != "claude-desktop"
+
+
 def main() -> None:
     papel = os.environ.get("IA_PAPEL", "").strip()
     if not papel:
+        if sessao_claude_sem_papel():
+            falhar("esta sessao do Claude nao foi iniciada por um papel. "
+                   "Feche-a e inicie com o lancador: D:\\01_IA\\ferramentas\\papel <papel>")
         return  # commit humano: sem restrições
     etapa = sys.argv[1] if len(sys.argv) > 1 else ""
     if etapa == "pre-commit":

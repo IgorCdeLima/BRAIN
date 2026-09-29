@@ -31,4 +31,5 @@ Verificações obrigatórias por tipo de mudança. Uma tarefa só é concluída 
 
 - Verificação **não feita** é registrada como lacuna no `VER-####`, com o motivo. Omitir é falha.
 - Quem executou a tarefa não registra a própria revisão de código.
-- O Coordenador confere a matriz antes de fechar a tarefa; na falta dele (fases iniciais), o humano confere.
+- **Um VER vale para um commit.** Se o branch receber um novo commit depois da verificação, é preciso um novo VER sobre o novo commit. O VER anterior permanece como histórico.
+- O Revisor confere a matriz antes de aprovar; o humano confere de novo antes do merge (e, na fase 3, o Coordenador).

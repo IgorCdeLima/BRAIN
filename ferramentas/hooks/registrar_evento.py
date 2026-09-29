@@ -151,8 +151,28 @@ def descrever(evento: dict):
     return None
 
 
+AVISO_SEM_PAPEL = (
+    "ATENCAO: esta sessao do Claude foi aberta SEM PAPEL (nao foi iniciada pelo lancador "
+    "D:\\01_IA\\ferramentas\\papel). Sem papel voce nao tem perfil de permissoes e seus commits "
+    "serao recusados pelo hook do Git. Antes de qualquer trabalho, avise o humano: ele deve fechar "
+    "esta sessao e rodar 'D:\\01_IA\\ferramentas\\papel <dev|revisor|bibliotecario>' no terminal "
+    "da pasta certa. Nao tente definir IA_PAPEL por conta propria."
+)
+
+
+def avisar_se_sem_papel(evento: dict) -> None:
+    if evento.get("hook_event_name") != "SessionStart":
+        return
+    if evento.get("agent_type") or os.environ.get("IA_PAPEL"):
+        return
+    if os.environ.get("CLAUDE_CODE_ENTRYPOINT") == "claude-desktop":
+        return
+    print(json.dumps({"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": AVISO_SEM_PAPEL}}))
+
+
 def main() -> None:
     evento = json.loads(sys.stdin.buffer.read().decode("utf-8") or "{}")
+    avisar_se_sem_papel(evento)
     descricao = descrever(evento)
     if descricao is None:
         return
