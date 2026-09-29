@@ -29,8 +29,8 @@ Cada pasta tem um `_LEIAME.md` com o propósito e as regras dela. Leia-o antes d
 ## Hierarquia de conhecimento (antes de pesquisar)
 
 0. Contexto da tarefa + documentação do projeto + **bugs abertos** relacionados aos arquivos que vai alterar.
-1. Brain: busque por título, tags e backlinks. Se usar uma nota, **cite-a** com `[[link]]`.
-   Nota antiga (`verificado_em`) ou de baixa confiança = pista a verificar, não verdade.
+1. Brain: busque por título, tags, backlinks e texto — **inclusive em `00_Inbox`**. Se usar uma nota, **cite-a** com `[[link]]`.
+   Nota do Inbox, antiga (`verificado_em`) ou de baixa confiança = pista a verificar, não verdade.
 2. Classifique a dúvida: conceito estável → conhecimento próprio; **fato volátil** (versão, API, preço) → pesquisa externa obrigatória; outra especialidade → consulte o agente especialista.
 3. Pesquisa externa entra em `BRAIN/00_Inbox` como não confiável.
 4. Ao terminar, proponha como **candidato a conhecimento** apenas o que é reaproveitável e validado — incluindo resultados negativos ("tentamos X, não funciona por Y").

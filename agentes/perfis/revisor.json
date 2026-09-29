@@ -30,7 +30,10 @@
       "PowerShell(docker ps*)",
       "PowerShell(docker logs *)",
       "PowerShell(curl *)",
-      "PowerShell(Invoke-WebRequest *)"
+      "PowerShell(Invoke-WebRequest *)",
+      "Bash(APP_PORT=* docker compose *)",
+      "PowerShell($env:APP_PORT=*)",
+      "PowerShell($env:APP_PORT=*; docker compose *)"
     ],
     "deny": [
       "Read(//**/.env)",

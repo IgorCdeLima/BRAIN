@@ -19,11 +19,14 @@ Implementar tarefas de código com testes, dentro do worktree da tarefa, e entre
 - Ler o cartão da tarefa (`D:\01_IA\operacao\tarefas\T-####.md`) e seguir os critérios de aceite. Só trabalhar em cartão com `status: pronta` (nova tarefa) ou `correcao` (ajustes pedidos pelo Revisor). Ao começar, mudar para `em-andamento`.
 - Em `correcao`: ler o `VER-####` e os `BUG-####` indicados na seção Revisão do cartão e corrigir exatamente o que foi pedido, reproduzindo cada defeito antes de corrigir.
 - Seguir a hierarquia de conhecimento do `CLAUDE.md` antes de pesquisar; consultar bugs abertos dos arquivos que vai alterar.
+- **Antes de qualquer pesquisa externa, buscar no Brain** (`D:\01_IA\BRAIN`) pelos termos da tecnologia envolvida — **inclusive no `00_Inbox`**, cujas notas valem como pista a confirmar. Registrar na Entrega quais notas foram usadas (`[[link]]`) ou que não havia nenhuma.
+- Rodar a aplicação do worktree na **porta da tarefa** (convenção no `CLAUDE.md` do projeto), para não disputar a porta com outros worktrees.
 - Implementar com testes automatizados; rodar os testes antes de cada commit.
 - Commits pequenos, no formato `tipo(escopo): descrição` (os trailers são adicionados pelo hook do Git).
 - Documentar enquanto implementa: atualizar `docs/` do projeto quando a mudança afetar requisitos, modelos ou uso.
 - Ao terminar, preencher a seção **Entrega** do cartão da tarefa e mudar o status para `revisao`.
-- Propor candidatos a conhecimento em `D:\01_IA\BRAIN\00_Inbox` (template `Candidato`), só com o que é reaproveitável e validado.
+- Tudo o que só o humano pode fazer (apagar volume, criar `.env`, aprovar decisão) vai para a seção **Passos do humano** do cartão, com o comando exato.
+- Propor candidatos a conhecimento em `D:\01_IA\BRAIN\00_Inbox` (template `Candidato`), só com o que é reaproveitável e validado — **também nas correções**: um defeito corrigido quase sempre ensina algo (a causa raiz e a premissa errada).
 
 ## Entradas
 

@@ -23,8 +23,11 @@ Fluxo de trabalho resumido:
 1. A tarefa é a do nome do branch (`T-####-...`; também em `IA_TAREFA`). Leia o cartão `D:\01_IA\operacao\tarefas\T-####.md`, principalmente os critérios de aceite e a Entrega.
 2. Revise o diff completo: `git diff main...HEAD`. Anote o commit que está verificando (`git rev-parse --short HEAD`).
 3. **Reexecute** testes e critérios de aceite você mesmo. O que o executor declarou é pista, não evidência.
+   Use um projeto Compose e uma porta próprios (convenção de portas no `CLAUDE.md` do projeto), para não depender do ambiente deixado pelo Dev.
 4. Registre `qualidade/verificacoes/VER-####.md` (template em `D:\01_IA\BRAIN\99_Sistema\Templates\Qualidade\VER.md`), com o que foi e o que **não** foi verificado. Numere com o próximo número livre.
 5. Cada defeito vira `qualidade/bugs/BUG-####.md` (ou `qualidade/seguranca/SEC-####.md`), referenciado no VER.
 6. Commite os registros: `docs(qualidade): VER-#### da T-####`.
 7. Atualize o cartão: seção **Revisão** preenchida; `status: aprovada` se não houver defeito bloqueante, ou `status: correcao` com a lista objetiva do que o Dev deve corrigir.
-8. Você não edita código nem faz merge. Nunca contorne um bloqueio de permissão.
+8. O que só o humano pode fazer antes do merge (recriar volume, limpar volumes de teste, decidir algo) vai para a seção **Passos do humano** do cartão, com o comando exato.
+9. Se um defeito revelar uma armadilha reaproveitável (premissa errada, comportamento inesperado de ferramenta), proponha um candidato em `D:\01_IA\BRAIN\00_Inbox`.
+10. Você não edita código nem faz merge. Nunca contorne um bloqueio de permissão.

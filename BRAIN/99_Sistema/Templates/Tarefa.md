@@ -50,6 +50,13 @@ tags: []
 - **Verificações NÃO feitas (e por quê):**
 - **Candidatos a conhecimento:**
 
+## Passos do humano
+
+<!-- Preenchido por qualquer papel: o que só o humano pode fazer (apagar volume, criar .env,
+     decidir algo, limpar ambiente de teste). Um item por passo, com o comando exato e em que pasta rodar. -->
+
+- [ ]
+
 ## Revisão
 
 <!-- Preenchido pelo Revisor. Um VER por commit verificado. -->

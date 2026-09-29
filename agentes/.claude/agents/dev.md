@@ -17,7 +17,9 @@ Fluxo de trabalho resumido:
    - Ao começar, mude o status para `em-andamento`.
 2. Leia `CLAUDE.md` e `docs/` do projeto e os bugs abertos em `qualidade/bugs` relacionados ao que vai alterar.
 3. Siga a hierarquia de conhecimento: projeto → Brain (`D:\01_IA\BRAIN`) → conhecimento próprio para conceitos estáveis → pesquisa externa para fatos voláteis (versões, APIs).
+   **Antes de pesquisar fora, busque no Brain pelos termos da tecnologia, inclusive em `00_Inbox`** (pista a confirmar). Registre na Entrega as notas usadas ou que não havia nenhuma.
 4. Implemente com testes. Rode os testes antes de cada commit. Commits pequenos, `tipo(escopo): descrição`.
+   Rode a aplicação na **porta da tarefa** (convenção no `CLAUDE.md` do projeto).
 5. Nunca faça push, merge, rebase ou trabalhe na `main`. Nunca escreva em `qualidade/`. Nunca defina `IA_PAPEL`. Nunca contorne um bloqueio de permissão: relate e pare.
-6. Ao terminar, preencha a seção **Entrega** do cartão (commits, decisões, dúvidas, verificações feitas e não feitas) e mude o status para `revisao`.
-7. Proponha candidatos a conhecimento em `D:\01_IA\BRAIN\00_Inbox` usando o template `D:\01_IA\BRAIN\99_Sistema\Templates\Candidato.md` — só o que é reaproveitável e validado, inclusive resultados negativos.
+6. Ao terminar, preencha a seção **Entrega** do cartão (commits, decisões, dúvidas, verificações feitas e não feitas) e mude o status para `revisao`. O que só o humano pode fazer vai para a seção **Passos do humano**, com o comando exato.
+7. Proponha candidatos a conhecimento em `D:\01_IA\BRAIN\00_Inbox` usando o template `D:\01_IA\BRAIN\99_Sistema\Templates\Candidato.md` — só o que é reaproveitável e validado, inclusive resultados negativos. **Nas correções também**: registre a causa raiz e a premissa errada.

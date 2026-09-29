@@ -29,7 +29,10 @@
       "PowerShell(docker ps*)",
       "PowerShell(docker logs *)",
       "PowerShell(py -3 -m pytest*)",
-      "PowerShell(python -m pytest*)"
+      "PowerShell(python -m pytest*)",
+      "Bash(APP_PORT=* docker compose *)",
+      "PowerShell($env:APP_PORT=*)",
+      "PowerShell($env:APP_PORT=*; docker compose *)"
     ],
     "deny": [
       "Read(//**/.env)",
