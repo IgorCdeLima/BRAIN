@@ -7,6 +7,7 @@ Uso (no terminal, dentro da pasta certa):
 Opções:
     --verificar    só confere se está tudo certo, sem abrir o Claude
     --sem-pedido   abre o Claude sem enviar o pedido inicial
+    --continuar    retoma a última sessão desta pasta (mesmo papel), sem novo pedido
 
 Antes de abrir o Claude, confere: pasta (worktree ou cópia principal), tarefa
 (pelo nome do branch), existência e status do cartão. Depois define o papel
@@ -109,7 +110,9 @@ def main() -> None:
         "--add-dir", str(DIR_AGENTES),
         "--settings", str(DIR_AGENTES / "perfis" / f"{papel}.json"),
     ]
-    if "--sem-pedido" not in opcoes:
+    if "--continuar" in opcoes:
+        comando.append("--continue")  # retoma a última sessão desta pasta, já no papel
+    elif "--sem-pedido" not in opcoes:
         comando.append(regra["pedido"].format(tarefa=tarefa))
 
     print(f"[papel] {papel} | tarefa: {tarefa or '-'} | modelo: {modelo} | pasta: {topo} ({branch})")
