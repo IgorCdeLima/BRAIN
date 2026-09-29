@@ -19,7 +19,12 @@ Verificações obrigatórias por tipo de mudança. Uma tarefa só é concluída 
 | Diagramas coerentes com o código | se mudou modelo | ✅ | — | — |
 | Duplicata no Brain verificada | — | — | ✅ | — |
 | Fontes e `verificado_em` preenchidos | — | — | ✅ | — |
-| Aprovação humana | merge na `main` | se mudar requisitos | — | ✅ **sempre** |
+| Requisitos verificáveis, com premissas e questões em aberto separadas | — | ✅ | — | — |
+| Diagramas respondem uma pergunta real e seguem os [[Padroes de modelagem]] | — | ✅ | — | — |
+| Avaliação de tecnologia com ≥ 2 alternativas, pesos prévios e fontes oficiais | — | se houver | — | — |
+| ADR com alternativas e consequências, `status: proposta` | — | se houver decisão | — | — |
+| Cartões de implementação com critérios derivados dos requisitos | — | se houver | — | — |
+| Aprovação humana | merge na `main` | se mudar requisitos; ADRs sempre | — | ✅ **sempre** |
 
 ## Tamanho da tarefa
 

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "additionalDirectories": [
+      "D:/01_IA/BRAIN/00_Inbox",
+      "D:/01_IA/operacao/tarefas"
+    ],
+    "allow": [
+      "Read(//d/01_IA/**)",
+      "WebSearch",
+      "WebFetch",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(git add docs/*)",
+      "Bash(git commit *)",
+      "PowerShell(git status*)",
+      "PowerShell(git diff*)",
+      "PowerShell(git log*)",
+      "PowerShell(git show*)",
+      "PowerShell(git add docs/*)",
+      "PowerShell(git commit *)"
+    ],
+    "deny": [
+      "Read(//**/.env)",
+      "Read(**/.env.*)",
+      "Read(!**/.env.example)",
+      "Edit(//d/01_IA/agentes/**)",
+      "Edit(//d/01_IA/logs/**)",
+      "Bash(git push*)",
+      "Bash(git merge*)",
+      "Bash(git rebase*)",
+      "Bash(git checkout *)",
+      "Bash(git switch *)",
+      "Bash(git reset*)",
+      "Bash(docker *)",
+      "PowerShell(git push*)",
+      "PowerShell(git merge*)",
+      "PowerShell(git rebase*)",
+      "PowerShell(git checkout *)",
+      "PowerShell(git switch *)",
+      "PowerShell(git reset*)",
+      "PowerShell(docker *)"
+    ]
+  }
+}

@@ -2,6 +2,7 @@
 
 Uso (no terminal, dentro da pasta certa):
     D:\\01_IA\\ferramentas\\papel dev            -> executa a tarefa do worktree atual
+    D:\\01_IA\\ferramentas\\papel engenheiro     -> requisitos, modelos e decisões da tarefa do worktree atual
     D:\\01_IA\\ferramentas\\papel revisor        -> revisa a tarefa do worktree atual
     D:\\01_IA\\ferramentas\\papel bibliotecario  -> cura o Inbox (na cópia principal D:\\01_IA)
 Opções:
@@ -31,11 +32,19 @@ PAPEIS = {
     "dev": {
         "local": "worktree",
         "status": {"pronta", "em-andamento", "correcao"},
+        "dono_do_cartao": True,
+        "pedido": "Execute a tarefa {tarefa}.",
+    },
+    "engenheiro": {
+        "local": "worktree",
+        "status": {"pronta", "em-andamento", "correcao"},
+        "dono_do_cartao": True,
         "pedido": "Execute a tarefa {tarefa}.",
     },
     "revisor": {
         "local": "worktree",
         "status": {"revisao"},
+        "dono_do_cartao": False,
         "pedido": "Revise a tarefa {tarefa}.",
     },
     "bibliotecario": {
@@ -56,9 +65,9 @@ def git(*args: str) -> str:
     return r.stdout.strip() if r.returncode == 0 else ""
 
 
-def status_do_cartao(cartao: Path) -> str:
+def campo_do_cartao(cartao: Path, campo: str) -> str:
     texto = cartao.read_text(encoding="utf-8")
-    m = re.search(r"^status:\s*([\w-]+)", texto, re.MULTILINE)
+    m = re.search(rf"^{campo}:\s*([\w-]+)", texto, re.MULTILINE)
     return m.group(1) if m else ""
 
 
@@ -99,9 +108,12 @@ def main() -> None:
         cartao = DIR_TAREFAS / f"{tarefa}.md"
         if not cartao.exists():
             parar(f"cartao {cartao} nao existe.")
-        status = status_do_cartao(cartao)
+        status = campo_do_cartao(cartao, "status")
         if status not in regra["status"]:
             parar(f"o cartao {tarefa} esta com status '{status}'. O {papel} so inicia com: {', '.join(sorted(regra['status']))}.")
+        dono = campo_do_cartao(cartao, "papel")
+        if regra["dono_do_cartao"] and dono != papel:
+            parar(f"o cartao {tarefa} e do papel '{dono}', nao do {papel}. Use: papel {dono}")
 
     modelo = modelo_do_papel(papel)
     comando = [

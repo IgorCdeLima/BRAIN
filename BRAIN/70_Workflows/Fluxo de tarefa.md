@@ -9,7 +9,7 @@ tags: [workflow, tarefas]
 ---
 # Fluxo de tarefa
 
-Equipe: **humano** (Product Owner e integrador), **Dev**, **Revisor** e **Bibliotecário**.
+Equipe: **humano** (Product Owner e integrador), **Engenheiro de Software**, **Dev**, **Revisor** e **Bibliotecário**.
 
 O repasse entre agentes acontece **por arquivos** — cartão da tarefa, commits e registros em `qualidade/` —, nunca copiando conversas. O humano só diz a cada papel quando começar.
 
@@ -18,7 +18,7 @@ O repasse entre agentes acontece **por arquivos** — cartão da tarefa, commits
 | Conceito | O que define | Onde |
 |---|---|---|
 | **Onde** | A pasta em que o agente trabalha | Worktree da tarefa (criado no Orca) ou cópia principal `D:\01_IA` |
-| **Quem** | O papel do agente: regras, permissões e modelo | Escolhido no lançador: `papel dev`, `papel revisor`, `papel bibliotecario` |
+| **Quem** | O papel do agente: regras, permissões e modelo | Escolhido no lançador: `papel engenheiro`, `papel dev`, `papel revisor`, `papel bibliotecario` — tem que bater com o campo `papel:` do cartão |
 | **O quê** | A tarefa | Cartão `operacao/tarefas/T-####.md`, identificado pelo nome do worktree |
 
 ## Status do cartão
@@ -51,13 +51,24 @@ stateDiagram-v2
 7. **Bibliotecário** (humano, num terminal em `D:\01_IA`): `D:\01_IA\ferramentas\papel bibliotecario`
    → cura os candidatos do Inbox e commita.
 
+### Tarefas de engenharia (`papel: engenheiro` no cartão)
+
+Mesmo fluxo, com três diferenças:
+
+- No passo 3 o comando é `D:\01_IA\ferramentas\papel engenheiro`. O Engenheiro escreve só em `docs/` (requisitos, modelos Mermaid, avaliações, ADRs `proposta`) e cria os **cartões de implementação** em `backlog`.
+- O Revisor verifica a documentação pela coluna "Documentação de projeto" da matriz de verificação.
+- Antes do merge, o humano responde as questões em aberto e **aceita ou rejeita os ADRs** (muda o `status` do ADR). Depois, revisa os cartões de implementação criados e muda para `pronta` os que quiser executar.
+
+Guia de modelagem: [[Padroes de modelagem]].
+
 ## O lançador `papel`
 
 Antes de abrir o Claude, ele confere a pasta, a tarefa e o status do cartão, e recusa com uma mensagem clara se algo estiver errado. Depois abre o Claude já no papel certo, com o pedido inicial ("Execute a tarefa T-0001", "Revise a tarefa T-0001", "Processe o Inbox do Brain").
 
 | Papel | Onde roda | Status exigido do cartão | Modelo |
 |---|---|---|---|
-| `dev` | Worktree da tarefa | `pronta`, `em-andamento` ou `correcao` | Sonnet |
+| `engenheiro` | Worktree da tarefa | `pronta`, `em-andamento` ou `correcao` (cartão com `papel: engenheiro`) | Opus |
+| `dev` | Worktree da tarefa | `pronta`, `em-andamento` ou `correcao` (cartão com `papel: dev`) | Sonnet |
 | `revisor` | Worktree da tarefa | `revisao` | Opus |
 | `bibliotecario` | Cópia principal `D:\01_IA` | — | Sonnet |
 
