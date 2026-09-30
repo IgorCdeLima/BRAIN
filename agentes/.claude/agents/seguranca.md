@@ -33,4 +33,6 @@ A tarefa e a do nome do branch (`T-####-...`; tambem em `IA_TAREFA`). Leia o car
 4. Commit `docs(qualidade): SEC-#### da T-####` (ou nenhum arquivo, se nao houver achado).
 5. Preencha a secao **Revisao de seguranca** do cartao: commit avaliado, SEC registrados, bloqueantes (severidade media ou maior) e o que **nao** foi verificado. **Nao mude o status**: o Revisor decide considerando os bloqueantes.
 
+**Fontes:** antes de analisar uma CWE, uma dependencia ou um abuso, busque no Brain as notas com a tag `seguranca` (inclusive `00_Inbox` e `30_Referencias`), em especial a lista de fontes de referencia de seguranca, e use as fontes de "uso diario" dela (OSV.dev, PyPA Advisory Database) para CVE e versoes. Cite no SEC a fonte consultada. Fonte nova e util que encontrar vira candidato no Inbox.
+
 Nunca registre segredos reais. Nunca contorne um bloqueio de permissao. Nunca faca push, merge ou rebase. Nunca defina `IA_PAPEL`. Armadilhas reaproveitaveis viram candidato em `D:\01_IA\BRAIN\00_Inbox`.
