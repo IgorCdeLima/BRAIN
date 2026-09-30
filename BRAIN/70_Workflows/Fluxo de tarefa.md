@@ -9,7 +9,7 @@ tags: [workflow, tarefas]
 ---
 # Fluxo de tarefa
 
-Equipe: **humano** (Product Owner e aprovador final), **Coordenador**, **Engenheiro de Software**, **Designer**, **Seguranca**, **Dev**, **Revisor**, **Pesquisador** e **Bibliotecário**. Duvidas que o Brain nao responde viram `SEARCH-####` para o Pesquisador: [[Fluxo de pesquisa]].
+Equipe: **humano** (Product Owner e aprovador final), **Administrador** (age no lugar do humano no ambiente e nos merges, com aprovacao a cada mudanca: [[Administrador]]), **Coordenador**, **Engenheiro de Software**, **Designer**, **Seguranca**, **Dev**, **Revisor**, **Pesquisador** e **Bibliotecário**. Duvidas que o Brain nao responde viram `SEARCH-####` para o Pesquisador: [[Fluxo de pesquisa]].
 
 O repasse entre agentes acontece **por arquivos** — cartão da tarefa, commits e registros em `qualidade/` —, nunca copiando conversas. O humano inicia cada papel com o lançador; o **Coordenador** diz qual é o próximo e prepara o que é operacional para o humano aprovar ([[ADR-0016 Papeis Coordenador e Seguranca]]).
 
@@ -120,6 +120,7 @@ Antes de abrir o Claude, ele confere a pasta, a tarefa e o status do cartão, e 
 
 | Papel | Onde roda | Status exigido do cartão | Modelo |
 |---|---|---|---|
+| `administrador` | Cópia principal `D:\01_IA` (`main` ou `admin/*`), com senha | — | Opus |
 | `coordenador` | Cópia principal `D:\01_IA` (`main`) | — | Opus |
 | `engenheiro` | Worktree da tarefa | `pronta`, `em-andamento` ou `correcao` (cartão com `papel: engenheiro`) | Opus |
 | `dev` | Worktree da tarefa | `pronta`, `em-andamento` ou `correcao` (cartão com `papel: dev`) | Sonnet |

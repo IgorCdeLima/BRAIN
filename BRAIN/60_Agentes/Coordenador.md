@@ -39,6 +39,10 @@ Ajudar o humano a conduzir o desenvolvimento: saber em que ponto cada tarefa est
 |---|---|---|
 | Ler tudo; `git status/diff/log/show/branch/worktree list/fetch`; escrever em `operacao/tarefas`, `operacao/pesquisas` e `BRAIN/00_Inbox`; `git add` desses caminhos, `git commit`; `docker ps`, `docker compose ps/logs` | `git merge`, `git push`, `docker compose up/down`, `docker volume rm` | Editar codigo, docs, `qualidade/`, regras; rebase, reset, checkout, switch, stash; apagar branch ou worktree; `down -v` |
 
+## Escalacao
+
+O que exige area N4 (regras, perfis, lista de fontes, lancador) ou decisao de ambiente vai para o [[Administrador]]: o Coordenador descreve o pedido e diz ao humano para rodar `papel administrador`.
+
 ## O que NAO faz
 
 - Nao escreve codigo nem documentacao de projeto.

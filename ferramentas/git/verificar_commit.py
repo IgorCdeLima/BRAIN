@@ -54,6 +54,14 @@ def pre_commit(papel: str) -> None:
     regras = carregar_regras()
     arquivos = [a for a in git("diff", "--cached", "--name-only", "--no-renames").splitlines() if a]
     violacoes = []
+    if papel == "administrador":
+        # ADR-0018: age no lugar do humano (cada mudança aprovada na sessão). Só as áreas
+        # sem nenhum papel autorizado (ex.: logs/) continuam fechadas; os trailers seguem obrigatórios.
+        fechados = [p for p, papeis in regras.get("restritos", {}).items() if not papeis]
+        violacoes = [f"{c} (area fechada a agentes)" for c in arquivos if any(casa(c, p) for p in fechados)]
+        if violacoes:
+            falhar("o administrador nao pode alterar:\n  - " + "\n  - ".join(violacoes))
+        return
     for caminho in arquivos:
         if any(casa(caminho, p) for p in regras.get("protegidos", [])):
             violacoes.append(f"{caminho} (area protegida: so o humano altera)")

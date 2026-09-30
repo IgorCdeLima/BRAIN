@@ -22,7 +22,7 @@ Cada pasta tem um `_LEIAME.md` com o propósito e as regras dela. Leia-o antes d
 
 ## Regras invioláveis
 
-1. **Nunca edite as próprias regras** nem `CLAUDE.md`, `agentes/`, `.claude/`, `BRAIN/60_Agentes` ou `BRAIN/70_Workflows`. Proponha mudanças em `BRAIN/00_Inbox`.
+1. **Nunca edite as próprias regras** nem `CLAUDE.md`, `agentes/`, `.claude/`, `BRAIN/60_Agentes` ou `BRAIN/70_Workflows`. Proponha mudanças em `BRAIN/00_Inbox`. Unica excecao: o papel **administrador**, com aprovacao do humano a cada mudanca ([[ADR-0018 Papel Administrador com senha e aprovacao a cada mudanca]]).
 2. **Nada é apagado.** Conhecimento superado vira `status: obsoleto` ou vai para `BRAIN/90_Arquivo`; bugs só mudam de status.
 3. **Documentação oficial de projeto fica no projeto** (`projetos/<nome>/docs`), nunca no Brain.
 4. **Nunca registre segredos** (senhas, tokens, chaves) em notas, logs, commits ou registros de qualidade.
@@ -58,7 +58,7 @@ Cada pasta tem um `_LEIAME.md` com o propósito e as regras dela. Leia-o antes d
   ```
 
 - Trabalho de agente acontece **sempre num worktree próprio criado pelo Orca**; merge na `main` conforme aprovação. A cópia principal `D:\01_IA` é do humano, do Coordenador e do Bibliotecário.
-- Cada papel é iniciado pelo humano com o lançador `D:\01_IA\ferramentas\papel <coordenador|engenheiro|designer|seguranca|dev|revisor|pesquisador|bibliotecario>` (Linux: `ferramentas/papel.sh`), que confere pasta e cartão e abre o Claude com a definição, o perfil de permissões e o modelo do papel. O perfil prevalece sobre a tabela acima. **Um agente nunca define `IA_PAPEL` nem se atribui um papel.** Sessão sem papel não trabalha: avisa o humano. Fluxo completo em `BRAIN/70_Workflows/Fluxo de tarefa.md`.
+- Cada papel é iniciado pelo humano com o lançador `D:\01_IA\ferramentas\papel <administrador|coordenador|engenheiro|designer|seguranca|dev|revisor|pesquisador|bibliotecario>` (Linux: `ferramentas/papel.sh`), que confere pasta e cartão e abre o Claude com a definição, o perfil de permissões e o modelo do papel. O perfil prevalece sobre a tabela acima. **Um agente nunca define `IA_PAPEL` nem se atribui um papel.** Sessão sem papel não trabalha: avisa o humano. Fluxo completo em `BRAIN/70_Workflows/Fluxo de tarefa.md`.
 
 ## Qualidade
 

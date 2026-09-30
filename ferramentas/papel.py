@@ -9,6 +9,7 @@ Uso (no terminal, dentro da pasta certa):
     D:\\01_IA\\ferramentas\\papel bibliotecario  -> cura o Inbox (na cópia principal D:\\01_IA)
     D:\\01_IA\\ferramentas\\papel coordenador    -> panorama e proximo passo (na cópia principal D:\\01_IA)
     D:\\01_IA\\ferramentas\\papel pesquisador    -> atende os SEARCH-#### pendentes (na cópia principal D:\\01_IA)
+    D:\\01_IA\\ferramentas\\papel administrador  -> manutencao do ambiente e merges, com senha (cópia principal)
 Opções:
     --verificar    só confere se está tudo certo, sem abrir o Claude
     --sem-pedido   abre o Claude sem enviar o pedido inicial
@@ -24,6 +25,9 @@ no Windows). Linux: ferramentas/papel.sh <papel>. As definições e perfis citam
 D:\\01_IA; fora dessa raiz o perfil é reescrito para a raiz real a cada início.
 """
 
+import getpass
+import hashlib
+import hmac
 import json
 import os
 import re
@@ -96,7 +100,49 @@ PAPEIS = {
         "tarefa": "pesquisa",
         "pedido": "Atenda os pedidos de pesquisa pendentes em operacao/pesquisas.",
     },
+    # Acima do Coordenador (ADR-0018): senha no terminal, branch main ou admin/<assunto>.
+    "administrador": {
+        "local": "principal",
+        "status": None,
+        "tarefa": "admin",
+        "senha": True,
+        "branch_extra": "admin/",
+        "pedido": "Pergunte ao humano o que ele quer mudar no ambiente.",
+    },
 }
+
+ARQ_SENHA = Path.home() / ".config" / "01_ia" / "admin.senha"  # fora do repositório; leitura negada aos agentes
+ITERACOES = 600_000
+
+
+def hash_senha(senha: str, sal: bytes) -> str:
+    return hashlib.pbkdf2_hmac("sha256", senha.encode("utf-8"), sal, ITERACOES).hex()
+
+
+def conferir_senha(so_verificar: bool) -> None:
+    """Senha do administrador, digitada no terminal (oculta). O Claude nunca a vê."""
+    if so_verificar:
+        print(f"[papel] senha do administrador: {'configurada' if ARQ_SENHA.exists() else 'NAO configurada (sera criada no primeiro uso)'}")
+        return
+    if not sys.stdin.isatty():
+        parar("a senha do administrador precisa ser digitada num terminal interativo.")
+    if not ARQ_SENHA.exists():
+        print("[papel] Primeiro uso do administrador: crie a senha (minimo 8 caracteres).")
+        senha = getpass.getpass("Nova senha: ")
+        if len(senha) < 8 or senha != getpass.getpass("Repita a senha: "):
+            parar("senha curta ou diferente na confirmacao.")
+        sal = os.urandom(16)
+        ARQ_SENHA.parent.mkdir(parents=True, exist_ok=True)
+        ARQ_SENHA.write_text(f"pbkdf2_sha256${ITERACOES}${sal.hex()}${hash_senha(senha, sal)}\n", encoding="utf-8")
+        ARQ_SENHA.chmod(0o600)
+        print(f"[papel] Senha salva (hash) em {ARQ_SENHA}.")
+        return
+    _, _, sal, esperado = ARQ_SENHA.read_text(encoding="utf-8").strip().split("$")
+    for _ in range(3):
+        if hmac.compare_digest(hash_senha(getpass.getpass("Senha do administrador: "), bytes.fromhex(sal)), esperado):
+            return
+        print("[papel] Senha incorreta.", file=sys.stderr)
+    parar("senha do administrador incorreta.")
 
 
 def parar(mensagem: str) -> None:
@@ -182,8 +228,11 @@ def main() -> None:
 
     tarefa = ""
     if regra["local"] == "principal":
-        if topo.resolve() != RAIZ.resolve() or branch != "main":
-            parar(f"o {papel} trabalha na copia principal {RAIZ} (branch main). Pasta atual: {topo} ({branch}).")
+        extra = regra.get("branch_extra")
+        branch_ok = branch == "main" or bool(extra and branch.startswith(extra))
+        if topo.resolve() != RAIZ.resolve() or not branch_ok:
+            parar(f"o {papel} trabalha na copia principal {RAIZ} (branch main{f' ou {extra}*' if extra else ''}). "
+                  f"Pasta atual: {topo} ({branch}).")
         # Trabalho contínuo, sem cartão: a "tarefa" dos commits é a curadoria/coordenação do dia.
         tarefa = f"{regra['tarefa']}-{date.today():%Y-%m-%d}"
         if papel == "bibliotecario" and not obsidian_aberto():
@@ -231,6 +280,8 @@ def main() -> None:
         comando.append(regra["pedido"].format(tarefa=tarefa))
 
     print(f"[papel] {papel} | tarefa: {tarefa or '-'} | modelo: {modelo} | pasta: {topo} ({branch})")
+    if regra.get("senha"):
+        conferir_senha(so_verificar="--verificar" in opcoes)
     if "--verificar" in opcoes:
         print("[papel] Tudo certo. (--verificar: o Claude nao foi aberto)")
         return

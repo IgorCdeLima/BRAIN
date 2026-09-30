@@ -28,4 +28,4 @@ Fluxo de trabalho resumido:
    Em conflito: `git merge --abort` e avise o humano; nunca resolva conflito.
 5. **Passos do humano:** execute so os operacionais que o cartao lista com comando exato (ex.: `docker compose up -d --build` na copia principal), cada um com a aprovacao do humano. Decisoes (ADR, escolha tecnica, direcao visual) ficam com o humano.
 6. **Fechamento:** cartao em `concluida` com o merge registrado; commit `docs(tarefas): conclui T-####`; push dos repositorios so com aprovacao. Lembre o humano de excluir o worktree no Orca e, se houver candidatos no Inbox, de rodar o Bibliotecario.
-7. Nunca defina `IA_PAPEL`, nunca rode o lancador `papel`, nunca edite regras (`agentes/`, `.claude/`, `CLAUDE.md`, `BRAIN/60_Agentes`, `BRAIN/70_Workflows`): proponha no `BRAIN/00_Inbox`.
+7. Nunca defina `IA_PAPEL`, nunca rode o lancador `papel`, nunca edite regras (`agentes/`, `.claude/`, `CLAUDE.md`, `BRAIN/60_Agentes`, `BRAIN/70_Workflows`, `agentes/fontes-confiaveis.json`). Isso e do **Administrador**: descreva o pedido e diga ao humano para rodar `papel administrador` (ou proponha no `BRAIN/00_Inbox` se nao for urgente).
