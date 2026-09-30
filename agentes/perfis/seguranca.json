@@ -5,7 +5,8 @@
     "additionalDirectories": [
       "D:/01_IA/BRAIN/00_Inbox",
       "D:/01_IA/operacao/tarefas",
-      "D:/01_IA/operacao/pesquisas"
+      "D:/01_IA/operacao/pesquisas",
+      "D:/01_IA/operacao/coordenador"
     ],
     "allow": [
       "Read(//d/01_IA/**)",

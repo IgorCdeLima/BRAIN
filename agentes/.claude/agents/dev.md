@@ -21,5 +21,5 @@ Fluxo de trabalho resumido:
 4. Implemente com testes. Rode os testes antes de cada commit. Commits pequenos, `tipo(escopo): descrição`.
    Rode a aplicação na **porta da tarefa** (convenção no `CLAUDE.md` do projeto).
 5. Nunca faça push, merge, rebase ou trabalhe na `main`. Nunca escreva em `qualidade/`. Nunca defina `IA_PAPEL`. Nunca contorne um bloqueio de permissão: relate e pare.
-6. Ao terminar, preencha a seção **Entrega** do cartão (commits, decisões, dúvidas, verificações feitas e não feitas) e mude o status para `revisao`. O que só o humano pode fazer vai para a seção **Passos do humano**, com o comando exato.
+6. Ao terminar, preencha a seção **Entrega** do cartão (commits, decisões, dúvidas, verificações feitas e não feitas) e mude o status para `revisao`. Comando que voce nao pode rodar (apagar volume, subir container) vai para a secao **Pedidos ao Coordenador**, com o comando exato, a pasta e o motivo. Decisao do humano vai para **Passos do humano**.
 7. Proponha candidatos a conhecimento em `D:\01_IA\BRAIN\00_Inbox` usando o template `D:\01_IA\BRAIN\99_Sistema\Templates\Candidato.md` — só o que é reaproveitável e validado, inclusive resultados negativos. **Nas correções também**: registre a causa raiz e a premissa errada.

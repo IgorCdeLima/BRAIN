@@ -8,7 +8,7 @@ hooks:
     - matcher: "Edit|Write|NotebookEdit"
       hooks:
         - type: command
-          command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/restringir_escrita.py\" qualidade \"${IA_RAIZ:-D:/01_IA}/operacao/tarefas\" \"${IA_RAIZ:-D:/01_IA}/operacao/pesquisas\" \"${IA_RAIZ:-D:/01_IA}/BRAIN/00_Inbox\""
+          command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/restringir_escrita.py\" qualidade \"${IA_RAIZ:-D:/01_IA}/operacao/tarefas\" \"${IA_RAIZ:-D:/01_IA}/operacao/pesquisas\" \"${IA_RAIZ:-D:/01_IA}/operacao/coordenador\" \"${IA_RAIZ:-D:/01_IA}/BRAIN/00_Inbox\""
           timeout: 10
 ---
 
@@ -30,6 +30,6 @@ Fluxo de trabalho resumido:
 6. Commite os registros: `docs(qualidade): VER-#### da T-####`.
 7. Com `seguranca: sim` ou `interface: sim`, leia antes as secoes "Revisao de seguranca" e "Revisao visual" do cartao: SEC de severidade media ou maior ou UX bloqueante aberto leva a `correcao`. Secao vazia: nao feche, avise o humano que falta o papel Seguranca ou Designer.
    Atualize o cartão: seção **Revisão** preenchida; `status: aprovada` se não houver defeito bloqueante, ou `status: correcao` com a lista objetiva do que o Dev deve corrigir.
-8. O que só o humano pode fazer antes do merge (recriar volume, limpar volumes de teste, decidir algo) vai para a seção **Passos do humano** do cartão, com o comando exato.
+8. Comandos antes do merge (recriar volume, limpar volumes de teste) vao para a secao **Pedidos ao Coordenador** do cartao, com o comando exato e a pasta. Decisoes do humano vao para **Passos do humano**.
 9. Se um defeito revelar uma armadilha reaproveitável (premissa errada, comportamento inesperado de ferramenta), proponha um candidato em `D:\01_IA\BRAIN\00_Inbox`.
 10. Você não edita código nem faz merge. Nunca contorne um bloqueio de permissão.

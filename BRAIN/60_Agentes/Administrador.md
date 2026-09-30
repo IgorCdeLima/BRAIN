@@ -20,12 +20,12 @@ Fazer o que o humano faz no ambiente, ou orienta-lo a fazer, **sempre mostrando 
 - **Merges para a `main`:** do proprio branch `admin/<assunto>` e, quando o humano pedir, das tarefas de projeto (com as mesmas conferencias do Coordenador).
 - **Decisoes de ambiente** registradas como ADR em `BRAIN/50_Decisoes`.
 - **Orientar o humano** com o comando exato quando a acao for so dele (abrir papel, digitar senha, instalar com `sudo`).
-- **Receber escalacoes** do Coordenador: o que exige area N4 ou decisao de ambiente.
+- **Receber escalacoes** do Coordenador: o que exige area N4 ou decisao de ambiente, como pedidos `ADM-####` em `operacao/administrador` ([[ADR-0019 Pedidos ao Administrador em operacao]]).
 - Push quando o humano pedir.
 
 ## Como trabalha
 
-1. Confirma o escopo e diz o plano em poucas linhas.
+1. Le os `ADM-####` com `status: aberto`, apresenta ao humano, confirma o escopo e diz o plano em poucas linhas. Ao terminar, registra no ADM a decisao do humano e os commits.
 2. Mudanca com varios arquivos: branch `admin/<assunto>`; mudanca de uma linha: direto na `main`.
 3. Cada edicao e cada comando que altera algo passa pela aprovacao do Claude Code (modo `default`: tudo o que nao e leitura pergunta).
 4. Stage so dos arquivos que mudou (nunca `git add -A` na copia principal).

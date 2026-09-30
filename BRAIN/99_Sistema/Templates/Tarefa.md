@@ -58,10 +58,18 @@ tags: []
 - **Verificacoes NAO feitas (e por que):**
 - **Candidatos a conhecimento:**
 
+## Pedidos ao Coordenador
+
+<!-- Preenchido por qualquer papel: comandos que o papel nao pode rodar (apagar volume de teste,
+     subir container, merge, push). Um item por comando: comando exato, pasta e motivo.
+     O Coordenador marca [x] ao executar (com a aprovacao do humano) ou "-> ADM-####" ao escalar ao Administrador. -->
+
+- [ ]
+
 ## Passos do humano
 
-<!-- Preenchido por qualquer papel: o que so o humano pode fazer (apagar volume, criar .env,
-     decidir algo, limpar ambiente de teste). Um item por passo, com o comando exato e em que pasta rodar. -->
+<!-- So decisoes (escolher direcao visual, aceitar ADR, responder duvida) e acoes que so o humano pode
+     fazer (Orca, lancador papel, senha, sudo, criar .env com segredo). Comandos vao em "Pedidos ao Coordenador". -->
 
 - [ ]
 

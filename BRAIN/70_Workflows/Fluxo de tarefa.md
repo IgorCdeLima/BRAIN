@@ -9,7 +9,7 @@ tags: [workflow, tarefas]
 ---
 # Fluxo de tarefa
 
-Equipe: **humano** (Product Owner e aprovador final), **Administrador** (age no lugar do humano no ambiente e nos merges, com aprovacao a cada mudanca: [[Administrador]]), **Coordenador**, **Engenheiro de Software**, **Designer**, **Seguranca**, **Dev**, **Revisor**, **Pesquisador** e **Bibliotecário**. Duvidas que o Brain nao responde viram `SEARCH-####` para o Pesquisador: [[Fluxo de pesquisa]].
+Equipe: **humano** (Product Owner e aprovador final), **Administrador** (age no lugar do humano no ambiente e nos merges, com aprovacao a cada mudanca: [[Administrador]]), **Coordenador**, **Engenheiro de Software**, **Designer**, **Seguranca**, **Dev**, **Revisor**, **Pesquisador** e **Bibliotecário**. Duvidas que o Brain nao responde viram `SEARCH-####` para o Pesquisador: [[Fluxo de pesquisa]]. O que exige area N4, decisao de ambiente ou push vira `ADM-####` em `operacao/administrador`, criado pelo Coordenador ([[ADR-0019 Pedidos ao Administrador em operacao]]).
 
 O repasse entre agentes acontece **por arquivos** — cartão da tarefa, commits e registros em `qualidade/` —, nunca copiando conversas. O humano inicia cada papel com o lançador; o **Coordenador** diz qual é o próximo e prepara o que é operacional para o humano aprovar ([[ADR-0016 Papeis Coordenador e Seguranca]]).
 
@@ -56,6 +56,21 @@ flowchart LR
 
 Os passos marcados sao opcionais conforme a tabela; o minimo e **Dev -> Revisor**. So o Revisor muda o status para `aprovada` ou `correcao`: Designer e Seguranca registram e ele considera os bloqueantes.
 
+## Pedidos de comando
+
+Quem precisa de um comando que nao pode rodar nao pede ao humano: sobe a cadeia ([[ADR-0020 Cadeia de pedidos de comando]]).
+
+```mermaid
+flowchart LR
+    A[Agente] -- "cartao: Pedidos ao Coordenador<br/>ou COORD-####" --> C[Coordenador]
+    C -- "perfil nega ou area N4:<br/>ADM-####" --> AD[Administrador]
+    AD -- "so o humano pode:<br/>comando exato" --> H[Humano]
+```
+
+- Coordenador e Administrador executam com o clique de aprovacao do humano; o humano so digita o que e dele (Orca, lancador `papel`, senha, `sudo`).
+- Sem tarefa (Pesquisador, Bibliotecario, ambiente): `operacao/coordenador/COORD-####.md`.
+- **Passos do humano** no cartao: so decisoes e acoes exclusivas do humano.
+
 ## Status do cartão
 
 ```mermaid
@@ -89,7 +104,7 @@ stateDiagram-v2
 5. **Revisor** (humano, no mesmo worktree, depois de fechar os anteriores): `D:\01_IA\ferramentas\papel revisor`
    → o Revisor verifica, commita `VER-####` (e `BUG-`) no branch e muda o status para `aprovada` ou `correcao`, considerando os UX e SEC bloqueantes.
 6. **Se `correcao`**: voltar ao passo 3. O Dev lê o VER, os BUG e os SEC e corrige. Depois, passos 4 e 5 de novo — **todo novo commit exige um novo VER**.
-7. **Merge** (Coordenador prepara, humano aprova): com status `aprovada`, o Coordenador confere VER e bloqueantes, faz o merge `--no-ff` na `main` com o "sim" do humano, executa os Passos do humano operacionais aprovados, muda o status para `concluida` e faz push com aprovação. O humano exclui o worktree no Orca.
+7. **Merge** (Coordenador prepara, humano aprova): com status `aprovada`, o Coordenador confere VER e bloqueantes, faz o merge `--no-ff` na `main` com o "sim" do humano, executa os Pedidos ao Coordenador pendentes (com aprovação), muda o status para `concluida` e faz push com aprovação. O humano exclui o worktree no Orca.
 8. **Bibliotecário** (humano, num terminal em `D:\01_IA`, quando houver candidatos no Inbox): `D:\01_IA\ferramentas\papel bibliotecario`
    → cura os candidatos do Inbox e commita.
 
