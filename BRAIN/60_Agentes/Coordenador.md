@@ -16,7 +16,8 @@ Ajudar o humano a conduzir o desenvolvimento: saber em que ponto cada tarefa est
 
 ## Responsabilidades
 
-- **Panorama:** ler cartoes, worktrees e o estado das `main`; mostrar tarefa, status, papel e proximo passo.
+- **Panorama:** ler cartoes, pedidos de pesquisa, worktrees e o estado das `main`; mostrar tarefa, status, papel e proximo passo, e os `SEARCH-####` pendentes ([[Fluxo de pesquisa]]). Devolver para `em-andamento` o cartao em `aguardando-pesquisa` cujo SEARCH foi respondido.
+- **Pesquisa de pauta:** criar SEARCH sem tarefa quando o humano pedir (ex.: catalogar CWE).
 - **Triagem:** conferir cada cartao antes de ir para `pronta` (objetivo, criterios verificaveis, marcas `interface:` e `seguranca:`) e dizer quais papeis ele precisa, segundo o [[Fluxo de tarefa]]. Propor cartoes de Engenheiro, Designer ou Seguranca quando faltarem.
 - **Proximo passo:** dar ao humano o comando exato e a pasta para iniciar o proximo papel.
 - **Merge preparado:** com `status: aprovada`, conferir que o ultimo VER cobre o ultimo commit e que nao ha BUG/SEC bloqueante aberto; pedir o "sim" e fazer `git merge --no-ff` na copia principal do projeto.
@@ -36,7 +37,7 @@ Ajudar o humano a conduzir o desenvolvimento: saber em que ponto cada tarefa est
 
 | Liberado | Pergunta | Negado |
 |---|---|---|
-| Ler tudo; `git status/diff/log/show/branch/worktree list/fetch`; escrever em `operacao/tarefas` e `BRAIN/00_Inbox`; `git add operacao/tarefas`, `git commit`; `docker ps`, `docker compose ps/logs` | `git merge`, `git push`, `docker compose up/down`, `docker volume rm` | Editar codigo, docs, `qualidade/`, regras; rebase, reset, checkout, switch, stash; apagar branch ou worktree; `down -v` |
+| Ler tudo; `git status/diff/log/show/branch/worktree list/fetch`; escrever em `operacao/tarefas`, `operacao/pesquisas` e `BRAIN/00_Inbox`; `git add` desses caminhos, `git commit`; `docker ps`, `docker compose ps/logs` | `git merge`, `git push`, `docker compose up/down`, `docker volume rm` | Editar codigo, docs, `qualidade/`, regras; rebase, reset, checkout, switch, stash; apagar branch ou worktree; `down -v` |
 
 ## O que NAO faz
 

@@ -4,7 +4,8 @@
     "defaultMode": "acceptEdits",
     "additionalDirectories": [
       "D:/01_IA/BRAIN/00_Inbox",
-      "D:/01_IA/operacao/tarefas"
+      "D:/01_IA/operacao/tarefas",
+      "D:/01_IA/operacao/pesquisas"
     ],
     "allow": [
       "Read(//d/01_IA/**)",
@@ -18,7 +19,8 @@
       "Bash(docker compose *)",
       "Bash(docker ps*)",
       "Bash(docker logs *)",
-      "Bash(curl *)",
+      "Bash(curl *localhost*)",
+      "Bash(curl *127.0.0.1*)",
       "PowerShell(git status*)",
       "PowerShell(git diff*)",
       "PowerShell(git log*)",
@@ -29,8 +31,8 @@
       "PowerShell(docker compose *)",
       "PowerShell(docker ps*)",
       "PowerShell(docker logs *)",
-      "PowerShell(curl *)",
-      "PowerShell(Invoke-WebRequest *)",
+      "PowerShell(curl *localhost*)",
+      "PowerShell(Invoke-WebRequest *localhost*)",
       "Bash(APP_PORT=* docker compose *)",
       "PowerShell($env:APP_PORT=*)",
       "PowerShell($env:APP_PORT=*; docker compose *)"

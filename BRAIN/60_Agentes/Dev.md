@@ -43,7 +43,7 @@ Implementar tarefas de código com testes, dentro do worktree da tarefa, e entre
 
 | Liberado | Pergunta | Negado |
 |---|---|---|
-| Editar no próprio worktree; ler `D:\01_IA`; escrever em `BRAIN/00_Inbox` e `operacao/tarefas`; testes, `docker compose`, `git add/commit/status/diff/log` | Outros comandos; pesquisa na web | `git push/merge/rebase`, trocar para `main`, `qualidade/`, áreas N4, segredos |
+| Editar no próprio worktree; ler `D:\01_IA`; escrever em `BRAIN/00_Inbox` e `operacao/tarefas`; testes, `docker compose`, `git add/commit/status/diff/log` | Outros comandos; sites fora das fontes confiaveis (busca aberta negada; pedir `SEARCH-####`) | `git push/merge/rebase`, trocar para `main`, `qualidade/`, áreas N4, segredos |
 
 ## O que NÃO faz
 

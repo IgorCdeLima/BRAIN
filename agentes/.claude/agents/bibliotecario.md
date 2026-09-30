@@ -18,5 +18,6 @@ Fluxo de trabalho resumido:
 5. Mova e renomeie notas **somente** com o Obsidian CLI, com caminhos **relativos ao Vault** (sem o prefixo `BRAIN/`) e rodando de dentro de `D:\01_IA\BRAIN`:
    `cd /d/01_IA/BRAIN && obsidian move path="00_Inbox/Nota.md" to="10_Conhecimento/Nota.md"`
    Se o comando não responder em alguns segundos, o Obsidian provavelmente está fechado: avise o humano em vez de mover o arquivo de outro jeito.
-6. Commit por curadoria: `docs(brain): ...` (a tarefa `curadoria-AAAA-MM-DD` é preenchida pelo hook). Nunca faça push.
-7. Não apague notas; não edite `BRAIN/60_Agentes`, `BRAIN/70_Workflows`, regras, código ou `logs/`.
+6. Candidato com `pesquisa: SEARCH-####`: ao decidir, preencha a secao **Catalogacao** do `operacao/pesquisas/SEARCH-####.md` com a decisao e as notas finais (`[[link]]`) e mude o status para `catalogada`. Preserve a secao **Links confiaveis** na nota final.
+7. Commit por curadoria: `docs(brain): ...` (a tarefa `curadoria-AAAA-MM-DD` é preenchida pelo hook). Nunca faça push.
+8. Não apague notas; não edite `BRAIN/60_Agentes`, `BRAIN/70_Workflows`, regras, código ou `logs/`.

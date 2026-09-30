@@ -1,0 +1,23 @@
+{
+  "_leiame": "Dominios que os papeis (exceto o Pesquisador, que navega livre) podem abrir com WebFetch. Fora da lista: o Claude pergunta ao humano. Busca aberta (WebSearch) so o Pesquisador. Area N4: so o humano altera; o Pesquisador propoe dominios novos no SEARCH. O lancador (ferramentas/papel.py) injeta esta lista no perfil de cada papel.",
+  "dominios": [
+    {"dominio": "osv.dev", "motivo": "base de vulnerabilidades (OSV)"},
+    {"dominio": "api.osv.dev", "motivo": "API do OSV"},
+    {"dominio": "public.vulnerablecode.io", "motivo": "VulnerableCode, segunda opiniao de vulnerabilidades"},
+    {"dominio": "cwe.mitre.org", "motivo": "definicao oficial das CWE"},
+    {"dominio": "cheatsheetseries.owasp.org", "motivo": "OWASP Cheat Sheets (controles praticos)"},
+    {"dominio": "owasp.org", "motivo": "OWASP (Top 10, ASVS)"},
+    {"dominio": "github.com", "motivo": "repositorios oficiais (PyPA Advisory Database, dependencias do projeto)"},
+    {"dominio": "pypi.org", "motivo": "pacotes Python e versoes"},
+    {"dominio": "docs.python.org", "motivo": "documentacao oficial do Python"},
+    {"dominio": "fastapi.tiangolo.com", "motivo": "documentacao oficial do FastAPI"},
+    {"dominio": "www.starlette.io", "motivo": "documentacao oficial do Starlette"},
+    {"dominio": "docs.sqlalchemy.org", "motivo": "documentacao oficial do SQLAlchemy"},
+    {"dominio": "www.postgresql.org", "motivo": "documentacao oficial do PostgreSQL"},
+    {"dominio": "docs.docker.com", "motivo": "documentacao oficial do Docker"},
+    {"dominio": "developer.mozilla.org", "motivo": "MDN: HTML, CSS, HTTP e acessibilidade"},
+    {"dominio": "www.w3.org", "motivo": "WCAG e especificacoes web"},
+    {"dominio": "code.claude.com", "motivo": "documentacao do Claude Code"},
+    {"dominio": "help.obsidian.md", "motivo": "documentacao do Obsidian"}
+  ]
+}

@@ -13,6 +13,7 @@ Caminhos: `D:\01_IA` nas regras e definicoes e a raiz do ambiente no Windows. Em
 | `BRAIN/60_Agentes`, `BRAIN/70_Workflows` | Regras dos agentes e processos | **Somente o humano** (N4) |
 | `agentes/` | Definições executáveis dos papéis | **Somente o humano** (N4) |
 | `operacao/tarefas` | Cartões de tarefa e handoffs | Agentes conforme o papel |
+| `operacao/pesquisas` | Pedidos de pesquisa `SEARCH-####` | Qualquer papel cria; o Pesquisador responde; o Bibliotecario fecha |
 | `logs/` | Telemetria automática (fora do Git) | **Somente os hooks** — agentes não escrevem aqui |
 | `operacao/qualidade` | Verificações, bugs e segurança do ambiente | Revisor, Segurança, Coordenador; demais só leem |
 | `projetos/<nome>` | Cada projeto é um repositório Git próprio | Conforme o papel, dentro do worktree da tarefa |
@@ -36,7 +37,7 @@ Cada pasta tem um `_LEIAME.md` com o propósito e as regras dela. Leia-o antes d
 1. Brain: busque por título, tags, backlinks e texto — **inclusive em `00_Inbox`**. Se usar uma nota, **cite-a** com `[[link]]`.
    Nota do Inbox, antiga (`verificado_em`) ou de baixa confiança = pista a verificar, não verdade.
 2. Classifique a dúvida: conceito estável → conhecimento próprio; **fato volátil** (versão, API, preço) → pesquisa externa obrigatória; outra especialidade → consulte o agente especialista.
-3. Pesquisa externa entra em `BRAIN/00_Inbox` como não confiável.
+3. **Pesquisa externa e do Pesquisador** ([[ADR-0017 Papel Pesquisador e internet por fontes confiaveis]]): os demais papeis so abrem os links confiaveis citados nas notas e os dominios de `agentes/fontes-confiaveis.json` (outros sites: o Claude pergunta ao humano; busca aberta e negada). Se o Brain nao responde, crie um pedido `operacao/pesquisas/SEARCH-####.md` (template `BRAIN/99_Sistema/Templates/Pesquisa.md`) com `urgencia: bloqueante` (cartao em `aguardando-pesquisa`, pare) ou `nao-bloqueante` (siga com a premissa registrada na Entrega). Fluxo em `BRAIN/70_Workflows/Fluxo de pesquisa.md`. O resultado entra em `BRAIN/00_Inbox` como pista.
 4. Ao terminar, proponha como **candidato a conhecimento** apenas o que é reaproveitável e validado — incluindo resultados negativos ("tentamos X, não funciona por Y").
 
 ## Obsidian
@@ -57,7 +58,7 @@ Cada pasta tem um `_LEIAME.md` com o propósito e as regras dela. Leia-o antes d
   ```
 
 - Trabalho de agente acontece **sempre num worktree próprio criado pelo Orca**; merge na `main` conforme aprovação. A cópia principal `D:\01_IA` é do humano, do Coordenador e do Bibliotecário.
-- Cada papel é iniciado pelo humano com o lançador `D:\01_IA\ferramentas\papel <coordenador|engenheiro|designer|seguranca|dev|revisor|bibliotecario>` (Linux: `ferramentas/papel.sh`), que confere pasta e cartão e abre o Claude com a definição, o perfil de permissões e o modelo do papel. O perfil prevalece sobre a tabela acima. **Um agente nunca define `IA_PAPEL` nem se atribui um papel.** Sessão sem papel não trabalha: avisa o humano. Fluxo completo em `BRAIN/70_Workflows/Fluxo de tarefa.md`.
+- Cada papel é iniciado pelo humano com o lançador `D:\01_IA\ferramentas\papel <coordenador|engenheiro|designer|seguranca|dev|revisor|pesquisador|bibliotecario>` (Linux: `ferramentas/papel.sh`), que confere pasta e cartão e abre o Claude com a definição, o perfil de permissões e o modelo do papel. O perfil prevalece sobre a tabela acima. **Um agente nunca define `IA_PAPEL` nem se atribui um papel.** Sessão sem papel não trabalha: avisa o humano. Fluxo completo em `BRAIN/70_Workflows/Fluxo de tarefa.md`.
 
 ## Qualidade
 

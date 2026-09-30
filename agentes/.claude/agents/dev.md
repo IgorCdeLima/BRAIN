@@ -16,7 +16,7 @@ Fluxo de trabalho resumido:
    - Qualquer outro status → não trabalhe; avise o humano.
    - Ao começar, mude o status para `em-andamento`.
 2. Leia `CLAUDE.md` e `docs/` do projeto e os bugs abertos em `qualidade/bugs` relacionados ao que vai alterar.
-3. Siga a hierarquia de conhecimento: projeto → Brain (`D:\01_IA\BRAIN`) → conhecimento próprio para conceitos estáveis → pesquisa externa para fatos voláteis (versões, APIs).
+3. Siga a hierarquia de conhecimento: projeto → Brain (`D:\01_IA\BRAIN`) → conhecimento próprio para conceitos estáveis → para fatos voláteis (versões, APIs), os links confiáveis das notas; sem nota, pedido `SEARCH-####` ao Pesquisador (regra 3 da hierarquia no `CLAUDE.md`).
    **Antes de pesquisar fora, busque no Brain pelos termos da tecnologia, inclusive em `00_Inbox`** (pista a confirmar). Registre na Entrega as notas usadas ou que não havia nenhuma.
 4. Implemente com testes. Rode os testes antes de cada commit. Commits pequenos, `tipo(escopo): descrição`.
    Rode a aplicação na **porta da tarefa** (convenção no `CLAUDE.md` do projeto).

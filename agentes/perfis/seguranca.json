@@ -4,12 +4,15 @@
     "defaultMode": "acceptEdits",
     "additionalDirectories": [
       "D:/01_IA/BRAIN/00_Inbox",
-      "D:/01_IA/operacao/tarefas"
+      "D:/01_IA/operacao/tarefas",
+      "D:/01_IA/operacao/pesquisas"
     ],
     "allow": [
       "Read(//d/01_IA/**)",
-      "WebSearch",
-      "WebFetch",
+      "Bash(pip-audit*)",
+      "Bash(osv-scanner*)",
+      "PowerShell(pip-audit*)",
+      "PowerShell(osv-scanner*)",
       "Bash(git status*)",
       "Bash(git diff*)",
       "Bash(git log*)",
@@ -22,7 +25,8 @@
       "Bash(APP_PORT=* docker compose *)",
       "Bash(docker ps*)",
       "Bash(docker logs *)",
-      "Bash(curl *)",
+      "Bash(curl *localhost*)",
+      "Bash(curl *127.0.0.1*)",
       "PowerShell(git status*)",
       "PowerShell(git diff*)",
       "PowerShell(git log*)",
@@ -36,8 +40,8 @@
       "PowerShell($env:APP_PORT=*; docker compose *)",
       "PowerShell(docker ps*)",
       "PowerShell(docker logs *)",
-      "PowerShell(curl *)",
-      "PowerShell(Invoke-WebRequest *)"
+      "PowerShell(curl *localhost*)",
+      "PowerShell(Invoke-WebRequest *localhost*)"
     ],
     "deny": [
       "Read(//**/.env)",

@@ -18,7 +18,7 @@ Entender **o que o cliente precisa** e transformar isso em requisitos verificáv
 
 - **Requisitos:** levantar e escrever requisitos funcionais (`RF-##`) e não funcionais (`RNF-##`), cada um com critério verificável; regras de validação; o que está fora do escopo; **questões em aberto** para o humano.
 - **Modelagem (Mermaid)**, proporcional ao tamanho da tarefa (guia em `BRAIN/70_Workflows/Padroes de modelagem.md`): contexto e containers (C4), casos de uso, atividades, classes/domínio, ER, sequência, estados, implantação.
-- **Avaliação de tecnologias:** matriz de decisão com critérios e pesos explícitos, alternativas reais e fontes oficiais (versões e suporte são fatos voláteis: pesquisar).
+- **Avaliação de tecnologias:** matriz de decisão com critérios e pesos explícitos, alternativas reais e fontes oficiais (versões e suporte são fatos voláteis: pedir ao Pesquisador um `SEARCH-####` e usar os links confiáveis das notas).
 - **Decisões:** registrar como ADR do projeto (`docs/adr/`) com `status: proposta` — só o humano muda para `aceita`.
 - **Decomposição:** quebrar o que foi projetado em cartões de implementação pequenos em `operacao/tarefas` (`status: backlog`, `papel: dev`), com critérios de aceite derivados dos requisitos e links para os modelos.
 - Manter `docs/` coerente: ao mudar um requisito, atualizar modelos e cartões afetados.
@@ -39,7 +39,7 @@ Entender **o que o cliente precisa** e transformar isso em requisitos verificáv
 
 | Liberado | Pergunta | Negado |
 |---|---|---|
-| Ler tudo; escrever em `docs/`, no cartão, em `operacao/tarefas` e no Inbox; pesquisa na web; `git add docs/` e `commit` | Outros comandos | Código, testes, configuração, `qualidade/`, push, merge |
+| Ler tudo; escrever em `docs/`, no cartão, em `operacao/tarefas`, `operacao/pesquisas` e no Inbox; links das fontes confiaveis; `git add docs/` e `commit` | Outros comandos; outros sites (busca aberta negada) | Código, testes, configuração, `qualidade/`, push, merge |
 
 ## O que NÃO faz
 

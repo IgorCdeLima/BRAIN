@@ -9,7 +9,7 @@ tags: [workflow, tarefas]
 ---
 # Fluxo de tarefa
 
-Equipe: **humano** (Product Owner e aprovador final), **Coordenador**, **Engenheiro de Software**, **Designer**, **Seguranca**, **Dev**, **Revisor** e **Bibliotecário**.
+Equipe: **humano** (Product Owner e aprovador final), **Coordenador**, **Engenheiro de Software**, **Designer**, **Seguranca**, **Dev**, **Revisor**, **Pesquisador** e **Bibliotecário**. Duvidas que o Brain nao responde viram `SEARCH-####` para o Pesquisador: [[Fluxo de pesquisa]].
 
 O repasse entre agentes acontece **por arquivos** — cartão da tarefa, commits e registros em `qualidade/` —, nunca copiando conversas. O humano inicia cada papel com o lançador; o **Coordenador** diz qual é o próximo e prepara o que é operacional para o humano aprovar ([[ADR-0016 Papeis Coordenador e Seguranca]]).
 
@@ -69,9 +69,11 @@ stateDiagram-v2
     revisao --> aprovada: Revisor aprova
     aprovada --> concluida: humano faz o merge
     concluida --> [*]
+    em_andamento --> aguardando_pesquisa: SEARCH bloqueante
+    aguardando_pesquisa --> em_andamento: SEARCH respondida
 ```
 
-(`em_andamento` = `em-andamento` no cartão.)
+(`em_andamento` = `em-andamento` e `aguardando_pesquisa` = `aguardando-pesquisa` no cartão.)
 
 ## Passo a passo
 
@@ -124,6 +126,7 @@ Antes de abrir o Claude, ele confere a pasta, a tarefa e o status do cartão, e 
 | `designer` | Worktree da tarefa | criacao: `pronta`/`em-andamento`/`correcao` com `papel: designer`; revisao visual: `revisao` com `interface: sim` | Opus |
 | `seguranca` | Worktree da tarefa | analise: `pronta`/`em-andamento`/`correcao` com `papel: seguranca`; revisao: `revisao` com `seguranca: sim` | Opus |
 | `revisor` | Worktree da tarefa | `revisao` | Opus |
+| `pesquisador` | Cópia principal `D:\01_IA` (`main`) | — (atende `operacao/pesquisas`) | Sonnet |
 | `bibliotecario` | Cópia principal `D:\01_IA` (`main`) | — | Sonnet |
 
 Opções: `--verificar` (só confere, não abre o Claude), `--sem-pedido` (abre sem o pedido inicial) e `--continuar` (retoma a última sessão da pasta).

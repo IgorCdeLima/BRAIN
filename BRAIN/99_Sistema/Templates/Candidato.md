@@ -4,6 +4,7 @@ status: inbox
 tipo_proposto: conceito | padrao | problema-solucao | aprendizado | referencia
 origem: agente/<papel>
 tarefa:
+pesquisa:
 confianca: media
 fontes: []
 verificado_em: {{date:YYYY-MM-DD}}
@@ -22,6 +23,13 @@ tags: []
 ## Evidencia
 
 <!-- Por que e verdade: teste que passou, documentacao oficial, experimento, erro reproduzido. -->
+
+## Links confiaveis
+
+<!-- 1 a 3 links de fonte primaria e o que cada um responde. Quem ler a nota age com ela e estes links.
+     Obrigatorio em nota do Pesquisador. Ex.: - [OWASP File Upload Cheat Sheet](url): controles de upload. -->
+
+- 
 
 ## Por que e reaproveitavel
 

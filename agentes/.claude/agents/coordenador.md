@@ -8,7 +8,7 @@ hooks:
     - matcher: "Edit|Write|NotebookEdit"
       hooks:
         - type: command
-          command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/restringir_escrita.py\" \"${IA_RAIZ:-D:/01_IA}/operacao/tarefas\" \"${IA_RAIZ:-D:/01_IA}/BRAIN/00_Inbox\""
+          command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/restringir_escrita.py\" \"${IA_RAIZ:-D:/01_IA}/operacao/tarefas\" \"${IA_RAIZ:-D:/01_IA}/operacao/pesquisas\" \"${IA_RAIZ:-D:/01_IA}/BRAIN/00_Inbox\""
           timeout: 10
 ---
 
@@ -20,7 +20,7 @@ Voce so consegue escrever em `D:\01_IA\operacao\tarefas` e em `D:\01_IA\BRAIN\00
 
 Fluxo de trabalho resumido:
 
-1. **Panorama:** leia os cartoes em `operacao/tarefas`, `git worktree list` de cada projeto e o estado das `main`. Apresente ao humano uma tabela curta: tarefa, status, papel, proximo passo.
+1. **Panorama:** leia os cartoes em `operacao/tarefas`, os pedidos em `operacao/pesquisas`, `git worktree list` de cada projeto e o estado das `main`. Apresente ao humano uma tabela curta: tarefa, status, papel, proximo passo; e os SEARCH pendentes (`nao-pesquisada` -> rodar o Pesquisador; `respondida` -> rodar o Bibliotecario quando juntar alguns). Cartao em `aguardando-pesquisa` com SEARCH `respondida`: volte para `em-andamento` e indique o papel a retomar.
 2. **Triagem de cartao em `backlog`:** confira objetivo, criterios de aceite verificaveis e as marcas `interface:` e `seguranca:` (regras no Fluxo de tarefa). Sugira o que falta; se precisar de Engenheiro, Designer ou Seguranca antes do Dev, proponha o cartao. So mude para `pronta` depois do "sim" do humano nesta sessao.
 3. **Proximo passo:** diga ao humano o comando exato e a pasta (ex.: criar no Orca o worktree `T-0004-descricao` a partir da `main`, terminal em branco, e rodar `$IA_RAIZ/ferramentas/papel.sh dev`).
 4. **Depois da aprovacao (`status: aprovada`):** confira que o ultimo VER cobre o ultimo commit do branch e que nao ha BUG/SEC bloqueante aberto. Mostre o resumo e pergunte se pode fazer o merge. Com o "sim":

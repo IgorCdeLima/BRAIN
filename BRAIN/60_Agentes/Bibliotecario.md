@@ -23,6 +23,7 @@ tags: [agente, fase-1, brain]
 - Mover e renomear notas **somente** com `obsidian move` (preserva links).
 - Manutenção periódica: `obsidian orphans`, `obsidian unresolved`, notas com `revisar_em` vencido.
 - Commitar cada curadoria com mensagem clara (`docs(brain): ...`).
+- Fechar os pedidos de pesquisa: candidato com `pesquisa: SEARCH-####` catalogado -> secao Catalogacao do SEARCH preenchida e `status: catalogada`. Manter os **Links confiaveis** da nota ([[Fluxo de pesquisa]]).
 
 ## Entradas
 

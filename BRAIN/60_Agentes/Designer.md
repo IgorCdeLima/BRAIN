@@ -35,7 +35,7 @@ Pensar a experiencia e a aparencia das telas com liberdade criativa, antes do co
 
 | Liberado | Pergunta | Negado |
 |---|---|---|
-| Ler tudo; escrever em `docs/design/`, `qualidade/ux/`, cartoes e Inbox; subir a aplicacao na porta do Designer; pesquisa na web (referencias) | Outros comandos | Codigo da aplicacao, testes, configuracao, outros registros de qualidade, push, merge |
+| Ler tudo; escrever em `docs/design/`, `qualidade/ux/`, cartoes e Inbox; subir a aplicacao na porta do Designer e ve-la em `localhost`; links das fontes confiaveis (referencias visuais novas: pedir `SEARCH-####`) | Outros comandos; outros sites (busca aberta negada) | Codigo da aplicacao, testes, configuracao, outros registros de qualidade, push, merge |
 
 ## O que NAO faz
 

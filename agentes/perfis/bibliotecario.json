@@ -8,6 +8,7 @@
       "Bash(git diff*)",
       "Bash(git log*)",
       "Bash(git add BRAIN/*)",
+      "Bash(git add operacao/pesquisas/*)",
       "Bash(git commit *)",
       "PowerShell(obsidian *)",
       "PowerShell(git status*)",

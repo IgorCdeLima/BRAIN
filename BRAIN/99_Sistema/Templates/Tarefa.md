@@ -14,6 +14,7 @@ tags: []
 
 <!-- Status: backlog -> pronta -> em-andamento -> revisao -> (correcao -> em-andamento -> revisao) -> aprovada -> concluida (ou bloqueada).
      aguardando-humano: o agente parou esperando uma decisao do humano (ex.: escolha da direcao visual).
+     aguardando-pesquisa: o agente parou esperando um SEARCH-#### bloqueante (Fluxo de pesquisa).
      interface: sim quando a tarefa muda a tela -> o Designer faz a revisao visual antes do Revisor fechar.
      seguranca: sim quando toca upload, autenticacao, dados pessoais, segredos, rede ou novas dependencias
      -> a Seguranca faz a revisao antes do Revisor fechar. Criterios no Fluxo de tarefa. -->

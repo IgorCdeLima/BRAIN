@@ -8,6 +8,7 @@ Uso (no terminal, dentro da pasta certa):
     D:\\01_IA\\ferramentas\\papel seguranca      -> analise de ameacas (cartao de seguranca) ou revisao de seguranca
     D:\\01_IA\\ferramentas\\papel bibliotecario  -> cura o Inbox (na cópia principal D:\\01_IA)
     D:\\01_IA\\ferramentas\\papel coordenador    -> panorama e proximo passo (na cópia principal D:\\01_IA)
+    D:\\01_IA\\ferramentas\\papel pesquisador    -> atende os SEARCH-#### pendentes (na cópia principal D:\\01_IA)
 Opções:
     --verificar    só confere se está tudo certo, sem abrir o Claude
     --sem-pedido   abre o Claude sem enviar o pedido inicial
@@ -23,6 +24,7 @@ no Windows). Linux: ferramentas/papel.sh <papel>. As definições e perfis citam
 D:\\01_IA; fora dessa raiz o perfil é reescrito para a raiz real a cada início.
 """
 
+import json
 import os
 import re
 import shutil
@@ -88,6 +90,12 @@ PAPEIS = {
         "tarefa": "coordenacao",
         "pedido": "Apresente o panorama das tarefas e proponha o proximo passo.",
     },
+    "pesquisador": {
+        "local": "principal",
+        "status": None,
+        "tarefa": "pesquisa",
+        "pedido": "Atenda os pedidos de pesquisa pendentes em operacao/pesquisas.",
+    },
 }
 
 
@@ -123,16 +131,27 @@ def raiz_e_padrao() -> bool:
 
 
 def perfil_do_papel(papel: str) -> str:
-    """Caminho do perfil de permissões; fora de D:\\01_IA, uma cópia com a raiz real."""
+    """Cópia do perfil de permissões pronta para a sessão.
+
+    - Fora de D:\\01_IA, os caminhos passam para a raiz real.
+    - Internet (ADR-0017): WebFetch liberado só nos domínios de
+      agentes/fontes-confiaveis.json; WebSearch negado. O Pesquisador navega livre.
+    """
     perfil = DIR_AGENTES / "perfis" / f"{papel}.json"
-    if raiz_e_padrao():
-        return str(perfil)
-    raiz = RAIZ.as_posix()
-    m = re.match(r"^([A-Za-z]):/(.*)$", raiz)
-    raiz_regra = f"//{m.group(1).lower()}/{m.group(2)}" if m else "/" + raiz  # formato //caminho das regras
-    texto = perfil.read_text(encoding="utf-8").replace("//d/01_IA", raiz_regra).replace(RAIZ_PADRAO, raiz)
+    texto = perfil.read_text(encoding="utf-8")
+    if not raiz_e_padrao():
+        raiz = RAIZ.as_posix()
+        m = re.match(r"^([A-Za-z]):/(.*)$", raiz)
+        raiz_regra = f"//{m.group(1).lower()}/{m.group(2)}" if m else "/" + raiz  # formato //caminho das regras
+        texto = texto.replace("//d/01_IA", raiz_regra).replace(RAIZ_PADRAO, raiz)
+    config = json.loads(texto)
+    if papel != "pesquisador":
+        permissoes = config.setdefault("permissions", {})
+        fontes = json.loads((DIR_AGENTES / "fontes-confiaveis.json").read_text(encoding="utf-8"))
+        permissoes.setdefault("allow", []).extend(f"WebFetch(domain:{d['dominio']})" for d in fontes["dominios"])
+        permissoes.setdefault("deny", []).append("WebSearch")
     copia = Path(tempfile.gettempdir()) / f"ia-perfil-{papel}.json"
-    copia.write_text(texto, encoding="utf-8")
+    copia.write_text(json.dumps(config, ensure_ascii=False, indent=2), encoding="utf-8")
     return str(copia)
 
 

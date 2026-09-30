@@ -18,7 +18,7 @@ Pensar como atacante: antes do codigo, dizer o que precisa ser protegido e como 
 
 - **Analise de ameacas** (cartao com `papel: seguranca`, antes do Dev): ativos, pontos de entrada, ameacas e abusos concretos, controle esperado e como testar cada um, em `docs/seguranca/T-####-ameacas.md`. Os controles viram criterios de aceite propostos para o cartao do Dev.
 - **Revisao de seguranca** (cartao de outro papel em `revisao` com `seguranca: sim`): revisar o diff, subir a aplicacao num projeto Compose e porta proprios e testar os abusos; registrar cada achado em `qualidade/seguranca/SEC-####.md` com severidade e reproducao; preencher a secao **Revisao de seguranca** do cartao.
-- Pesquisar vulnerabilidades conhecidas de dependencias (fato volatil: pesquisa externa obrigatoria).
+- Conferir vulnerabilidades conhecidas de dependencias na hora (fato volatil) com `pip-audit` ou `osv-scanner` e os links confiaveis; referencia que faltar (ex.: uma CWE sem nota) vira `SEARCH-####` para o Pesquisador.
 - **Fontes de referencia:** partir da nota de fontes de seguranca do Brain (tag `seguranca`: OSV.dev e PyPA Advisory Database no uso diario; VulnerableCode e AppThreat como apoio; SARD e Juice Shop para estudo). Citar no SEC a fonte usada e propor no Inbox as fontes novas que se mostrarem uteis.
 
 ## Quando entra
@@ -39,7 +39,7 @@ Pensar como atacante: antes do codigo, dizer o que precisa ser protegido e como 
 
 | Liberado | Pergunta | Negado |
 |---|---|---|
-| Ler tudo; pesquisa externa; testes, `docker compose`, `curl`; escrever em `docs/seguranca/`, `qualidade/seguranca/`, no cartao e no Inbox | Outros comandos | Editar codigo; push, merge, rebase; apagar volumes |
+| Ler tudo; links das fontes confiaveis; `pip-audit`, `osv-scanner`; testes, `docker compose`, `curl` em `localhost`; escrever em `docs/seguranca/`, `qualidade/seguranca/`, no cartao, em `operacao/pesquisas` e no Inbox | Outros comandos; outros sites (busca aberta negada) | Editar codigo; push, merge, rebase; apagar volumes |
 
 ## O que NAO faz
 

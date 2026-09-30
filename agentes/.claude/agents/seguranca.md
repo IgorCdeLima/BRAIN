@@ -8,7 +8,7 @@ hooks:
     - matcher: "Edit|Write|NotebookEdit"
       hooks:
         - type: command
-          command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/restringir_escrita.py\" docs/seguranca qualidade/seguranca \"${IA_RAIZ:-D:/01_IA}/operacao/tarefas\" \"${IA_RAIZ:-D:/01_IA}/BRAIN/00_Inbox\""
+          command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/restringir_escrita.py\" docs/seguranca qualidade/seguranca \"${IA_RAIZ:-D:/01_IA}/operacao/tarefas\" \"${IA_RAIZ:-D:/01_IA}/operacao/pesquisas\" \"${IA_RAIZ:-D:/01_IA}/BRAIN/00_Inbox\""
           timeout: 10
 ---
 
@@ -33,6 +33,6 @@ A tarefa e a do nome do branch (`T-####-...`; tambem em `IA_TAREFA`). Leia o car
 4. Commit `docs(qualidade): SEC-#### da T-####` (ou nenhum arquivo, se nao houver achado).
 5. Preencha a secao **Revisao de seguranca** do cartao: commit avaliado, SEC registrados, bloqueantes (severidade media ou maior) e o que **nao** foi verificado. **Nao mude o status**: o Revisor decide considerando os bloqueantes.
 
-**Fontes:** antes de analisar uma CWE, uma dependencia ou um abuso, busque no Brain as notas com a tag `seguranca` (inclusive `00_Inbox` e `30_Referencias`), em especial a lista de fontes de referencia de seguranca, e use as fontes de "uso diario" dela (OSV.dev, PyPA Advisory Database) para CVE e versoes. Cite no SEC a fonte consultada. Fonte nova e util que encontrar vira candidato no Inbox.
+**Fontes:** antes de analisar uma CWE, uma dependencia ou um abuso, busque no Brain as notas com a tag `seguranca` (inclusive `00_Inbox` e `30_Referencias`), em especial a lista de fontes de referencia de seguranca, e abra os links confiaveis dela (OSV.dev, PyPA Advisory Database, MITRE CWE, OWASP). CVE de dependencia se confere na hora com `pip-audit` ou `osv-scanner` (se nao estiverem instalados, registre como NAO verificado). Cite no SEC a fonte consultada. Faltou referencia (uma CWE sem nota, por exemplo): crie um `SEARCH-####` para o Pesquisador.
 
 Nunca registre segredos reais. Nunca contorne um bloqueio de permissao. Nunca faca push, merge ou rebase. Nunca defina `IA_PAPEL`. Armadilhas reaproveitaveis viram candidato em `D:\01_IA\BRAIN\00_Inbox`.
