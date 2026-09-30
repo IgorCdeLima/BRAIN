@@ -20,7 +20,7 @@ tags: [upload, imagem, pillow, exif, armadilha, modelagem]
 **Armadilha de modelagem** ao especificar "regravar a imagem sem metadados" (privacidade, ADR-0002 do lab):
 
 1. **Orientacao:** foto de celular costuma vir com os pixels "deitados" e a tag EXIF `Orientation` dizendo como girar. Tirar o EXIF sem aplicar a rotacao antes deixa a foto deitada na listagem. Aplicar a orientacao nos pixels (no Pillow, `ImageOps.exif_transpose`) e so depois gravar sem EXIF.
-2. **Dimensao antes de decodificar:** `Image.open` le so o cabecalho; conferir largura x altura contra o limite do projeto **antes** de carregar os pixels. O limite padrao do Pillow (`MAX_IMAGE_PIXELS` = 89.478.485; erro so acima do dobro) e alto demais para um upload de 2 MB.
+2. **Dimensao antes de decodificar:** `Image.open` le so o cabecalho; conferir largura x altura contra o limite do projeto **antes** de carregar os pixels. O limite padrao do Pillow (`MAX_IMAGE_PIXELS` = 89.478.485; erro so acima do dobro) e alto demais para um upload de 2 MB. **Correcao (VER-0011, BUG-0008):** "erro so acima do dobro" acontece ja **dentro** do `Image.open` (`DecompressionBombError`, medido com Pillow 12.3.0), antes de qualquer checagem do projeto; entre ~89 MP e ~179 MP o `open` so emite aviso. Tratar essa excecao como "dimensao acima do limite". Sugestao ao Bibliotecario: fundir este item com o candidato do Revisor [[Pillow Image.open ja recusa imagem acima do dobro de MAX_IMAGE_PIXELS antes da checagem de dimensao do projeto]].
 3. **Criterio verificavel:** exemplo de entrada "JPEG com `Orientation=6` -> gravado ja girado e sem EXIF" e "PNG declarando 20.000 x 20.000 px -> 422 sem decodificar".
 
 ## Evidencia
