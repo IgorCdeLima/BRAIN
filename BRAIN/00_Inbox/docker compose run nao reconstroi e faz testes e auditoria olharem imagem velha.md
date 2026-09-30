@@ -45,3 +45,5 @@ Todo projeto com servicos de verificacao no Compose sobre imagem que embute codi
 - [[ruff e pip-audit em Docker Compose com servicos lint e audit no estagio dev]]
 
 ## Decisao do Bibliotecario
+
+**Devolvido** (2026-09-30): fica no Inbox. Sintoma nao reproduzido (confianca baixa) e a propria nota pede esperar a T-0009 (status `pronta`). Quando a T-0009 confirmar, **fundir** em [[Imagem Docker que embute o codigo exige build antes de rodar pytest]] (servicos test, lint e audit, opcao `--build`), conferindo o link da doc do Docker. Nao promovido: sem evidencia.

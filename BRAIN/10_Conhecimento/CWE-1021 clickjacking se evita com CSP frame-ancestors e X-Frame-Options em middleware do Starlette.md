@@ -64,6 +64,9 @@ Todo app web do ambiente que sirva HTML.
 ## Relacionadas no Brain
 
 - [[CWE-352 CSRF exige token ou cookie SameSite em rotas que mudam estado com cookie de sessao]]
+- [[FastAPI add_middleware com middleware ASGI puro cobre respostas de erro de outros middlewares]]: `add_middleware` do FastAPI testado na T-0007 (atribuicao em vez de `append`, sem duplicar cabecalho).
+- [[Middleware do FastAPI nao cobre a resposta 500 do ServerErrorMiddleware]]: o 500 nao recebe os cabecalhos; envolver o app por fora.
+- [[CSP default-src self bloqueia o style inline dos templates]]: cuidado ao fixar a CSP com `<style>` inline.
 
 ## Decisao do Bibliotecario
 

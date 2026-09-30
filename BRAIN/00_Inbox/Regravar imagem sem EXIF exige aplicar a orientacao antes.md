@@ -41,3 +41,5 @@ Todo projeto que recebe foto e remove metadados.
 - [[Upload de imagem valida tipo por magic bytes e serve por nome gerado]]
 
 ## Decisao do Bibliotecario
+
+**Fundido em parte e devolvido** (2026-09-30): o item 2 (dimensao e `DecompressionBombError`) foi corrigido e promovido em [[Pillow Image.open ja recusa imagem acima do dobro de MAX_IMAGE_PIXELS antes da checagem de dimensao do projeto]]; nao use o texto do item 2 acima. O item 1 (`exif_transpose` antes de regravar sem EXIF) segue como pista: a propria nota admite que nao conferiu em fonte (confianca baixa). Promover quando a T-0010 do lab testar ou houver fonte da funcao `ImageOps.exif_transpose`.
