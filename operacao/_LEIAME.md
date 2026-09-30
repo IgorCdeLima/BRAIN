@@ -5,7 +5,7 @@ Dados operacionais: mudam muito e não são conhecimento. Por isso ficam fora do
 - `tarefas/` — cartões de tarefa e handoffs entre agentes.
 - `pesquisas/` - pedidos de pesquisa `SEARCH-####`.
 - `coordenador/` - pedidos de comando ao Coordenador `COORD-####` sem tarefa (qualquer papel cria).
-- `administrador/` - pedidos ao Administrador `ADM-####` (so o Coordenador cria).
+- `administrador/` - pedidos ao Administrador `ADM-####` (o Coordenador cria ao escalar; o Administrador, para pedidos diretos do humano).
 
 Os logs automáticos ficam em `01_IA/logs`, fora do Git (ver `logs/_LEIAME.md`).
 - `qualidade/` — verificações, bugs e achados de segurança **do próprio ambiente 01_IA**.

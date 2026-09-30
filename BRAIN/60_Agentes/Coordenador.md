@@ -42,7 +42,7 @@ Ajudar o humano a conduzir o desenvolvimento: saber em que ponto cada tarefa est
 
 ## Escalacao
 
-O que exige area N4 (regras, perfis, lista de fontes, lancador, `CLAUDE.md` de projeto), decisao de ambiente ou push vai para o [[Administrador]]: o Coordenador cria `operacao/administrador/ADM-####.md` com o texto exato da mudanca, deixa no cartao so a referencia e diz ao humano para rodar `papel administrador` ([[ADR-0019 Pedidos ao Administrador em operacao]]). So o Coordenador cria ADM; os demais papeis escalam a ele pelo cartao.
+O que exige area N4 (regras, perfis, lista de fontes, lancador, `CLAUDE.md` de projeto), decisao de ambiente ou push vai para o [[Administrador]]: o Coordenador cria `operacao/administrador/ADM-####.md` com o texto exato da mudanca, deixa no cartao so a referencia e diz ao humano para rodar `papel administrador` ([[ADR-0019 Pedidos ao Administrador em operacao]]). Entre os papeis, so o Coordenador cria ADM (o Administrador tambem cria, para pedidos diretos do humano); os demais papeis escalam a ele pelo cartao.
 
 ## O que NAO faz
 

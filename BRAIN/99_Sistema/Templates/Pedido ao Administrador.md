@@ -15,12 +15,13 @@ tags: []
 
 <!-- Status: aberto -> em-andamento -> concluido | recusado.
      urgencia: bloqueante (uma tarefa parou esperando) | nao-bloqueante.
-     pedido_por: papel que abriu (hoje, so o coordenador). tarefa: T-#### ou "ambiente".
+     pedido_por: coordenador (escalacao) | humano (pedido direto ao Administrador que altera algo).
+     tarefa: T-#### ou "ambiente".
      Arquivo: operacao/administrador/ADM-####.md -->
 
 ## Pedido
 
-<!-- O que precisa mudar, em uma ou duas frases. -->
+<!-- O que precisa mudar, em uma ou duas frases. Pedido do humano: nas palavras dele. -->
 
 ## Motivo
 

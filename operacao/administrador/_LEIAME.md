@@ -4,7 +4,9 @@ Pedidos ao Administrador `ADM-####.md` (template `BRAIN/99_Sistema/Templates/Ped
 
 Serve para o que exige area N4 (regras, perfis, lancador, hooks, `CLAUDE.md` do ambiente ou de projeto, lista de fontes) ou decisao de ambiente, e para o que so o Administrador faz (push, merge de ambiente).
 
-- **So o Coordenador cria** um pedido (proximo numero livre). Os demais papeis escalam ao Coordenador pelo cartao da tarefa.
+- **Quem cria** (proximo numero livre):
+  - o **Coordenador**, ao escalar (`pedido_por: coordenador`). Os demais papeis escalam ao Coordenador pelo cartao da tarefa;
+  - o **Administrador**, para todo pedido direto do humano que altere algo: edicao, commit, merge, push, Docker (`pedido_por: humano`). Consultas e leituras nao geram ADM. Ele abre o ADM no inicio do trabalho, com o pedido nas palavras do humano.
 - No cartao, deixe so a referencia: "Escalado ao Administrador: ADM-####".
 - O **Administrador** le os pedidos com `status: aberto` no inicio da sessao, apresenta ao humano, executa com a aprovacao dele e preenche "Decisao do humano" e "Execucao".
 - Status: `aberto` -> `em-andamento` -> `concluido` | `recusado`.
