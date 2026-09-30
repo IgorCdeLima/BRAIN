@@ -1,8 +1,7 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
+tipo: padrao
+status: ativo
+origem: SEARCH-0002 (Pesquisador), curado pelo Bibliotecario
 tarefa: T-0005
 pesquisa: SEARCH-0002
 confianca: media
@@ -10,14 +9,17 @@ fontes: ["https://cwe.mitre.org/data/definitions/1395.html", "https://github.com
 verificado_em: 2026-09-30
 valido_para: pip-audit 2.x; Python 3.13; imagem python:3.13-slim
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2027-03-30
 tags: [seguranca, cwe, cwe-1395, dependencias, pip-audit]
 ---
 # CWE-1395 dependencia vulneravel se evita auditando o arquivo travado e a camada do sistema da imagem
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** o produto depende de componente de terceiros com vulnerabilidade conhecida. A CWE pede inventario (SBOM), monitoramento de avisos e aplicacao rapida de correcoes.
+
+## Solucao
 
 **Controle na nossa stack:**
 1. Travar as dependencias (ver [[CWE-829 dependencia sem versao e sem hash se evita com requirements travado com hashes]]).
@@ -47,3 +49,5 @@ Vale para todo projeto Python do ambiente.
 - [[Mapa das CWE relevantes para Python e FastAPI]]
 
 ## Decisao do Bibliotecario
+
+Promovido (2026-09-30) como padrao ativo: documentacao do pip-audit e da CWE lidas, caso confirmado no lab (SEC-0002). Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].

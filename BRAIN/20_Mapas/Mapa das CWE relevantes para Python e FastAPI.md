@@ -36,6 +36,17 @@ Porta de entrada da Seguranca e do Revisor para escolher o que checar. Filtro: C
 | CWE-639 IDOR | #24 | [[CWE-639 IDOR se evita filtrando a consulta pelo dono do objeto]] |
 | CWE-770 recursos sem limite | #25 | [[CWE-770 recursos sem limite se evitam com limite de corpo, timeout e rate limit]] |
 
+### Dependencias, imagem e hardening (SEARCH-0002, fora do Top 25)
+
+| CWE | Nota |
+|---|---|
+| CWE-1395 dependencia vulneravel | [[CWE-1395 dependencia vulneravel se evita com auditoria do arquivo travado e da camada do sistema da imagem]]; caso pratico: [[pip-audit limpo nao significa imagem limpa porque a camada do sistema fica fora]] |
+| CWE-829 origem nao confiavel (sem versao/hash) | [[CWE-829 dependencia sem versao e sem hash se evita com requirements travado com hashes]] |
+| CWE-250 container como root | [[CWE-250 container como root se evita com USER sem privilegio e cuidado com a posse de volumes]] |
+| CWE-1021 clickjacking (rascunho) | [[CWE-1021 clickjacking se evita com CSP frame-ancestors e X-Frame-Options em middleware do Starlette]] |
+
+Automacao no lab: [[ruff e pip-audit em Docker Compose com servicos lint e audit no estagio dev]].
+
 ## Perguntas em aberto
 
 ### Fica para pesquisas futuras
@@ -43,7 +54,8 @@ Porta de entrada da Seguranca e do Revisor para escolher o que checar. Filtro: C
 - CWE-284 Improper Access Control (#19): categoria ampla, coberta por 862/863/639.
 - CWE-863 Incorrect Authorization (#17) e CWE-306 (#21): citadas na nota de CWE-862; podem ganhar nota propria.
 - CWE de memoria em C/C++ (787, 416, 125, 120, 121, 122, 476): baixa relevancia em Python puro; relevantes para extensoes nativas (ex.: Pillow, drivers) e se resolvem atualizando dependencias (ver [[osv-scanner sobre requirements.txt acusa versao antiga de dependencia indireta]]).
-- Fora do Top 25 mas relevantes: cookies/sessao (CWE-614, 1004, 384), armazenamento de senha (CWE-916, 256), segredos no codigo (CWE-798), redirecionamento aberto (CWE-601), XXE (CWE-611), cabecalhos de seguranca/CORS (CWE-942).
+- Fora do Top 25 mas relevantes: cookies/sessao (CWE-614, 1004, 384), armazenamento de senha (CWE-916, 256), segredos no codigo (CWE-798), redirecionamento aberto (CWE-601), XXE (CWE-611), CORS (CWE-942).
+- Varredura da imagem (`osv-scanner scan image`) e `uv pip compile --generate-hashes`: sem fonte primaria confirmada (SEARCH-0002).
 
 ## Evidencia
 

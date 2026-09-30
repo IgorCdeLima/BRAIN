@@ -1,8 +1,7 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
+tipo: padrao
+status: ativo
+origem: SEARCH-0002 (Pesquisador), curado pelo Bibliotecario
 tarefa: T-0005
 pesquisa: SEARCH-0002
 confianca: media
@@ -10,14 +9,17 @@ fontes: ["https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_S
 verificado_em: 2026-09-30
 valido_para: Docker Engine / Compose atuais
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2027-03-30
 tags: [seguranca, cwe, cwe-250, docker, usuario]
 ---
 # CWE-250 container como root se evita com USER sem privilegio e cuidado com a posse de volumes
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** executar com mais privilegio que o necessario amplia o dano de qualquer outra falha.
+
+## Solucao
 
 **Controle (OWASP Docker, regra 2):** definir usuario sem privilegio no Dockerfile:
 ```
@@ -49,3 +51,5 @@ Todo container do ambiente.
 - [[CWE-78 command injection se evita com subprocess em lista e sem shell]]
 
 ## Decisao do Bibliotecario
+
+Promovido (2026-09-30) como padrao ativo para o `USER` sem privilegio (OWASP Docker lido). Ressalva: a parte de **volume ja existente com dono root** e pratica, sem fonte primaria; testar no lab antes de adotar. Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].

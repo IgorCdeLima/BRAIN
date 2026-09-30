@@ -1,15 +1,15 @@
 ---
 tipo: pesquisa
 id: SEARCH-0002
-status: respondida
+status: catalogada
 urgencia: nao-bloqueante
 pedido_por: seguranca
 tarefa: T-0005
 criado: 2026-09-30
 pesquisado_por: pesquisador
 pesquisado_em: 2026-09-30
-catalogado_em:
-notas: []
+catalogado_em: 2026-09-30
+notas: ["[[Mapa das CWE relevantes para Python e FastAPI]]"]
 tags: [seguranca, cwe, dependencias, docker, supply-chain]
 ---
 # SEARCH-0002 - CWE de dependencias, imagem e hardening (1395, 829, 250, 1021) para a stack do lab
@@ -51,3 +51,10 @@ Para as CWE-1395 (dependencia vulneravel), CWE-829 (funcionalidade de origem nao
 - starlette.dev (doc oficial do Starlette; www.starlette.io nao resolveu). pip.pypa.io, cheatsheetseries.owasp.org e cwe.mitre.org ja devem estar na lista; conferir.
 
 ## Catalogacao
+
+**Decisao (2026-09-30): promovidos os 6 candidatos.** Links confiaveis preservados. Indice: [[Mapa das CWE relevantes para Python e FastAPI]].
+
+- Padroes ativos: [[CWE-1395 dependencia vulneravel se evita com auditoria do arquivo travado e da camada do sistema da imagem]], [[CWE-829 dependencia sem versao e sem hash se evita com requirements travado com hashes]], [[CWE-250 container como root se evita com USER sem privilegio e cuidado com a posse de volumes]] (parte do volume ja existente e pratica, a testar).
+- Rascunho: [[CWE-1021 clickjacking se evita com CSP frame-ancestors e X-Frame-Options em middleware do Starlette]] (falta conferir `add_middleware` do FastAPI).
+- Problema-solucao e padrao do lab: [[pip-audit limpo nao significa imagem limpa porque a camada do sistema fica fora]], [[ruff e pip-audit em Docker Compose com servicos lint e audit no estagio dev]].
+- Dominio proposto `starlette.dev`: decisao do humano; o Bibliotecario nao altera `agentes/fontes-confiaveis.json`.

@@ -1,8 +1,7 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
+tipo: padrao
+status: ativo
+origem: SEARCH-0002 (Pesquisador), curado pelo Bibliotecario
 tarefa: T-0005
 pesquisa: SEARCH-0002
 confianca: media
@@ -10,14 +9,17 @@ fontes: ["https://pip.pypa.io/en/stable/topics/secure-installs/", "https://githu
 verificado_em: 2026-09-30
 valido_para: pip atual (docs stable); pip-tools
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2027-03-30
 tags: [seguranca, cwe, cwe-829, supply-chain, pip, hashes]
 ---
 # CWE-829 dependencia sem versao e sem hash se evita com requirements travado com hashes
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** CWE-829 e importar codigo de fonte fora da esfera de controle. Numa dependencia sem versao fixa ou sem hash, o que o `pip install` baixa pode mudar ou ser adulterado.
+
+## Solucao
 
 **Controle:**
 1. Manter `requirements.in` com as dependencias diretas e gerar o travado: `pip-compile --generate-hashes requirements.in` (saida com `pacote==x.y \ --hash=sha256:...` para direta e transitiva).
@@ -45,3 +47,5 @@ Builds reproduziveis e protecao contra pacote adulterado em qualquer projeto Pyt
 - [[CWE-1395 dependencia vulneravel se evita com auditoria do arquivo travado e da camada do sistema da imagem]]
 
 ## Decisao do Bibliotecario
+
+Promovido (2026-09-30) como padrao ativo: docs do pip e do pip-tools lidas. Ressalva: `uv pip compile --generate-hashes` nao foi confirmado em fonte primaria (limite do SEARCH-0002). Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].
