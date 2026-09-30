@@ -15,7 +15,7 @@ Caminhos: `D:\01_IA` nas regras e definicoes e a raiz do ambiente no Windows. Em
 | `operacao/tarefas` | Cartões de tarefa e handoffs | Agentes conforme o papel |
 | `operacao/pesquisas` | Pedidos de pesquisa `SEARCH-####` | Qualquer papel cria; o Pesquisador responde; o Bibliotecario fecha |
 | `operacao/coordenador` | Pedidos de comando ao Coordenador `COORD-####` (sem tarefa) | Qualquer papel cria; o Coordenador atende ou escala |
-| `operacao/administrador` | Pedidos ao Administrador `ADM-####` (area N4, decisao de ambiente, push) | So o Coordenador cria; o Administrador atende com aprovacao do humano |
+| `operacao/administrador` | Pedidos ao Administrador `ADM-####` (area N4, decisao de ambiente, push) | O Coordenador cria ao escalar; o Administrador cria para pedido direto do humano que altere algo; o Administrador atende com aprovacao do humano |
 | `logs/` | Telemetria automática (fora do Git) | **Somente os hooks** — agentes não escrevem aqui |
 | `operacao/qualidade` | Verificações, bugs e segurança do ambiente | Revisor, Segurança, Coordenador; demais só leem |
 | `projetos/<nome>` | Cada projeto é um repositório Git próprio | Conforme o papel, dentro do worktree da tarefa |

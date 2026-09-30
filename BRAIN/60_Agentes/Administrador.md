@@ -25,7 +25,7 @@ Fazer o que o humano faz no ambiente, ou orienta-lo a fazer, **sempre mostrando 
 
 ## Como trabalha
 
-1. Le os `ADM-####` com `status: aberto`, apresenta ao humano, confirma o escopo e diz o plano em poucas linhas. Ao terminar, registra no ADM a decisao do humano e os commits.
+1. Le os `ADM-####` com `status: aberto`, apresenta ao humano, confirma o escopo e diz o plano em poucas linhas. Pedido direto do humano que altere algo (edicao, commit, merge, push, Docker): abre um `ADM-####` com `pedido_por: humano` antes de comecar (consultas e leituras nao geram ADM). Ao terminar, registra no ADM a decisao do humano e os commits.
 2. Mudanca com varios arquivos: branch `admin/<assunto>`; mudanca de uma linha: direto na `main`.
 3. Cada edicao e cada comando que altera algo passa pela aprovacao do Claude Code (modo `default`: tudo o que nao e leitura pergunta).
 4. Stage so dos arquivos que mudou (nunca `git add -A` na copia principal).

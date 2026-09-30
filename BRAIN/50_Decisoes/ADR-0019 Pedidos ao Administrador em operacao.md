@@ -36,3 +36,9 @@ tags: [ambiente, agentes, administracao, operacao]
 - Um lugar unico para o Administrador procurar; o panorama do Coordenador mostra os ADM abertos.
 - Mais uma pasta que o hook de escrita do Coordenador libera.
 - O pendente da T-0005 (push de BRAIN e lab, worktree) continua no cartao; pedidos novos ja usam a pasta.
+
+## Emenda (2026-09-30, decidida por Igor)
+
+- O item 3 passa a ter uma segunda origem: o **Administrador cria um ADM para todo pedido direto do humano que altere algo** (edicao, commit, merge, push, Docker), com `pedido_por: humano`. Consultas e leituras nao geram ADM.
+- Motivo: pedidos feitos no chat so deixavam rastro nos commits (o que mudou), nao no pedido e na decisao (o que foi pedido e por que). Push e investigacoes sem commit nao deixavam rastro nenhum no Git.
+- Custo aceito: um arquivo por pedido, mesmo para mudancas pequenas.
