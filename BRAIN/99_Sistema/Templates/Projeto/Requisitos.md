@@ -28,6 +28,15 @@ atualizado: {{date:YYYY-MM-DD}}
 |---|---|
 |  |  |
 
+## Exemplos de entrada
+
+<!-- Para cada campo: pelo menos 3 validos e 3 invalidos, incluindo ambiguos e extremos. O Revisor testa estes casos. -->
+
+| Campo | Entrada | Valido? | Resultado esperado |
+|---|---|---|---|
+|  |  | sim |  |
+|  |  | nao | mensagem de validacao (nunca erro 500) |
+
 ## Requisitos nao funcionais
 
 | ID | Requisito (com numero quando possivel) |

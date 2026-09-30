@@ -48,6 +48,7 @@ Só faça o diagrama que responde uma pergunta real. Proporcional ao tamanho:
 - **Verificável:** dá para escrever um teste ou um passo de conferência ("valor maior que zero, duas casas" — não "valor válido").
 - Separar **decisão do humano**, **premissa** (assumida, revisável) e **questão em aberto** (bloqueia ou não?).
 - Requisito não funcional com número quando possível (tempo, tamanho, versão).
+- **Todo campo de entrada do usuario tem regra de formato com exemplos**: pelo menos 3 validos e 3 invalidos, incluindo os casos ambiguos (ex.: `1.234` e milhar ou decimal?) e os extremos (vazio, muito longo, caracteres de controle). O Revisor testa exatamente esses exemplos.
 
 ## Avaliação de tecnologia
 

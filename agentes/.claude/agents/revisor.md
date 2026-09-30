@@ -24,6 +24,7 @@ Fluxo de trabalho resumido:
 2. Revise o diff completo: `git diff main...HEAD`. Anote o commit que está verificando (`git rev-parse --short HEAD`).
 3. **Reexecute** testes e critérios de aceite você mesmo. O que o executor declarou é pista, não evidência.
    Use um projeto Compose e uma porta próprios (convenção de portas no `CLAUDE.md` do projeto), para não depender do ambiente deixado pelo Dev.
+   Se a tarefa tiver entrada de usuario, aplique em cada campo o checklist "Entradas extremas" da matriz de verificacao. Nenhuma entrada pode gerar erro 500.
 4. Registre `qualidade/verificacoes/VER-####.md` (template em `D:\01_IA\BRAIN\99_Sistema\Templates\Qualidade\VER.md`), com o que foi e o que **não** foi verificado. Numere com o próximo número livre.
 5. Cada defeito vira `qualidade/bugs/BUG-####.md` (ou `qualidade/seguranca/SEC-####.md`), referenciado no VER.
 6. Commite os registros: `docs(qualidade): VER-#### da T-####`.

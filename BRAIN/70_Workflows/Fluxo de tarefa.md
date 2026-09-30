@@ -41,6 +41,7 @@ stateDiagram-v2
 ## Passo a passo
 
 1. **Cartão** (humano): criar ou revisar `operacao/tarefas/T-####.md` e mudar o status para `pronta`.
+   **Funcionalidade com entrada de usuario** (formulario, upload, parametro): antes do cartao do Dev, um cartao do **Engenheiro** define as regras de formato de cada campo com exemplos validos e invalidos. O cartao do Dev so fica `pronta` depois disso. (Retrospectiva da T-0002: regra ambigua virou o BUG-0003.)
 2. **Worktree** (humano): no Orca, *Create Worktree* no repositório do projeto, nome `T-####-descricao`, *Branch from* `main`, **terminal em branco** (não escolher agente).
 3. **Dev** (humano digita no terminal do worktree): `D:\01_IA\ferramentas\papel dev`
    → o Dev implementa, commita, preenche a Entrega e muda o status para `revisao`.
