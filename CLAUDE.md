@@ -3,6 +3,8 @@
 Ambiente de uma equipe de agentes de IA para desenvolvimento de software, executada no Orca.
 O humano (Igor) é o Product Owner e o aprovador final. Idioma de trabalho: português (pt-BR).
 
+Caminhos: `D:\01_IA` nas regras e definicoes e a raiz do ambiente no Windows. Em outra maquina (ex.: Linux) a raiz e a variavel `IA_RAIZ`; leia `D:\01_IA` como `$IA_RAIZ`.
+
 ## Mapa do ambiente
 
 | Pasta | O que é | Quem escreve |

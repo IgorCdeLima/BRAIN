@@ -1,4 +1,6 @@
-"""Hook do Claude Code: grava eventos dos agentes em D:\\01_IA\\logs (Markdown).
+"""Hook do Claude Code: grava eventos dos agentes em <raiz>\\logs (Markdown).
+
+Raiz do ambiente: IA_RAIZ (padrão D:\\01_IA). IA_LOGS_DIR, se definida, prevalece.
 
 Formato definido em BRAIN/70_Workflows/Rastreabilidade.md.
 Chamado com o JSON do evento na entrada padrão. Nunca falha: qualquer erro
@@ -13,7 +15,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-RAIZ_LOGS = Path(os.environ.get("IA_LOGS_DIR", r"D:\01_IA\logs"))
+RAIZ_LOGS = Path(os.environ.get("IA_LOGS_DIR") or Path(os.environ.get("IA_RAIZ", r"D:\01_IA")) / "logs")
 DIR_ESTADO = RAIZ_LOGS / ".estado"
 
 FERRAMENTAS_REGISTRADAS = {"Edit", "Write", "NotebookEdit", "Bash", "PowerShell"}

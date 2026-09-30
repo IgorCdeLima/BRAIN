@@ -8,7 +8,7 @@ hooks:
     - matcher: "Edit|Write|NotebookEdit"
       hooks:
         - type: command
-          command: "py -3 D:/01_IA/ferramentas/hooks/restringir_escrita.py docs/design qualidade/ux D:/01_IA/operacao/tarefas D:/01_IA/BRAIN/00_Inbox"
+          command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/restringir_escrita.py\" docs/design qualidade/ux \"${IA_RAIZ:-D:/01_IA}/operacao/tarefas\" \"${IA_RAIZ:-D:/01_IA}/BRAIN/00_Inbox\""
           timeout: 10
 ---
 

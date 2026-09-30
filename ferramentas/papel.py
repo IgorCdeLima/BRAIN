@@ -15,6 +15,10 @@ Antes de abrir o Claude, confere: pasta (worktree ou cópia principal), tarefa
 (pelo nome do branch), existência e status do cartão. Depois define o papel
 (IA_PAPEL), a tarefa e o modelo, e inicia o Claude com a definição e o perfil
 de permissões do papel.
+
+Raiz do ambiente: IA_RAIZ ou, sem ela, a pasta acima de ferramentas/ (D:\\01_IA
+no Windows). Linux: ferramentas/papel.sh <papel>. As definições e perfis citam
+D:\\01_IA; fora dessa raiz o perfil é reescrito para a raiz real a cada início.
 """
 
 import os
@@ -22,10 +26,12 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from datetime import date
 from pathlib import Path
 
-RAIZ = Path(r"D:\01_IA")
+RAIZ_PADRAO = "D:/01_IA"  # caminho escrito nas definições e perfis dos papéis
+RAIZ = Path(os.environ.get("IA_RAIZ") or Path(__file__).resolve().parents[1])
 DIR_AGENTES = RAIZ / "agentes"
 DIR_TAREFAS = RAIZ / "operacao" / "tarefas"
 
@@ -92,6 +98,24 @@ def obsidian_aberto() -> bool:
     return r.returncode == 0 and "unable to find" not in saida and bool(saida.strip())
 
 
+def raiz_e_padrao() -> bool:
+    return RAIZ.as_posix().lower() == RAIZ_PADRAO.lower()
+
+
+def perfil_do_papel(papel: str) -> str:
+    """Caminho do perfil de permissões; fora de D:\\01_IA, uma cópia com a raiz real."""
+    perfil = DIR_AGENTES / "perfis" / f"{papel}.json"
+    if raiz_e_padrao():
+        return str(perfil)
+    raiz = RAIZ.as_posix()
+    m = re.match(r"^([A-Za-z]):/(.*)$", raiz)
+    raiz_regra = f"//{m.group(1).lower()}/{m.group(2)}" if m else "/" + raiz  # formato //caminho das regras
+    texto = perfil.read_text(encoding="utf-8").replace("//d/01_IA", raiz_regra).replace(RAIZ_PADRAO, raiz)
+    copia = Path(tempfile.gettempdir()) / f"ia-perfil-{papel}.json"
+    copia.write_text(texto, encoding="utf-8")
+    return str(copia)
+
+
 def modelo_do_papel(papel: str) -> str:
     definicao = DIR_AGENTES / ".claude" / "agents" / f"{papel}.md"
     m = re.search(r"^model:\s*(\S+)", definicao.read_text(encoding="utf-8"), re.MULTILINE)
@@ -108,7 +132,7 @@ def main() -> None:
 
     topo = git("rev-parse", "--show-toplevel")
     if not topo:
-        parar("esta pasta nao e um repositorio Git. Abra o terminal no worktree da tarefa (ou em D:\\01_IA para o bibliotecario).")
+        parar(f"esta pasta nao e um repositorio Git. Abra o terminal no worktree da tarefa (ou em {RAIZ} para o bibliotecario).")
     topo = Path(topo)
     branch = git("rev-parse", "--abbrev-ref", "HEAD")
     em_worktree = Path(git("rev-parse", "--git-dir")).resolve() != Path(git("rev-parse", "--git-common-dir")).resolve()
@@ -116,7 +140,7 @@ def main() -> None:
     tarefa = ""
     if regra["local"] == "principal":
         if topo.resolve() != RAIZ.resolve() or branch != "main":
-            parar(f"o {papel} trabalha na copia principal D:\\01_IA (branch main). Pasta atual: {topo} ({branch}).")
+            parar(f"o {papel} trabalha na copia principal {RAIZ} (branch main). Pasta atual: {topo} ({branch}).")
         # Trabalho contínuo, sem cartão: a "tarefa" dos commits é a curadoria do dia.
         tarefa = f"curadoria-{date.today():%Y-%m-%d}"
         if papel == "bibliotecario" and not obsidian_aberto():
@@ -151,8 +175,12 @@ def main() -> None:
         shutil.which("claude") or str(Path.home() / ".local" / "bin" / "claude.exe"),
         "--agent", papel,
         "--add-dir", str(DIR_AGENTES),
-        "--settings", str(DIR_AGENTES / "perfis" / f"{papel}.json"),
+        "--settings", perfil_do_papel(papel),
     ]
+    if not raiz_e_padrao():
+        comando += ["--append-system-prompt",
+                    f"Nesta maquina a raiz do ambiente 01_IA e {RAIZ.as_posix()}. "
+                    f"Onde as regras e definicoes citam D:\\01_IA (ou /d/01_IA), use {RAIZ.as_posix()}."]
     if "--continuar" in opcoes:
         comando.append("--continue")  # retoma a última sessão desta pasta, já no papel
     elif "--sem-pedido" not in opcoes:
@@ -163,7 +191,7 @@ def main() -> None:
         print("[papel] Tudo certo. (--verificar: o Claude nao foi aberto)")
         return
 
-    ambiente = dict(os.environ, IA_PAPEL=papel, IA_TAREFA=tarefa, IA_MODELO=modelo)
+    ambiente = dict(os.environ, IA_PAPEL=papel, IA_TAREFA=tarefa, IA_MODELO=modelo, IA_RAIZ=RAIZ.as_posix())
     sys.exit(subprocess.call(comando, env=ambiente))
 
 
