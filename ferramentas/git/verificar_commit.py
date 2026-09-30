@@ -60,10 +60,13 @@ def pre_commit(papel: str) -> None:
             continue
         if any(casa(caminho, p) for p in regras.get("livres", [])):
             continue
-        for prefixo, papeis in regras.get("restritos", {}).items():
-            if casa(caminho, prefixo) and papel not in papeis:
-                violacoes.append(f"{caminho} (somente: {', '.join(papeis)})")
-                break
+        # O prefixo mais específico decide (ex.: qualidade/ux/ antes de qualidade/).
+        restritos = sorted(regras.get("restritos", {}).items(), key=lambda item: len(item[0]), reverse=True)
+        for prefixo, papeis in restritos:
+            if casa(caminho, prefixo):
+                if papel not in papeis:
+                    violacoes.append(f"{caminho} (somente: {', '.join(papeis)})")
+                break  # a primeira regra que casa decide, liberando ou recusando
     if violacoes:
         lista = "\n  - ".join(violacoes)
         falhar(f"o papel '{papel}' nao pode alterar:\n  - {lista}\nProponha a mudanca em BRAIN/00_Inbox ou peca ao humano.")

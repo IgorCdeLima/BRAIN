@@ -4,6 +4,7 @@ Uso (no terminal, dentro da pasta certa):
     D:\\01_IA\\ferramentas\\papel dev            -> executa a tarefa do worktree atual
     D:\\01_IA\\ferramentas\\papel engenheiro     -> requisitos, modelos e decisões da tarefa do worktree atual
     D:\\01_IA\\ferramentas\\papel revisor        -> revisa a tarefa do worktree atual
+    D:\\01_IA\\ferramentas\\papel designer       -> cria o design (cartao do designer) ou faz a revisao visual
     D:\\01_IA\\ferramentas\\papel bibliotecario  -> cura o Inbox (na cópia principal D:\\01_IA)
 Opções:
     --verificar    só confere se está tudo certo, sem abrir o Claude
@@ -46,6 +47,15 @@ PAPEIS = {
         "status": {"revisao"},
         "dono_do_cartao": False,
         "pedido": "Revise a tarefa {tarefa}.",
+    },
+    # Dois modos, escolhidos pelo cartão: criação (cartão do designer) ou
+    # revisão visual (cartão de outro papel, em revisão, com interface: sim).
+    "designer": {
+        "local": "worktree",
+        "status": {"pronta", "em-andamento", "correcao", "revisao"},
+        "dono_do_cartao": False,
+        "pedido": "Crie o design da tarefa {tarefa}.",
+        "pedido_revisao": "Faca a revisao visual da tarefa {tarefa}.",
     },
     "bibliotecario": {
         "local": "principal",
@@ -127,6 +137,14 @@ def main() -> None:
         dono = campo_do_cartao(cartao, "papel")
         if regra["dono_do_cartao"] and dono != papel:
             parar(f"o cartao {tarefa} e do papel '{dono}', nao do {papel}. Use: papel {dono}")
+        if papel == "designer":
+            if dono == "designer" and status != "revisao":
+                pass  # modo criação
+            elif dono != "designer" and status == "revisao" and campo_do_cartao(cartao, "interface") == "sim":
+                regra = dict(regra, pedido=regra["pedido_revisao"])  # modo revisão visual
+            else:
+                parar(f"o designer cria em cartao com 'papel: designer' (pronta/em-andamento/correcao) "
+                      f"ou revisa cartao em 'revisao' com 'interface: sim'. Cartao {tarefa}: papel '{dono}', status '{status}'.")
 
     modelo = modelo_do_papel(papel)
     comando = [

@@ -62,6 +62,12 @@ Mesmo fluxo, com três diferenças:
 
 Guia de modelagem: [[Padroes de modelagem]].
 
+### Tarefas com interface (`interface: sim` no cartao)
+
+- **Antes do Dev:** um cartao do Designer (`papel: designer`) cria a experiencia visual: brief, conceitos, esqueleto SVG, prototipo HTML e entrega. O humano escolhe a direcao visual no meio do caminho (status `aguardando-humano`).
+- **Na revisao:** com o cartao do Dev em `revisao`, rodar `D:\01_IA\ferramentas\papel designer` **antes** do Revisor. O Designer registra `UX-####` e preenche "Revisao visual" sem mudar o status; o Revisor considera os bloqueantes.
+- Fluxo completo: [[Fluxo de design]].
+
 ## O lançador `papel`
 
 Antes de abrir o Claude, ele confere a pasta, a tarefa e o status do cartão, e recusa com uma mensagem clara se algo estiver errado. Depois abre o Claude já no papel certo, com o pedido inicial ("Execute a tarefa T-0001", "Revise a tarefa T-0001", "Processe o Inbox do Brain").
@@ -71,6 +77,7 @@ Antes de abrir o Claude, ele confere a pasta, a tarefa e o status do cartão, e 
 | `engenheiro` | Worktree da tarefa | `pronta`, `em-andamento` ou `correcao` (cartão com `papel: engenheiro`) | Opus |
 | `dev` | Worktree da tarefa | `pronta`, `em-andamento` ou `correcao` (cartão com `papel: dev`) | Sonnet |
 | `revisor` | Worktree da tarefa | `revisao` | Opus |
+| `designer` | Worktree da tarefa | criacao: `pronta`/`em-andamento`/`correcao` com `papel: designer`; revisao visual: `revisao` com `interface: sim` | Opus |
 | `bibliotecario` | Cópia principal `D:\01_IA` | — | Sonnet |
 
 Opções: `--verificar` (só confere, não abre o Claude) e `--sem-pedido` (abre sem o pedido inicial).

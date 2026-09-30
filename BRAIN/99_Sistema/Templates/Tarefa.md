@@ -4,6 +4,7 @@ id: T-####
 status: backlog
 projeto:
 papel:
+interface: nao
 tamanho: normal
 criado: {{date:YYYY-MM-DD}}
 tags: []
@@ -11,6 +12,9 @@ tags: []
 # T-#### - {{title}}
 
 <!-- Status: backlog -> pronta -> em-andamento -> revisao -> (correcao -> em-andamento -> revisao) -> aprovada -> concluida (ou bloqueada).
+     aguardando-humano: o agente parou esperando uma decisao do humano (ex.: escolha da direcao visual).
+     interface: sim quando a tarefa muda a tela -> o Designer faz a revisao visual antes do Revisor fechar. -->
+<!--
      Tamanho: trivial | normal | grande. Arquivo: operacao/tarefas/T-####.md
      Worktree no Orca: T-####-descricao-curta -->
 
@@ -57,9 +61,17 @@ tags: []
 
 - [ ]
 
+## Revisao visual
+
+<!-- So se interface: sim. Preenchido pelo Designer antes do Revisor fechar. Nao muda o status. -->
+
+- **UX:**
+- **Commit avaliado:**
+- **Bloqueantes:**
+
 ## Revisao
 
-<!-- Preenchido pelo Revisor. Um VER por commit verificado. -->
+<!-- Preenchido pelo Revisor. Um VER por commit verificado. Considera os UX bloqueantes. -->
 
 - **VER:**
 - **Commit verificado:**

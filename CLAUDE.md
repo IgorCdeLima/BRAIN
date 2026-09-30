@@ -23,7 +23,7 @@ Cada pasta tem um `_LEIAME.md` com o propósito e as regras dela. Leia-o antes d
 2. **Nada é apagado.** Conhecimento superado vira `status: obsoleto` ou vai para `BRAIN/90_Arquivo`; bugs só mudam de status.
 3. **Documentação oficial de projeto fica no projeto** (`projetos/<nome>/docs`), nunca no Brain.
 4. **Nunca registre segredos** (senhas, tokens, chaves) em notas, logs, commits ou registros de qualidade.
-5. **Diagramas são Mermaid** (texto). Imagem nunca é a fonte de verdade.
+5. **Diagramas são Mermaid** (texto). Imagem nunca é a fonte de verdade. (Excecao do design: conceitos visuais em SVG/PNG sao inspiracao; a fonte de verdade da interface e o prototipo HTML + tokens, ver `BRAIN/70_Workflows/Fluxo de design.md`.)
 6. Não use `git push --force` nem reescreva histórico já compartilhado.
 7. **Texto novo em arquivos Markdown (.md) sem acentos nem cedilha** (so ASCII: "revisao", "acao", "codigo"), inclusive nomes de arquivo. Texto ja existente pode ficar como esta; ao editar uma linha, nao e preciso converter o resto.
 8. **Arquivos se editam com as ferramentas de edicao (Edit/Write), nunca reescrevendo pelo terminal.** No PowerShell, `Get-Content | Set-Content`, `Out-File` e `>` corrompem a codificacao (bloqueados por permissao).
@@ -55,10 +55,10 @@ Cada pasta tem um `_LEIAME.md` com o propósito e as regras dela. Leia-o antes d
   ```
 
 - Trabalho de agente acontece **sempre num worktree próprio criado pelo Orca**; merge na `main` conforme aprovação. A cópia principal `D:\01_IA` é do humano e do Bibliotecário.
-- Cada papel é iniciado pelo humano com o lançador `D:\01_IA\ferramentas\papel <engenheiro|dev|revisor|bibliotecario>`, que confere pasta e cartão e abre o Claude com a definição, o perfil de permissões e o modelo do papel. O perfil prevalece sobre a tabela acima. **Um agente nunca define `IA_PAPEL` nem se atribui um papel.** Sessão sem papel não trabalha: avisa o humano. Fluxo completo em `BRAIN/70_Workflows/Fluxo de tarefa.md`.
+- Cada papel é iniciado pelo humano com o lançador `D:\01_IA\ferramentas\papel <engenheiro|designer|dev|revisor|bibliotecario>`, que confere pasta e cartão e abre o Claude com a definição, o perfil de permissões e o modelo do papel. O perfil prevalece sobre a tabela acima. **Um agente nunca define `IA_PAPEL` nem se atribui um papel.** Sessão sem papel não trabalha: avisa o humano. Fluxo completo em `BRAIN/70_Workflows/Fluxo de tarefa.md`.
 
 ## Qualidade
 
-- Registros em `qualidade/`: `VER-####` (verificação), `BUG-####` (defeito), `SEC-####` (segurança). Templates em `BRAIN/99_Sistema/Templates/Qualidade`.
+- Registros em `qualidade/`: `VER-####` (verificação), `BUG-####` (defeito), `SEC-####` (segurança), `UX-####` (observacao visual do Designer). Templates em `BRAIN/99_Sistema/Templates/Qualidade`.
 - Toda verificação feita — e toda verificação **não** feita — é registrada. Lacuna omitida é falha.
 - Quem corrige um bug não o verifica.
