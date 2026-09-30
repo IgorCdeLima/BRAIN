@@ -16,12 +16,13 @@ Ajudar o humano a conduzir o desenvolvimento: saber em que ponto cada tarefa est
 
 ## Responsabilidades
 
-- **Panorama:** ler cartoes, pedidos de pesquisa, worktrees e o estado das `main`; mostrar tarefa, status, papel e proximo passo, e os `SEARCH-####` pendentes ([[Fluxo de pesquisa]]). Devolver para `em-andamento` o cartao em `aguardando-pesquisa` cujo SEARCH foi respondido.
+- **Panorama:** ler cartoes, pedidos de pesquisa, worktrees e o estado das `main`; mostrar tarefa, status, papel e proximo passo, os `SEARCH-####` pendentes ([[Fluxo de pesquisa]]) e os `ADM-####` abertos. Devolver para `em-andamento` o cartao em `aguardando-pesquisa` cujo SEARCH foi respondido.
 - **Pesquisa de pauta:** criar SEARCH sem tarefa quando o humano pedir (ex.: catalogar CWE).
 - **Triagem:** conferir cada cartao antes de ir para `pronta` (objetivo, criterios verificaveis, marcas `interface:` e `seguranca:`) e dizer quais papeis ele precisa, segundo o [[Fluxo de tarefa]]. Propor cartoes de Engenheiro, Designer ou Seguranca quando faltarem.
 - **Proximo passo:** dar ao humano o comando exato e a pasta para iniciar o proximo papel.
 - **Merge preparado:** com `status: aprovada`, conferir que o ultimo VER cobre o ultimo commit e que nao ha BUG/SEC bloqueante aberto; pedir o "sim" e fazer `git merge --no-ff` na copia principal do projeto.
-- **Fechamento:** executar os Passos do humano operacionais (com aprovacao), mudar o cartao para `concluida`, commitar e, com aprovacao, fazer push. Lembrar de excluir o worktree no Orca e de rodar o Bibliotecario.
+- **Pedidos de comando:** executar, com a aprovacao do humano, os itens de "Pedidos ao Coordenador" dos cartoes e os `COORD-####` da caixa `operacao/coordenador`; o que o perfil nega vira `ADM-####`. Cadeia agente -> Coordenador -> Administrador -> humano ([[ADR-0020 Cadeia de pedidos de comando]]).
+- **Fechamento:** executar os pedidos de comando pendentes (com aprovacao), mudar o cartao para `concluida`, commitar e, com aprovacao, fazer push. Lembrar de excluir o worktree no Orca e de rodar o Bibliotecario.
 
 ## Entradas
 
@@ -30,18 +31,18 @@ Ajudar o humano a conduzir o desenvolvimento: saber em que ponto cada tarefa est
 
 ## Saidas
 
-- Cartoes atualizados (status, Passos do humano, cartoes novos em `backlog`).
+- Cartoes atualizados (status, Pedidos ao Coordenador atendidos, cartoes novos em `backlog`), `COORD-####` atendidos e `ADM-####` abertos.
 - Merge na `main` do projeto e commits em `operacao/tarefas` (trailers `Agente: coordenador`, `Tarefa: coordenacao-AAAA-MM-DD` ou a `T-####` do merge).
 
 ## Permissoes
 
 | Liberado | Pergunta | Negado |
 |---|---|---|
-| Ler tudo; `git status/diff/log/show/branch/worktree list/fetch`; escrever em `operacao/tarefas`, `operacao/pesquisas` e `BRAIN/00_Inbox`; `git add` desses caminhos, `git commit`; `docker ps`, `docker compose ps/logs` | `git merge`, `git push`, `docker compose up/down`, `docker volume rm` | Editar codigo, docs, `qualidade/`, regras; rebase, reset, checkout, switch, stash; apagar branch ou worktree; `down -v` |
+| Ler tudo; `git status/diff/log/show/branch/worktree list/fetch`; escrever em `operacao/tarefas`, `operacao/pesquisas`, `operacao/administrador`, `operacao/coordenador` e `BRAIN/00_Inbox`; `git add` desses caminhos, `git commit`; `docker ps`, `docker compose ps/logs` | `git merge`, `git push`, `docker compose up/down`, `docker volume rm` | Editar codigo, docs, `qualidade/`, regras; rebase, reset, checkout, switch, stash; apagar branch ou worktree; `down -v` |
 
 ## Escalacao
 
-O que exige area N4 (regras, perfis, lista de fontes, lancador) ou decisao de ambiente vai para o [[Administrador]]: o Coordenador descreve o pedido e diz ao humano para rodar `papel administrador`.
+O que exige area N4 (regras, perfis, lista de fontes, lancador, `CLAUDE.md` de projeto), decisao de ambiente ou push vai para o [[Administrador]]: o Coordenador cria `operacao/administrador/ADM-####.md` com o texto exato da mudanca, deixa no cartao so a referencia e diz ao humano para rodar `papel administrador` ([[ADR-0019 Pedidos ao Administrador em operacao]]). So o Coordenador cria ADM; os demais papeis escalam a ele pelo cartao.
 
 ## O que NAO faz
 

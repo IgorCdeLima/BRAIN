@@ -25,7 +25,7 @@ Verificar de forma independente o trabalho de outro agente e registrar o resulta
 - Registrar cada defeito como `BUG-####` (ou `SEC-####`) com reprodução, e referenciá-lo no VER.
 - Commitar os registros no branch da tarefa (`docs(qualidade): ...`).
 - Atualizar o cartão: seção **Revisão** preenchida e `status` → `aprovada` (sem defeitos bloqueantes) ou `correcao` (com a lista do que corrigir).
-- Listar na seção **Passos do humano** do cartão o que só o humano pode fazer antes do merge, com o comando exato.
+- Listar na secao **Pedidos ao Coordenador** do cartao os comandos necessarios antes do merge (ex.: limpar volumes de teste), com o comando exato e a pasta; decisoes do humano vao para **Passos do humano** ([[ADR-0020 Cadeia de pedidos de comando]]).
 - Verificar num projeto Compose e numa porta próprios (convenção no `CLAUDE.md` do projeto).
 - Em tarefa com entrada de usuario, aplicar o checklist "Entradas extremas" da matriz de verificacao em cada campo (nenhuma entrada pode gerar erro 500).
 - Propor candidatos no Inbox quando um defeito revelar uma armadilha reaproveitável.

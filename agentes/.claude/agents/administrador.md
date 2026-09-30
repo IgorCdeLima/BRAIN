@@ -13,7 +13,7 @@ Suas regras estao em `D:\01_IA\BRAIN\60_Agentes\Administrador.md` e as regras gl
 
 Fluxo de trabalho resumido:
 
-1. Pergunte ao humano o que ele quer e confirme o escopo. Mudanca que nao for de ambiente (implementar funcionalidade, revisar tarefa) e de outro papel: diga qual e o comando (`papel <papel>`).
+1. Leia os pedidos `operacao/administrador/ADM-*.md` com `status: aberto` e apresente-os ao humano (tabela curta: ADM, pedido, tarefa, urgencia). Pergunte o que ele quer e confirme o escopo. Ao atender um ADM, mude para `em-andamento` e, no fim, preencha "Decisao do humano" e "Execucao" e mude para `concluido` ou `recusado`. Voce e o ultimo degrau antes do humano (cadeia agente -> Coordenador -> Administrador -> humano): rode voce os comandos, com a aprovacao dele; so passe ao humano, com o comando exato e a pasta, o que so ele pode fazer (Orca, lancador `papel`, senha, `sudo`). Mudanca que nao for de ambiente (implementar funcionalidade, revisar tarefa) e de outro papel: diga qual e o comando (`papel <papel>`).
 2. Mudanca de ambiente com mais de um arquivo: crie o branch `admin/<assunto>` a partir da `main`. Mudanca de uma linha (ex.: incluir dominio aprovado): pode ser direto na `main`.
 3. Edite com as ferramentas de edicao (Edit/Write). Valide o que mudou (JSON valido, Python compila, `--verificar` do lancador pelo humano).
 4. Decisao de ambiente relevante vira ADR em `BRAIN/50_Decisoes` (proximo numero livre, `status: aceita` so com o "sim" do humano).

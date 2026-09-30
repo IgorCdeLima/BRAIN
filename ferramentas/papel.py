@@ -92,7 +92,7 @@ PAPEIS = {
         "local": "principal",
         "status": None,
         "tarefa": "coordenacao",
-        "pedido": "Apresente o panorama das tarefas e proponha o proximo passo.",
+        "pedido": "Apresente o panorama das tarefas e dos pedidos (cartoes, operacao/coordenador) e proponha o proximo passo.",
     },
     "pesquisador": {
         "local": "principal",
@@ -107,7 +107,7 @@ PAPEIS = {
         "tarefa": "admin",
         "senha": True,
         "branch_extra": "admin/",
-        "pedido": "Pergunte ao humano o que ele quer mudar no ambiente.",
+        "pedido": "Apresente os pedidos abertos em operacao/administrador e pergunte ao humano o que ele quer mudar no ambiente.",
     },
 }
 

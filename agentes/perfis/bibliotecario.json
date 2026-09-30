@@ -9,12 +9,14 @@
       "Bash(git log*)",
       "Bash(git add BRAIN/*)",
       "Bash(git add operacao/pesquisas/*)",
+      "Bash(git add operacao/coordenador/*)",
       "Bash(git commit *)",
       "PowerShell(obsidian *)",
       "PowerShell(git status*)",
       "PowerShell(git diff*)",
       "PowerShell(git log*)",
       "PowerShell(git add BRAIN/*)",
+      "PowerShell(git add operacao/coordenador/*)",
       "PowerShell(git commit *)"
     ],
     "deny": [

@@ -14,6 +14,8 @@ Caminhos: `D:\01_IA` nas regras e definicoes e a raiz do ambiente no Windows. Em
 | `agentes/` | Definições executáveis dos papéis | **Somente o humano** (N4) |
 | `operacao/tarefas` | Cartões de tarefa e handoffs | Agentes conforme o papel |
 | `operacao/pesquisas` | Pedidos de pesquisa `SEARCH-####` | Qualquer papel cria; o Pesquisador responde; o Bibliotecario fecha |
+| `operacao/coordenador` | Pedidos de comando ao Coordenador `COORD-####` (sem tarefa) | Qualquer papel cria; o Coordenador atende ou escala |
+| `operacao/administrador` | Pedidos ao Administrador `ADM-####` (area N4, decisao de ambiente, push) | So o Coordenador cria; o Administrador atende com aprovacao do humano |
 | `logs/` | Telemetria automática (fora do Git) | **Somente os hooks** — agentes não escrevem aqui |
 | `operacao/qualidade` | Verificações, bugs e segurança do ambiente | Revisor, Segurança, Coordenador; demais só leem |
 | `projetos/<nome>` | Cada projeto é um repositório Git próprio | Conforme o papel, dentro do worktree da tarefa |
@@ -30,6 +32,10 @@ Cada pasta tem um `_LEIAME.md` com o propósito e as regras dela. Leia-o antes d
 6. Não use `git push --force` nem reescreva histórico já compartilhado.
 7. **Texto novo em arquivos Markdown (.md) sem acentos nem cedilha** (so ASCII: "revisao", "acao", "codigo"), inclusive nomes de arquivo. Texto ja existente pode ficar como esta; ao editar uma linha, nao e preciso converter o resto.
 8. **Arquivos se editam com as ferramentas de edicao (Edit/Write), nunca reescrevendo pelo terminal.** No PowerShell, `Get-Content | Set-Content`, `Out-File` e `>` corrompem a codificacao (bloqueados por permissao).
+
+## Pedidos de comando
+
+Precisa de um comando que seu papel nao pode rodar? **Nao peca ao humano.** Registre no cartao, secao "Pedidos ao Coordenador" (ou, sem tarefa, em `operacao/coordenador/COORD-####.md`), com o comando exato, a pasta e o motivo. Cadeia: agente -> Coordenador -> Administrador (`ADM-####`) -> humano, que so digita o que e exclusivo dele (Orca, lancador `papel`, senha, `sudo`). "Passos do humano" no cartao sao so decisoes. Ver [[ADR-0020 Cadeia de pedidos de comando]].
 
 ## Hierarquia de conhecimento (antes de pesquisar)
 
