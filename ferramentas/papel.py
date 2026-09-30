@@ -5,7 +5,9 @@ Uso (no terminal, dentro da pasta certa):
     D:\\01_IA\\ferramentas\\papel engenheiro     -> requisitos, modelos e decisões da tarefa do worktree atual
     D:\\01_IA\\ferramentas\\papel revisor        -> revisa a tarefa do worktree atual
     D:\\01_IA\\ferramentas\\papel designer       -> cria o design (cartao do designer) ou faz a revisao visual
+    D:\\01_IA\\ferramentas\\papel seguranca      -> analise de ameacas (cartao de seguranca) ou revisao de seguranca
     D:\\01_IA\\ferramentas\\papel bibliotecario  -> cura o Inbox (na cópia principal D:\\01_IA)
+    D:\\01_IA\\ferramentas\\papel coordenador    -> panorama e proximo passo (na cópia principal D:\\01_IA)
 Opções:
     --verificar    só confere se está tudo certo, sem abrir o Claude
     --sem-pedido   abre o Claude sem enviar o pedido inicial
@@ -60,13 +62,31 @@ PAPEIS = {
         "local": "worktree",
         "status": {"pronta", "em-andamento", "correcao", "revisao"},
         "dono_do_cartao": False,
+        "marca": "interface",
         "pedido": "Crie o design da tarefa {tarefa}.",
         "pedido_revisao": "Faca a revisao visual da tarefa {tarefa}.",
+    },
+    # Mesma lógica do designer: análise de ameaças (cartão de seguranca) ou
+    # revisão de segurança (cartão de outro papel, em revisão, com seguranca: sim).
+    "seguranca": {
+        "local": "worktree",
+        "status": {"pronta", "em-andamento", "correcao", "revisao"},
+        "dono_do_cartao": False,
+        "marca": "seguranca",
+        "pedido": "Faca a analise de ameacas da tarefa {tarefa}.",
+        "pedido_revisao": "Faca a revisao de seguranca da tarefa {tarefa}.",
     },
     "bibliotecario": {
         "local": "principal",
         "status": None,
+        "tarefa": "curadoria",
         "pedido": "Processe o Inbox do Brain.",
+    },
+    "coordenador": {
+        "local": "principal",
+        "status": None,
+        "tarefa": "coordenacao",
+        "pedido": "Apresente o panorama das tarefas e proponha o proximo passo.",
     },
 }
 
@@ -132,7 +152,7 @@ def main() -> None:
 
     topo = git("rev-parse", "--show-toplevel")
     if not topo:
-        parar(f"esta pasta nao e um repositorio Git. Abra o terminal no worktree da tarefa (ou em {RAIZ} para o bibliotecario).")
+        parar(f"esta pasta nao e um repositorio Git. Abra o terminal no worktree da tarefa (ou em {RAIZ} para o bibliotecario e o coordenador).")
     topo = Path(topo)
     branch = git("rev-parse", "--abbrev-ref", "HEAD")
     em_worktree = Path(git("rev-parse", "--git-dir")).resolve() != Path(git("rev-parse", "--git-common-dir")).resolve()
@@ -141,8 +161,8 @@ def main() -> None:
     if regra["local"] == "principal":
         if topo.resolve() != RAIZ.resolve() or branch != "main":
             parar(f"o {papel} trabalha na copia principal {RAIZ} (branch main). Pasta atual: {topo} ({branch}).")
-        # Trabalho contínuo, sem cartão: a "tarefa" dos commits é a curadoria do dia.
-        tarefa = f"curadoria-{date.today():%Y-%m-%d}"
+        # Trabalho contínuo, sem cartão: a "tarefa" dos commits é a curadoria/coordenação do dia.
+        tarefa = f"{regra['tarefa']}-{date.today():%Y-%m-%d}"
         if papel == "bibliotecario" and not obsidian_aberto():
             parar("o Obsidian precisa estar aberto (com o Vault BRAIN) para o bibliotecario usar o CLI. Abra o Obsidian e rode de novo.")
     else:
@@ -161,14 +181,15 @@ def main() -> None:
         dono = campo_do_cartao(cartao, "papel")
         if regra["dono_do_cartao"] and dono != papel:
             parar(f"o cartao {tarefa} e do papel '{dono}', nao do {papel}. Use: papel {dono}")
-        if papel == "designer":
-            if dono == "designer" and status != "revisao":
-                pass  # modo criação
-            elif dono != "designer" and status == "revisao" and campo_do_cartao(cartao, "interface") == "sim":
-                regra = dict(regra, pedido=regra["pedido_revisao"])  # modo revisão visual
+        if "marca" in regra:  # designer e seguranca: modo próprio ou revisão do cartão de outro papel
+            marca = regra["marca"]
+            if dono == papel and status != "revisao":
+                pass  # modo próprio (criação / análise)
+            elif dono != papel and status == "revisao" and campo_do_cartao(cartao, marca) == "sim":
+                regra = dict(regra, pedido=regra["pedido_revisao"])  # modo revisão
             else:
-                parar(f"o designer cria em cartao com 'papel: designer' (pronta/em-andamento/correcao) "
-                      f"ou revisa cartao em 'revisao' com 'interface: sim'. Cartao {tarefa}: papel '{dono}', status '{status}'.")
+                parar(f"o {papel} trabalha em cartao com 'papel: {papel}' (pronta/em-andamento/correcao) "
+                      f"ou revisa cartao em 'revisao' com '{marca}: sim'. Cartao {tarefa}: papel '{dono}', status '{status}'.")
 
     modelo = modelo_do_papel(papel)
     comando = [

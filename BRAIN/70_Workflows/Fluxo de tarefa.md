@@ -1,25 +1,60 @@
 ---
 tipo: workflow
 status: ativo
-versao: 2
+versao: 3
 fase: 2
 criado: 2026-09-28
-atualizado: 2026-09-28
+atualizado: 2026-09-30
 tags: [workflow, tarefas]
 ---
 # Fluxo de tarefa
 
-Equipe: **humano** (Product Owner e integrador), **Engenheiro de Software**, **Dev**, **Revisor** e **Bibliotecário**.
+Equipe: **humano** (Product Owner e aprovador final), **Coordenador**, **Engenheiro de Software**, **Designer**, **Seguranca**, **Dev**, **Revisor** e **Bibliotecário**.
 
-O repasse entre agentes acontece **por arquivos** — cartão da tarefa, commits e registros em `qualidade/` —, nunca copiando conversas. O humano só diz a cada papel quando começar.
+O repasse entre agentes acontece **por arquivos** — cartão da tarefa, commits e registros em `qualidade/` —, nunca copiando conversas. O humano inicia cada papel com o lançador; o **Coordenador** diz qual é o próximo e prepara o que é operacional para o humano aprovar ([[ADR-0016 Papeis Coordenador e Seguranca]]).
 
 ## Três conceitos
 
 | Conceito | O que define | Onde |
 |---|---|---|
 | **Onde** | A pasta em que o agente trabalha | Worktree da tarefa (criado no Orca) ou cópia principal `D:\01_IA` |
-| **Quem** | O papel do agente: regras, permissões e modelo | Escolhido no lançador: `papel engenheiro`, `papel dev`, `papel revisor`, `papel bibliotecario` — tem que bater com o campo `papel:` do cartão |
+| **Quem** | O papel do agente: regras, permissões e modelo | Escolhido no lançador: `papel <papel>` — tem que bater com o campo `papel:` do cartão (ou com a marca, nos modos de revisão) |
 | **O quê** | A tarefa | Cartão `operacao/tarefas/T-####.md`, identificado pelo nome do worktree |
+
+## Quem entra em cada tarefa
+
+O Coordenador confere isto na triagem, antes do cartão ir para `pronta`:
+
+| Situacao da tarefa | Antes do Dev | Depois do Dev, antes do Revisor fechar |
+|---|---|---|
+| Sempre | - | Revisor (decide) |
+| Entrada de usuario (formulario, upload, parametro) | Cartao do **Engenheiro**: regras de formato com exemplos validos e invalidos | - |
+| Funcionalidade nova ou vaga, escolha de tecnologia | Cartao do **Engenheiro**: requisitos, modelos, ADR proposto | - |
+| Muda a tela (`interface: sim`) | Cartao do **Designer** (criacao), se nao houver prototipo | **Designer** (revisao visual, `UX-####`) |
+| Toca upload, autenticacao, dados pessoais, segredos, rede ou novas dependencias (`seguranca: sim`) | Cartao da **Seguranca** (analise de ameacas), se a tarefa for normal ou grande | **Seguranca** (revisao, `SEC-####`) |
+| Tarefa trivial sem tela e sem risco | - | So o Revisor |
+
+```mermaid
+flowchart LR
+    C0[Coordenador<br/>triagem] --> E[Engenheiro]
+    C0 --> S1[Seguranca<br/>ameacas]
+    C0 --> D1[Designer<br/>criacao]
+    C0 --> DEV
+    E --> DEV[Dev]
+    S1 --> DEV
+    D1 --> DEV
+    DEV --> D2[Designer<br/>revisao visual]
+    DEV --> S2[Seguranca<br/>revisao]
+    DEV --> R
+    D2 --> R{Revisor<br/>decide}
+    S2 --> R
+    R -- correcao --> DEV
+    R -- aprovada --> C1[Coordenador<br/>prepara merge]
+    C1 --> H{Humano<br/>aprova}
+    H --> B[Bibliotecario<br/>em lote]
+```
+
+Os passos marcados sao opcionais conforme a tabela; o minimo e **Dev -> Revisor**. So o Revisor muda o status para `aprovada` ou `correcao`: Designer e Seguranca registram e ele considera os bloqueantes.
 
 ## Status do cartão
 
@@ -40,16 +75,20 @@ stateDiagram-v2
 
 ## Passo a passo
 
-1. **Cartão** (humano): criar ou revisar `operacao/tarefas/T-####.md` e mudar o status para `pronta`.
+0. **Coordenador** (humano, terminal na cópia principal): `D:\01_IA\ferramentas\papel coordenador`
+   → mostra o panorama e faz a triagem do cartão (tabela acima). Com o "sim" do humano, muda o cartão para `pronta` e diz o próximo comando.
+1. **Cartão** (humano, com o Coordenador): criar ou revisar `operacao/tarefas/T-####.md`, com as marcas `interface:` e `seguranca:`, e mudar o status para `pronta`.
    **Funcionalidade com entrada de usuario** (formulario, upload, parametro): antes do cartao do Dev, um cartao do **Engenheiro** define as regras de formato de cada campo com exemplos validos e invalidos. O cartao do Dev so fica `pronta` depois disso. (Retrospectiva da T-0002: regra ambigua virou o BUG-0003.)
 2. **Worktree** (humano): no Orca, *Create Worktree* no repositório do projeto, nome `T-####-descricao`, *Branch from* `main`, **terminal em branco** (não escolher agente).
 3. **Dev** (humano digita no terminal do worktree): `D:\01_IA\ferramentas\papel dev`
    → o Dev implementa, commita, preenche a Entrega e muda o status para `revisao`.
-4. **Revisor** (humano, no mesmo worktree, depois de fechar o Dev): `D:\01_IA\ferramentas\papel revisor`
-   → o Revisor verifica, commita `VER-####` (e `BUG-`/`SEC-`) no branch e muda o status para `aprovada` ou `correcao`.
-5. **Se `correcao`**: voltar ao passo 3. O Dev lê o VER e corrige. Depois, passo 4 de novo — **todo novo commit exige um novo VER**.
-6. **Merge** (humano): com status `aprovada`, fazer o merge do branch na `main`, mudar o status para `concluida` e excluir o worktree no Orca.
-7. **Bibliotecário** (humano, num terminal em `D:\01_IA`): `D:\01_IA\ferramentas\papel bibliotecario`
+4. **Designer e Seguranca** (se `interface: sim` / `seguranca: sim`), no mesmo worktree, um de cada vez: `papel designer`, `papel seguranca`
+   → registram `UX-####` / `SEC-####` e preenchem "Revisao visual" / "Revisao de seguranca" **sem mudar o status**.
+5. **Revisor** (humano, no mesmo worktree, depois de fechar os anteriores): `D:\01_IA\ferramentas\papel revisor`
+   → o Revisor verifica, commita `VER-####` (e `BUG-`) no branch e muda o status para `aprovada` ou `correcao`, considerando os UX e SEC bloqueantes.
+6. **Se `correcao`**: voltar ao passo 3. O Dev lê o VER, os BUG e os SEC e corrige. Depois, passos 4 e 5 de novo — **todo novo commit exige um novo VER**.
+7. **Merge** (Coordenador prepara, humano aprova): com status `aprovada`, o Coordenador confere VER e bloqueantes, faz o merge `--no-ff` na `main` com o "sim" do humano, executa os Passos do humano operacionais aprovados, muda o status para `concluida` e faz push com aprovação. O humano exclui o worktree no Orca.
+8. **Bibliotecário** (humano, num terminal em `D:\01_IA`, quando houver candidatos no Inbox): `D:\01_IA\ferramentas\papel bibliotecario`
    → cura os candidatos do Inbox e commita.
 
 ### Tarefas de engenharia (`papel: engenheiro` no cartão)
@@ -62,24 +101,31 @@ Mesmo fluxo, com três diferenças:
 
 Guia de modelagem: [[Padroes de modelagem]].
 
+### Tarefas de seguranca (`papel: seguranca` no cartao)
+
+- No passo 3 o comando e `papel seguranca`. A Seguranca escreve `docs/seguranca/T-####-ameacas.md` e propoe criterios de aceite para o cartao do Dev (o humano aprova e copia).
+- O Revisor verifica a documentacao como numa tarefa de engenharia.
+
 ### Tarefas com interface (`interface: sim` no cartao)
 
 - **Antes do Dev:** um cartao do Designer (`papel: designer`) cria a experiencia visual: brief, conceitos, esqueleto SVG, prototipo HTML e entrega. O humano escolhe a direcao visual no meio do caminho (status `aguardando-humano`).
-- **Na revisao:** com o cartao do Dev em `revisao`, rodar `D:\01_IA\ferramentas\papel designer` **antes** do Revisor. O Designer registra `UX-####` e preenche "Revisao visual" sem mudar o status; o Revisor considera os bloqueantes.
+- **Na revisao:** passo 4 acima.
 - Fluxo completo: [[Fluxo de design]].
 
 ## O lançador `papel`
 
-Antes de abrir o Claude, ele confere a pasta, a tarefa e o status do cartão, e recusa com uma mensagem clara se algo estiver errado. Depois abre o Claude já no papel certo, com o pedido inicial ("Execute a tarefa T-0001", "Revise a tarefa T-0001", "Processe o Inbox do Brain").
+Antes de abrir o Claude, ele confere a pasta, a tarefa e o status do cartão, e recusa com uma mensagem clara se algo estiver errado. Depois abre o Claude já no papel certo, com o pedido inicial. No Linux: `$IA_RAIZ/ferramentas/papel.sh <papel>`.
 
 | Papel | Onde roda | Status exigido do cartão | Modelo |
 |---|---|---|---|
+| `coordenador` | Cópia principal `D:\01_IA` (`main`) | — | Opus |
 | `engenheiro` | Worktree da tarefa | `pronta`, `em-andamento` ou `correcao` (cartão com `papel: engenheiro`) | Opus |
 | `dev` | Worktree da tarefa | `pronta`, `em-andamento` ou `correcao` (cartão com `papel: dev`) | Sonnet |
-| `revisor` | Worktree da tarefa | `revisao` | Opus |
 | `designer` | Worktree da tarefa | criacao: `pronta`/`em-andamento`/`correcao` com `papel: designer`; revisao visual: `revisao` com `interface: sim` | Opus |
-| `bibliotecario` | Cópia principal `D:\01_IA` | — | Sonnet |
+| `seguranca` | Worktree da tarefa | analise: `pronta`/`em-andamento`/`correcao` com `papel: seguranca`; revisao: `revisao` com `seguranca: sim` | Opus |
+| `revisor` | Worktree da tarefa | `revisao` | Opus |
+| `bibliotecario` | Cópia principal `D:\01_IA` (`main`) | — | Sonnet |
 
-Opções: `--verificar` (só confere, não abre o Claude) e `--sem-pedido` (abre sem o pedido inicial).
+Opções: `--verificar` (só confere, não abre o Claude), `--sem-pedido` (abre sem o pedido inicial) e `--continuar` (retoma a última sessão da pasta).
 
-Para conferir que deu certo: o cabeçalho do Claude mostra `@dev`, `@revisor` ou `@bibliotecario`. Se uma sessão abrir sem papel, o próprio Claude avisa e os commits dela são recusados.
+Para conferir que deu certo: o cabeçalho do Claude mostra `@coordenador`, `@dev`, `@revisor` etc. Se uma sessão abrir sem papel, o próprio Claude avisa e os commits dela são recusados.

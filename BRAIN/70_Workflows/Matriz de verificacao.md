@@ -15,6 +15,7 @@ Verificações obrigatórias por tipo de mudança. Uma tarefa só é concluída 
 | Lint / formatação | ✅ | ✅ (Markdown) | — | ✅ (JSON válido) |
 | Revisão de código (outro agente) | ✅ | — | — | — |
 | Revisão de segurança | se tocar auth, dados, segredos, rede ou dependências | — | — | ✅ |
+| Revisao do papel Seguranca (`SEC-####`), sem bloqueante aberto | se `seguranca: sim` | — | — | — |
 | Entradas extremas (ver lista abaixo) testadas em cada campo de entrada do usuario | se houver entrada de usuario | — | — | — |
 | Revisao visual do Designer (`UX-####`), sem bloqueante aberto | se `interface: sim` | — | — | — |
 | Regras de formato da entrada definidas pelo Engenheiro, com exemplos validos e invalidos | se houver entrada de usuario (conferir que a regra existe e foi seguida) | ✅ se definir entrada | — | — |

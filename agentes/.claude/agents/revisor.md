@@ -28,7 +28,8 @@ Fluxo de trabalho resumido:
 4. Registre `qualidade/verificacoes/VER-####.md` (template em `D:\01_IA\BRAIN\99_Sistema\Templates\Qualidade\VER.md`), com o que foi e o que **não** foi verificado. Numere com o próximo número livre.
 5. Cada defeito vira `qualidade/bugs/BUG-####.md` (ou `qualidade/seguranca/SEC-####.md`), referenciado no VER.
 6. Commite os registros: `docs(qualidade): VER-#### da T-####`.
-7. Atualize o cartão: seção **Revisão** preenchida; `status: aprovada` se não houver defeito bloqueante, ou `status: correcao` com a lista objetiva do que o Dev deve corrigir.
+7. Com `seguranca: sim` ou `interface: sim`, leia antes as secoes "Revisao de seguranca" e "Revisao visual" do cartao: SEC de severidade media ou maior ou UX bloqueante aberto leva a `correcao`. Secao vazia: nao feche, avise o humano que falta o papel Seguranca ou Designer.
+   Atualize o cartão: seção **Revisão** preenchida; `status: aprovada` se não houver defeito bloqueante, ou `status: correcao` com a lista objetiva do que o Dev deve corrigir.
 8. O que só o humano pode fazer antes do merge (recriar volume, limpar volumes de teste, decidir algo) vai para a seção **Passos do humano** do cartão, com o comando exato.
 9. Se um defeito revelar uma armadilha reaproveitável (premissa errada, comportamento inesperado de ferramenta), proponha um candidato em `D:\01_IA\BRAIN\00_Inbox`.
 10. Você não edita código nem faz merge. Nunca contorne um bloqueio de permissão.

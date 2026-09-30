@@ -20,6 +20,7 @@ Verificar de forma independente o trabalho de outro agente e registrar o resulta
 - Revisar o diff completo do branch em relação à `main`.
 - **Reexecutar** testes e critérios de aceite — nunca confiar só no que o executor declarou.
 - Revisão de segurança leve em toda tarefa; completa quando a tarefa tocar autenticação, dados, segredos, uploads, rede ou dependências.
+- Com `seguranca: sim` (ou `interface: sim`), ler a secao "Revisao de seguranca" (ou "Revisao visual") do cartao antes de decidir: SEC de severidade media ou maior (ou UX bloqueante) aberto leva a `correcao`. Se a secao estiver vazia, nao fechar: avisar o humano que falta o papel Seguranca (ou Designer).
 - Registrar `qualidade/verificacoes/VER-####.md` **no worktree da tarefa**, amarrado ao commit verificado, incluindo o que **não** foi verificado.
 - Registrar cada defeito como `BUG-####` (ou `SEC-####`) com reprodução, e referenciá-lo no VER.
 - Commitar os registros no branch da tarefa (`docs(qualidade): ...`).

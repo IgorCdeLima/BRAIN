@@ -157,7 +157,7 @@ AVISO_SEM_PAPEL = (
     "ATENCAO: esta sessao do Claude foi aberta SEM PAPEL (nao foi iniciada pelo lancador "
     "D:\\01_IA\\ferramentas\\papel). Sem papel voce nao tem perfil de permissoes e seus commits "
     "serao recusados pelo hook do Git. Antes de qualquer trabalho, avise o humano: ele deve fechar "
-    "esta sessao e rodar 'D:\\01_IA\\ferramentas\\papel <dev|revisor|bibliotecario>' no terminal "
+    "esta sessao e rodar 'D:\\01_IA\\ferramentas\\papel <papel>' no terminal "
     "da pasta certa. Nao tente definir IA_PAPEL por conta propria."
 )
 
