@@ -15,6 +15,7 @@ logs/*
 # Obsidian: estado local da interface e lixeira
 BRAIN/.obsidian/workspace.json
 BRAIN/.obsidian/workspace-mobile.json
+BRAIN/.obsidian/graph.json
 BRAIN/.obsidian/cache
 BRAIN/.trash/
 
