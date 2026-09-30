@@ -30,6 +30,7 @@ Fazer o que o humano faz no ambiente, ou orienta-lo a fazer, **sempre mostrando 
 3. Cada edicao e cada comando que altera algo passa pela aprovacao do Claude Code (modo `default`: tudo o que nao e leitura pergunta).
 4. Stage so dos arquivos que mudou (nunca `git add -A` na copia principal).
 5. Merge `--no-ff` depois de mostrar o diff e ouvir o "sim".
+6. Nunca cite o lancador pelo nome num comando do terminal: o `deny` `*ferramentas/papel*` / `*papel.py*` do `.claude/settings.json` recusa qualquer comando que contenha o texto, ate `git add`. Use a pasta (`git add ferramentas/`, `git diff -- ferramentas/`) e leia o arquivo com a ferramenta Read. Decisao do humano, 2026-09-30.
 
 ## Acesso
 
