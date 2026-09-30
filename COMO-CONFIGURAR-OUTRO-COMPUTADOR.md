@@ -95,8 +95,13 @@ Os hooks do Git acham a raiz sozinhos pelo repositorio. Onde as regras citam `D:
 5. Hooks do Git e `~/.claude/settings.json`: iguais aos passos 3 e 4 acima.
 6. Obsidian: Vault em `$IA_RAIZ/BRAIN`; ativar o CLI como no passo 5. Se `obsidian version` nao existir no terminal
    (Flatpak), criar `~/.local/bin/obsidian` com `exec flatpak run md.obsidian.Obsidian "$@"`.
-7. Lancador: `$IA_RAIZ/ferramentas/papel.sh <papel>` (no lugar de `D:\01_IA\ferramentas\papel`).
-   Conferir com `$IA_RAIZ/ferramentas/papel.sh bibliotecario --verificar`.
+7. Lancador no PATH, para digitar so `papel <papel>` (no lugar de `D:\01_IA\ferramentas\papel`):
+
+   ```bash
+   ln -sf "$IA_RAIZ/ferramentas/papel.sh" ~/.local/bin/papel
+   ```
+
+   Conferir com `papel bibliotecario --verificar`. Dentro de uma sessao do Claude o lancador so aceita `--verificar`.
 
 ## Rotina entre os dois computadores
 

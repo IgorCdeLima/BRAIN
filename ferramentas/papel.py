@@ -168,6 +168,10 @@ def main() -> None:
         parar(f"informe um papel: {', '.join(PAPEIS)}. Ex.: papel dev")
     papel = args[0]
     regra = PAPEIS[papel]
+    if os.environ.get("CLAUDECODE") and "--verificar" not in opcoes:
+        # Agente não se atribui papel (ADR-0013): o lançador só abre o Claude a partir do terminal do humano.
+        parar("o lancador foi chamado de dentro de uma sessao do Claude. Rode-o num terminal comum "
+              "(ex.: o terminal do worktree no Orca). Dentro do Claude, so --verificar.")
 
     topo = git("rev-parse", "--show-toplevel")
     if not topo:
