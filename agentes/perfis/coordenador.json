@@ -32,6 +32,7 @@
       "PowerShell(git rev-parse*)",
       "PowerShell(git fetch*)",
       "PowerShell(git add operacao/tarefas/*)",
+      "PowerShell(git add operacao/pesquisas/*)",
       "PowerShell(git add operacao/administrador/*)",
       "PowerShell(git add operacao/coordenador/*)",
       "PowerShell(git commit *)",
