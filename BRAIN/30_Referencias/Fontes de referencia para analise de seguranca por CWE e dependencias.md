@@ -1,15 +1,14 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: referencia
-origem: humano (Igor), avaliado em sessao de manutencao do ambiente
-tarefa: ADR-0016 (papel Seguranca)
+tipo: referencia
+status: ativo
+origem: humano (Igor), avaliado em sessao de manutencao do ambiente; curado pelo Bibliotecario
 confianca: media
 fontes: ["https://samate.nist.gov/SARD/", "https://github.com/juice-shop/juice-shop", "https://github.com/AppThreat/vulnerability-db", "https://github.com/aboutcode-org/vulnerablecode", "https://github.com/pypa/advisory-database", "https://osv.dev/"]
 verificado_em: 2026-09-30
 valido_para: stack do lab (Python, FastAPI, PostgreSQL, Docker); revisar a cada 6 meses
 criado: 2026-09-30
-decisao:
+revisar_em: 2027-03-30
+decisao: promovido
 tags: [seguranca, cwe, vulnerabilidades, dependencias, referencia]
 ---
 # Fontes de referencia para analise de seguranca por CWE e dependencias
@@ -41,7 +40,7 @@ Lista de fontes para o papel Seguranca consultar ao analisar uma CWE, uma depend
 
 ### Lacunas: fontes sugeridas para completar (a confirmar)
 
-Pistas do conhecimento geral, **nao verificadas nesta sessao**:
+Pistas do conhecimento geral, **nao verificadas nesta sessao** (MITRE CWE e OWASP Cheat Sheets foram depois usados e lidos na pesquisa SEARCH-0001; ver [[Mapa das CWE relevantes para Python e FastAPI]]):
 
 - **MITRE CWE** (cwe.mitre.org): definicao oficial de cada CWE, com consequencias e mitigacoes. Hoje nenhuma fonte da lista explica a CWE em si.
 - **OWASP Cheat Sheet Series**: controles praticos por tema. A "File Upload Cheat Sheet" cobre exatamente o caso da T-0003.
@@ -65,3 +64,5 @@ Cada fonte foi aberta em 2026-09-30 e conferida quanto a escopo, linguagens e at
 - [[Recusa previa por Content-Length esconde a validacao do upload]]: exemplo de achado de seguranca da T-0003.
 
 ## Decisao do Bibliotecario
+
+Promovido a referencia em `30_Referencias` (2026-09-30): lista conferida em sessao anterior, sem duplicata. Nota: dominios como `cwe.mitre.org` e `cheatsheetseries.owasp.org` ja constam em `agentes/fontes-confiaveis.json`; a inclusao de novos dominios propostos no SEARCH-0001 e decisao do humano.

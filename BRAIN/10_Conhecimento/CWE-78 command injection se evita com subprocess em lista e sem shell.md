@@ -1,21 +1,20 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
-tarefa: pauta
+tipo: padrao
+status: rascunho
+origem: SEARCH-0001 (Pesquisador), curado pelo Bibliotecario
 pesquisa: SEARCH-0001
-confianca: media
+confianca: baixa
 fontes: [cwe.mitre.org, cheatsheetseries.owasp.org, docs.python.org]
 verificado_em: 2026-09-30
 valido_para: CWE Top 25 2025 (#9 CWE-78, #23 CWE-77); Python 3.x
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2026-12-30
 tags: [seguranca, cwe, cwe-78, cwe-77, command-injection, subprocess]
 ---
 # CWE-78 command injection se evita com subprocess em lista e sem shell
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** entrada do usuario entra num comando do sistema operacional e o shell a interpreta (`; rm -rf`, `$(...)`, `|`). CWE-78 e o caso de SO; CWE-77 e a versao generica.
 
@@ -23,6 +22,8 @@ tags: [seguranca, cwe, cwe-78, cwe-77, command-injection, subprocess]
 - `os.system(f"convert {arquivo} ...")`, `subprocess.run(cmd_string, shell=True)`, `os.popen`.
 - Processar imagem/PDF chamando ferramenta externa com o nome enviado pelo usuario.
 - Argumento comecando com `-` interpretado como opcao (argument injection).
+
+## Solucao
 
 **Controle:**
 1. Preferir biblioteca Python a chamar programa externo.
@@ -52,3 +53,5 @@ Vale sempre que o codigo chamar programa externo.
 - [[Mapa das CWE relevantes para Python e FastAPI]]
 
 ## Decisao do Bibliotecario
+
+Promovido como **rascunho, confianca baixa** (2026-09-30): sem texto completo do cheat sheet lido. Confirmar nos links antes de tratar como regra. Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].

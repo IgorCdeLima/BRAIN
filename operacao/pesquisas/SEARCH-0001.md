@@ -1,15 +1,15 @@
 ---
 tipo: pesquisa
 id: SEARCH-0001
-status: respondida
+status: catalogada
 urgencia: nao-bloqueante
 pedido_por: humano
 tarefa: pauta
 criado: 2026-09-30
 pesquisado_por: pesquisador
 pesquisado_em: 2026-09-30
-catalogado_em:
-notas: []
+catalogado_em: 2026-09-30
+notas: ["[[Mapa das CWE relevantes para Python e FastAPI]]"]
 tags: [seguranca, cwe, pauta]
 ---
 # SEARCH-0001 - Catalogar as CWE mais relevantes para Python/FastAPI
@@ -55,3 +55,10 @@ Quais CWE sao mais relevantes para uma aplicacao web Python (FastAPI + Starlette
 ## Catalogacao
 
 <!-- Preenchido pelo Bibliotecario: decisao e notas finais. -->
+
+**Decisao (2026-09-30): promovidos os 15 candidatos.** Links confiaveis preservados em cada nota.
+
+- Mapa: [[Mapa das CWE relevantes para Python e FastAPI]] (`20_Mapas`).
+- Padroes ativos (`10_Conhecimento`, fonte primaria lida): [[CWE-20 entrada extrema gerando erro 500 se evita validando com Pydantic e handler global]], [[CWE-200 vazamento de informacao se evita com handler global de erros sem stack trace]], [[CWE-22 path traversal se evita resolvendo o caminho e conferindo que fica dentro da pasta base]], [[CWE-434 upload sem restricao exige validar o tipo pelo conteudo e servir por nome gerado]], [[CWE-639 IDOR se evita filtrando a consulta pelo dono do objeto]], [[CWE-770 recursos sem limite se evitam com limite de corpo, timeout e rate limit]], [[CWE-862 autorizacao ausente se evita checando permissao em cada rota com Depends]], [[CWE-89 SQL injection se evita com parametros vinculados do SQLAlchemy e nunca com f-string]].
+- Rascunhos (`status: rascunho`, pendentes de conferencia em fonte primaria, conforme os limites do Pesquisador): [[CWE-79 XSS exige autoescape do Jinja2 ligado e nunca usar safe em dado do usuario]] (autoescape do `Jinja2Templates`), [[CWE-352 CSRF exige token ou cookie SameSite em rotas que mudam estado com cookie de sessao]], [[CWE-78 command injection se evita com subprocess em lista e sem shell]], [[CWE-94 code injection se evita sem eval, exec e templates montados com entrada do usuario]], [[CWE-502 deserializacao de dado nao confiavel se evita com JSON em vez de pickle]], [[CWE-918 SSRF se evita com allowlist de destinos e bloqueio de enderecos internos]].
+- Dominios propostos (`top10.owasp.org`, `community.owasp.org`, `jinja.palletsprojects.com`): decisao do humano; o Bibliotecario nao altera `agentes/fontes-confiaveis.json`.

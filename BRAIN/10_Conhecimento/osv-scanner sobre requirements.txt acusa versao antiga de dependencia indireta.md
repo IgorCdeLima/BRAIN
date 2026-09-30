@@ -1,34 +1,48 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: problema-solucao
-origem: sessao de manutencao do ambiente (instalacao do osv-scanner)
-tarefa: ADR-0017
-pesquisa:
+tipo: problema-solucao
+status: ativo
+origem: sessao de manutencao do ambiente (instalacao do osv-scanner), curado pelo Bibliotecario
 confianca: media
 fontes: ["osv-scanner 2.6.0 rodado no projeto lab em 2026-09-30", "https://github.com/google/osv-scanner"]
 verificado_em: 2026-09-30
 valido_para: osv-scanner 2.6.x com requirements.txt sem versao das dependencias indiretas
 criado: 2026-09-30
-decisao:
+revisar_em: 2027-03-30
+decisao: promovido
 tags: [seguranca, dependencias, osv-scanner, falso-positivo, armadilha]
 ---
 # osv-scanner sobre requirements.txt acusa versao antiga de dependencia indireta
 
-## Conteudo proposto
+## Sintoma
 
-Rodar `osv-scanner scan source -L requirements.txt` num projeto que so fixa as dependencias diretas gera **falso positivo**: o scanner resolve as dependencias indiretas por conta propria e pode escolher uma versao antiga, diferente da instalada.
+`osv-scanner scan source -L requirements.txt` acusou `pygments 2.9.0` com PYSEC-2023-117 e PYSEC-2026-2987, mas a imagem tinha `pygments 2.21.0`, acima das duas correcoes.
 
-No lab, ele acusou `pygments 2.9.0` (dependencia indireta do pytest) com PYSEC-2023-117 e PYSEC-2026-2987, mas a imagem tinha `pygments 2.21.0`, acima das duas correcoes.
+## Ambiente
 
-**Como fazer certo:** escanear o que esta instalado na imagem.
+osv-scanner 2.6.x; projeto Python (lab) cujo `requirements.txt` fixa so as dependencias diretas.
+
+## Causa raiz
+
+Com so as diretas fixadas, o scanner resolve as dependencias indiretas por conta propria (aqui, `pygments`, puxado pelo pytest) e pode escolher uma versao antiga, diferente da instalada. Falso positivo.
+
+## Solucao
+
+Escanear o que esta instalado na imagem.
 
 ```bash
 docker exec <container-da-app> pip freeze > /tmp/instalado.txt
 osv-scanner scan source -L /tmp/instalado.txt
 ```
 
-No lab: 33 pacotes instalados, nenhuma vulnerabilidade (2026-09-30). Se o achado vier do `requirements.txt`, conferir a versao real com `pip show <pacote>` no container antes de registrar um SEC.
+No lab: 33 pacotes instalados, nenhuma vulnerabilidade (2026-09-30).
+
+## Como verificar que foi resolvido
+
+Se o achado vier do `requirements.txt`, conferir a versao real com `pip show <pacote>` no container antes de registrar um SEC.
+
+## O que nao funcionou
+
+Escanear o `requirements.txt` direto: gera achado falso para dependencia indireta.
 
 ## Evidencia
 
@@ -52,3 +66,5 @@ No lab: 33 pacotes instalados, nenhuma vulnerabilidade (2026-09-30). Se o achado
 - [[Seguranca]]: papel que roda o scan.
 
 ## Decisao do Bibliotecario
+
+Promovido (2026-09-30) como problema-solucao ativo: reproduzido e medido no lab, sem duplicata no Brain.

@@ -1,21 +1,20 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
-tarefa: pauta
+tipo: padrao
+status: ativo
+origem: SEARCH-0001 (Pesquisador), curado pelo Bibliotecario
 pesquisa: SEARCH-0001
 confianca: media
 fontes: [cwe.mitre.org, cheatsheetseries.owasp.org]
 verificado_em: 2026-09-30
 valido_para: CWE Top 25 2025 (#25)
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2027-03-30
 tags: [seguranca, cwe, cwe-770, dos, limites]
 ---
 # CWE-770 recursos sem limite se evitam com limite de corpo, timeout e rate limit
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** a aplicacao aloca memoria, disco, CPU ou conexoes sem teto, e uma requisicao (ou muitas) esgota o recurso (negacao de servico).
 
@@ -25,6 +24,8 @@ tags: [seguranca, cwe, cwe-770, dos, limites]
 - Campos de texto/JSON sem `max_length`; corpo JSON gigante ou muito aninhado.
 - Sem timeout em chamadas externas e sem limite de conexoes/pool.
 - Sem rate limit em login e endpoints caros.
+
+## Solucao
 
 **Controle:**
 1. Limite de tamanho do corpo aplicado ao ler (por blocos) e tambem no proxy reverso.
@@ -55,3 +56,5 @@ Complementa upload e validacao de entrada em todo servico web.
 - [[Mapa das CWE relevantes para Python e FastAPI]]
 
 ## Decisao do Bibliotecario
+
+Promovido (2026-09-30) como padrao ativo: cheat sheet OWASP de DoS lido; liga-se a [[Recusa previa por Content-Length esconde a validacao do upload]] (caso SEC-0001). Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].

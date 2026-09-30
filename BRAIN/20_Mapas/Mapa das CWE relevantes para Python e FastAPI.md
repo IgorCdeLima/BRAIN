@@ -1,23 +1,21 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: referencia
-origem: agente/pesquisador
-tarefa: pauta
+tipo: mapa
+status: ativo
+origem: SEARCH-0001 (Pesquisador), curado pelo Bibliotecario
 pesquisa: SEARCH-0001
-confianca: media
 fontes: [cwe.mitre.org, owasp.org]
 verificado_em: 2026-09-30
 valido_para: CWE Top 25 2025 (publicado em 2025-12-15); OWASP Top 10:2025
 criado: 2026-09-30
-decisao:
 tags: [seguranca, cwe, mapa, indice]
 ---
 # Mapa das CWE relevantes para Python e FastAPI
 
-## Conteudo proposto
+## Visao geral
 
-Indice para o Bibliotecario virar mapa em `20_Mapas`. Filtro: CWE Top 25 de 2025 aplicavel a FastAPI + Starlette + Jinja2 + SQLAlchemy + PostgreSQL em Docker, mais casos do lab.
+Porta de entrada da Seguranca e do Revisor para escolher o que checar. Filtro: CWE Top 25 de 2025 aplicavel a FastAPI + Starlette + Jinja2 + SQLAlchemy + PostgreSQL em Docker, mais casos do lab. As notas marcadas `rascunho` (CSRF, XSS, command injection, code injection, deserializacao, SSRF) ainda pedem conferencia em fonte primaria; ver a decisao no fim de cada uma.
+
+## Notas principais
 
 ### Catalogadas (uma nota cada)
 
@@ -37,6 +35,8 @@ Indice para o Bibliotecario virar mapa em `20_Mapas`. Filtro: CWE Top 25 de 2025
 | CWE-918 SSRF | #22 | [[CWE-918 SSRF se evita com allowlist de destinos e bloqueio de enderecos internos]] |
 | CWE-639 IDOR | #24 | [[CWE-639 IDOR se evita filtrando a consulta pelo dono do objeto]] |
 | CWE-770 recursos sem limite | #25 | [[CWE-770 recursos sem limite se evitam com limite de corpo, timeout e rate limit]] |
+
+## Perguntas em aberto
 
 ### Fica para pesquisas futuras
 
@@ -64,3 +64,5 @@ Porta de entrada da Seguranca e do Revisor para escolher o que checar.
 - [[Fontes de referencia para analise de seguranca por CWE e dependencias]]
 
 ## Decisao do Bibliotecario
+
+Promovido a mapa em `20_Mapas` (2026-09-30). Sem mapa anterior sobre o tema. Notas filhas: ver a tabela acima.

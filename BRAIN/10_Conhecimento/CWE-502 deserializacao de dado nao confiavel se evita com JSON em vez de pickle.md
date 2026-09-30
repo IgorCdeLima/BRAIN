@@ -1,21 +1,20 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
-tarefa: pauta
+tipo: padrao
+status: rascunho
+origem: SEARCH-0001 (Pesquisador), curado pelo Bibliotecario
 pesquisa: SEARCH-0001
-confianca: media
+confianca: baixa
 fontes: [cwe.mitre.org, cheatsheetseries.owasp.org, docs.python.org]
 verificado_em: 2026-09-30
 valido_para: CWE Top 25 2025 (#15); Python 3.x
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2026-12-30
 tags: [seguranca, cwe, cwe-502, pickle, yaml, deserializacao]
 ---
 # CWE-502 deserializacao de dado nao confiavel se evita com JSON em vez de pickle
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** a aplicacao reconstroi objetos a partir de bytes controlados por terceiros, e o formato permite executar codigo durante a leitura.
 
@@ -24,6 +23,8 @@ tags: [seguranca, cwe, cwe-502, pickle, yaml, deserializacao]
 - `yaml.load(x)` sem `SafeLoader` (o correto e `yaml.safe_load`).
 - Cookie de sessao ou cache guardando objetos serializados sem assinatura.
 - Modelos de ML `.pkl` de origem desconhecida.
+
+## Solucao
 
 **Controle:**
 1. Trocar por formato de dados puro: JSON validado com Pydantic.
@@ -53,3 +54,5 @@ Cache, filas e sessoes em qualquer projeto Python.
 - [[Mapa das CWE relevantes para Python e FastAPI]]
 
 ## Decisao do Bibliotecario
+
+Promovido como **rascunho, confianca baixa** (2026-09-30): o Pesquisador nao leu o texto completo do cheat sheet (so indice e aviso do modulo pickle). Confirmar nos links antes de tratar como regra. Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].

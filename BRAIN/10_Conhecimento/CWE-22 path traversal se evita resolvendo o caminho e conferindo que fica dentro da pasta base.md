@@ -1,21 +1,20 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
-tarefa: pauta
+tipo: padrao
+status: ativo
+origem: SEARCH-0001 (Pesquisador), curado pelo Bibliotecario
 pesquisa: SEARCH-0001
 confianca: media
 fontes: [cwe.mitre.org, docs.python.org, cheatsheetseries.owasp.org]
 verificado_em: 2026-09-30
 valido_para: CWE Top 25 2025 (#6); Python 3.9+
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2027-03-30
 tags: [seguranca, cwe, cwe-22, path-traversal, uploads]
 ---
 # CWE-22 path traversal se evita resolvendo o caminho e conferindo que fica dentro da pasta base
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** o usuario manda um nome como `../../etc/passwd` e o servidor le ou grava fora da pasta prevista. 6o lugar no CWE Top 25 de 2025.
 
@@ -24,6 +23,8 @@ tags: [seguranca, cwe, cwe-22, path-traversal, uploads]
 - Gravar o arquivo enviado usando `UploadFile.filename` como nome.
 - Parametro de rota do tipo `{caminho:path}` (aceita barras).
 - Caminho absoluto no parametro: `Path(base) / "/etc/passwd"` descarta a base.
+
+## Solucao
 
 **Controle:**
 1. Melhor: nunca usar nome do usuario; gerar nome no servidor (UUID) e guardar o nome original so como metadado.
@@ -54,3 +55,5 @@ Qualquer rota que le ou grava arquivo por nome vindo de fora.
 - [[Mapa das CWE relevantes para Python e FastAPI]]
 
 ## Decisao do Bibliotecario
+
+Promovido (2026-09-30) como padrao ativo: documentacao do Python e cheat sheet de upload lidos; complementa (nao duplica) o padrao de upload ja existente. Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].

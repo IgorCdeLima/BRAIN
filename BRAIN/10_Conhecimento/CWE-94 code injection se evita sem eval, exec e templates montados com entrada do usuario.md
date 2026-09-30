@@ -1,21 +1,20 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
-tarefa: pauta
+tipo: padrao
+status: rascunho
+origem: SEARCH-0001 (Pesquisador), curado pelo Bibliotecario
 pesquisa: SEARCH-0001
-confianca: media
+confianca: baixa
 fontes: [cwe.mitre.org, cheatsheetseries.owasp.org]
 verificado_em: 2026-09-30
 valido_para: CWE Top 25 2025 (#10)
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2026-12-30
 tags: [seguranca, cwe, cwe-94, code-injection, ssti]
 ---
 # CWE-94 code injection se evita sem eval, exec e templates montados com entrada do usuario
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** entrada do usuario vira codigo que a propria aplicacao executa.
 
@@ -24,6 +23,8 @@ tags: [seguranca, cwe, cwe-94, code-injection, ssti]
 - **SSTI**: `Template(texto_do_usuario).render()` ou `env.from_string(entrada)` no Jinja2: quem controla o template executa expressoes no servidor.
 - `importlib`/`getattr` com nome de modulo/atributo vindo do usuario.
 - Deserializacao insegura (ver [[CWE-502 deserializacao de dado nao confiavel se evita com JSON em vez de pickle]]).
+
+## Solucao
 
 **Controle:**
 1. Nunca `eval/exec` em entrada; usar parser especifico (`ast.literal_eval` para literais, biblioteca de expressoes segura, ou tabela de operacoes permitidas).
@@ -51,3 +52,5 @@ Revisao de qualquer recurso "dinamico" (filtros, formulas, previews de template)
 - [[Mapa das CWE relevantes para Python e FastAPI]]
 
 ## Decisao do Bibliotecario
+
+Promovido como **rascunho, confianca baixa** (2026-09-30): SSTI sem fonte primaria dedicada (declarado no SEARCH-0001). Confirmar antes de tratar como regra. Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].

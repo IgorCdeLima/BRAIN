@@ -1,21 +1,20 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
-tarefa: pauta
+tipo: padrao
+status: ativo
+origem: SEARCH-0001 (Pesquisador), curado pelo Bibliotecario
 pesquisa: SEARCH-0001
 confianca: media
 fontes: [cwe.mitre.org, cheatsheetseries.owasp.org]
 verificado_em: 2026-09-30
 valido_para: CWE Top 25 2025 (#24)
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2027-03-30
 tags: [seguranca, cwe, cwe-639, idor, autorizacao]
 ---
 # CWE-639 IDOR se evita filtrando a consulta pelo dono do objeto
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** o usuario troca o identificador na URL ou no corpo (`/arquivos/42` vira `/arquivos/43`) e acessa objeto de outro usuario, porque o servidor confia no id recebido (Insecure Direct Object Reference).
 
@@ -23,6 +22,8 @@ tags: [seguranca, cwe, cwe-639, idor, autorizacao]
 - `db.get(Arquivo, arquivo_id)` sem comparar `dono_id` com o usuario logado.
 - Rotas `/uploads/{id}` e `/{recurso}/{id}` de download, edicao e exclusao.
 - Achar que id sequencial "escondido" ou UUID basta.
+
+## Solucao
 
 **Controle:**
 1. Escopar a consulta ao usuario: `select(Arquivo).where(Arquivo.id == id, Arquivo.dono_id == usuario.id)`; nao achou = 404.
@@ -50,3 +51,5 @@ Aparece assim que o projeto tiver mais de um usuario.
 - [[Mapa das CWE relevantes para Python e FastAPI]]
 
 ## Decisao do Bibliotecario
+
+Promovido (2026-09-30) como padrao ativo: cheat sheet OWASP de IDOR lido pelo Pesquisador; sem duplicata. Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].

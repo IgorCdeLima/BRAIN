@@ -1,21 +1,20 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
-tarefa: pauta
+tipo: padrao
+status: rascunho
+origem: SEARCH-0001 (Pesquisador), curado pelo Bibliotecario
 pesquisa: SEARCH-0001
-confianca: media
+confianca: baixa
 fontes: [cwe.mitre.org, cheatsheetseries.owasp.org]
 verificado_em: 2026-09-30
 valido_para: CWE Top 25 2025 (#22)
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2026-12-30
 tags: [seguranca, cwe, cwe-918, ssrf, docker]
 ---
 # CWE-918 SSRF se evita com allowlist de destinos e bloqueio de enderecos internos
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** o servidor faz uma requisicao para uma URL escolhida pelo usuario, que pode apontar para servicos internos (`http://db:5432`, `http://169.254.169.254/` metadados de nuvem, `localhost`).
 
@@ -23,6 +22,8 @@ tags: [seguranca, cwe, cwe-918, ssrf, docker]
 - Recurso "importar por URL", preview de link, webhook configuravel, download de imagem remota com `httpx`/`requests`.
 - Rodando em Docker/compose, os outros containers (banco, admin) ficam alcancaveis pelo nome do servico.
 - Redirecionamentos seguidos para destino interno; DNS que resolve para IP interno.
+
+## Solucao
 
 **Controle:**
 1. Melhor: nao aceitar URL; usar identificador que o servidor mapeia.
@@ -50,3 +51,5 @@ Assim que qualquer recurso buscar URL fornecida de fora.
 - [[Mapa das CWE relevantes para Python e FastAPI]]
 
 ## Decisao do Bibliotecario
+
+Promovido como **rascunho, confianca baixa** (2026-09-30): o proprio Pesquisador marcou como pista (texto completo nao lido). Confirmar nos links antes de tratar como regra. Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].

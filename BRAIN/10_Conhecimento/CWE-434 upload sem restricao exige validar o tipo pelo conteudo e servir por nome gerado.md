@@ -1,21 +1,20 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
-tarefa: pauta
+tipo: padrao
+status: ativo
+origem: SEARCH-0001 (Pesquisador), curado pelo Bibliotecario
 pesquisa: SEARCH-0001
 confianca: media
 fontes: [cwe.mitre.org, cheatsheetseries.owasp.org]
 verificado_em: 2026-09-30
 valido_para: CWE Top 25 2025 (#12)
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2027-03-30
 tags: [seguranca, cwe, cwe-434, upload]
 ---
 # CWE-434 upload sem restricao exige validar o tipo pelo conteudo e servir por nome gerado
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** o servidor aceita arquivo de tipo perigoso (HTML/SVG com script, executavel, arquivo enorme) e depois o guarda ou serve de forma que ele age. 12o lugar no CWE Top 25 de 2025.
 
@@ -24,6 +23,8 @@ tags: [seguranca, cwe, cwe-434, upload]
 - Ler o corpo inteiro na memoria antes de checar o tamanho (ver SEC-0001 e [[Recusa previa por Content-Length esconde a validacao do upload]]).
 - Servir o arquivo com o `Content-Type` que o cliente informou, permitindo `text/html` ou SVG com script.
 - Guardar dentro da pasta servida como estatico.
+
+## Solucao
 
 **Controle:**
 1. Allowlist de extensoes e de tipos reais (ex.: PNG/JPEG/WebP); validar por **assinatura (magic bytes)** e, se imagem, tentando abrir/reprocessar com biblioteca de imagem.
@@ -54,3 +55,5 @@ Todo projeto com upload.
 - [[Mapa das CWE relevantes para Python e FastAPI]]
 
 ## Decisao do Bibliotecario
+
+Promovido (2026-09-30) como padrao ativo. Nao e duplicata de [[Upload de imagem valida tipo por magic bytes e serve por nome gerado]]: aquela e a implementacao da T-0003; esta e a visao por CWE, mais ampla (SVG, limite por blocos, webroot). Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].

@@ -1,21 +1,20 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
-tarefa: pauta
+tipo: padrao
+status: rascunho
+origem: SEARCH-0001 (Pesquisador), curado pelo Bibliotecario
 pesquisa: SEARCH-0001
 confianca: media
 fontes: [cwe.mitre.org, cheatsheetseries.owasp.org, jinja.palletsprojects.com]
 verificado_em: 2026-09-30
 valido_para: CWE Top 25 2025 (#1); Jinja2 3.x
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2026-12-30
 tags: [seguranca, cwe, cwe-79, xss, jinja2]
 ---
 # CWE-79 XSS exige autoescape do Jinja2 ligado e nunca usar safe em dado do usuario
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** dado controlado pelo usuario chega ao HTML sem ser codificado e o navegador o executa como script (Cross-site Scripting). Ficou em 1o lugar no CWE Top 25 de 2025.
 
@@ -24,6 +23,8 @@ tags: [seguranca, cwe, cwe-79, xss, jinja2]
 - Uso de `{{ campo|safe }}`, `Markup(...)` ou `{% autoescape false %}` com dado vindo do usuario (ex.: nome de arquivo enviado no upload, mostrado na listagem).
 - Montar HTML por f-string e devolver `HTMLResponse`.
 - Inserir dado em contexto de script/atributo sem aspas: autoescape de HTML nao basta em `<script>` nem em `href="javascript:..."`.
+
+## Solucao
 
 **Controle:**
 1. Autoescape ligado para `.html` (`select_autoescape`), sem excecao.
@@ -52,3 +53,5 @@ Todo projeto com paginas renderizadas por Jinja2 (revisao do Dev, checklist da S
 - [[Mapa das CWE relevantes para Python e FastAPI]]
 
 ## Decisao do Bibliotecario
+
+Promovido como **rascunho** (2026-09-30): conteudo bem fundamentado, mas fica pendente conferir se o `Jinja2Templates` do Starlette liga o autoescape por padrao na versao usada (lacuna declarada no SEARCH-0001). Ao confirmar, mudar para `status: ativo`. Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].

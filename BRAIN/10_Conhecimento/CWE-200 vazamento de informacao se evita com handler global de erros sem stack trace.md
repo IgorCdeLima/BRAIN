@@ -1,21 +1,20 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
-tarefa: pauta
+tipo: padrao
+status: ativo
+origem: SEARCH-0001 (Pesquisador), curado pelo Bibliotecario
 pesquisa: SEARCH-0001
 confianca: media
 fontes: [cwe.mitre.org, cheatsheetseries.owasp.org, fastapi.tiangolo.com]
 verificado_em: 2026-09-30
 valido_para: CWE Top 25 2025 (#20)
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2027-03-30
 tags: [seguranca, cwe, cwe-200, cwe-209, erros, logs]
 ---
 # CWE-200 vazamento de informacao se evita com handler global de erros sem stack trace
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** a aplicacao entrega dado sensivel a quem nao devia: stack trace, caminho de arquivo, versao, SQL, segredo, dado de outro usuario (CWE-200; o caso de mensagem de erro e o CWE-209).
 
@@ -24,6 +23,8 @@ tags: [seguranca, cwe, cwe-200, cwe-209, erros, logs]
 - `HTTPException(detail=str(e))` repassando o texto da excecao (mensagem do driver do PostgreSQL com nome de tabela).
 - Respostas de API devolvendo o objeto inteiro do ORM (campos internos como `senha_hash`) em vez de um `response_model` enxuto.
 - Log/erro contendo token ou senha; `/docs` aberto sem necessidade; cabecalho `Server` com versao.
+
+## Solucao
 
 **Controle:**
 1. Handler global de `Exception` que devolve mensagem generica e um id de correlacao, e registra o detalhe so no log do servidor.
@@ -53,3 +54,5 @@ Ajuda em revisao de qualquer API e na escrita de logs.
 - [[Mapa das CWE relevantes para Python e FastAPI]]
 
 ## Decisao do Bibliotecario
+
+Promovido (2026-09-30) como padrao ativo: cheat sheet OWASP de erros lido pelo Pesquisador; sem duplicata no Brain. Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].

@@ -1,21 +1,20 @@
 ---
-tipo: candidato
-status: inbox
-tipo_proposto: padrao
-origem: agente/pesquisador
-tarefa: pauta
+tipo: padrao
+status: ativo
+origem: SEARCH-0001 (Pesquisador), curado pelo Bibliotecario
 pesquisa: SEARCH-0001
 confianca: media
 fontes: [cwe.mitre.org, cheatsheetseries.owasp.org, fastapi.tiangolo.com]
 verificado_em: 2026-09-30
 valido_para: CWE Top 25 2025 (#18); FastAPI atual
 criado: 2026-09-30
-decisao:
+decisao: promovido
+revisar_em: 2027-03-30
 tags: [seguranca, cwe, cwe-20, cwe-209, validacao, erro-500]
 ---
 # CWE-20 entrada extrema gerando erro 500 se evita validando com Pydantic e handler global
 
-## Conteudo proposto
+## Contexto
 
 **O que e:** a entrada nao e validada (tipo, tamanho, faixa, formato) e o valor inesperado quebra o codigo ou passa adiante (CWE-20 Improper Input Validation). O erro 500 que expoe detalhes tambem e vazamento (ver [[CWE-200 vazamento de informacao se evita com handler global de erros sem stack trace]]).
 
@@ -24,6 +23,8 @@ tags: [seguranca, cwe, cwe-20, cwe-209, validacao, erro-500]
 - Numero enorme, negativo ou zero onde se espera positivo; texto com NUL, emoji, Unicode estranho; string vazia.
 - Conversao manual (`int(x)`) sem tratar excecao, gerando 500.
 - Validar so no front-end.
+
+## Solucao
 
 **Controle:**
 1. Modelos Pydantic e `Query/Path/Field` com restricoes (`max_length`, `ge`, `le`, `pattern`, `Literal`/`Enum`).
@@ -53,3 +54,5 @@ Base de quase todas as outras CWE de injecao; todo endpoint novo.
 - [[Mapa das CWE relevantes para Python e FastAPI]]
 
 ## Decisao do Bibliotecario
+
+Promovido (2026-09-30) como padrao ativo: fonte primaria (OWASP, FastAPI) lida pelo Pesquisador; sem duplicata no Brain. Indexado em [[Mapa das CWE relevantes para Python e FastAPI]].
