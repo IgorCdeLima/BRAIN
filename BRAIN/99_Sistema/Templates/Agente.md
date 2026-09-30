@@ -20,22 +20,22 @@ tags: []
 
 ## Entradas
 
-<!-- O que recebe: cartão de tarefa, contexto, links. -->
+<!-- O que recebe: cartao de tarefa, contexto, links. -->
 
-## Saídas
+## Saidas
 
-<!-- O que entrega: artefatos, registros, mensagem de conclusão. -->
+<!-- O que entrega: artefatos, registros, mensagem de conclusao. -->
 
-## Permissões
+## Permissoes
 
 | Liberado | Pergunta | Negado |
 |---|---|---|
 |  |  |  |
 
-## O que NÃO faz
+## O que NAO faz
 
 -
 
-## Verificações que deve registrar
+## Verificacoes que deve registrar
 
 <!-- VER-/BUG-/SEC- que este papel produz, se algum. -->

@@ -6,13 +6,13 @@ tags: []
 ---
 # {{title}}
 
-<!-- Porta de entrada para um tema. Liste e comente as notas, não apenas enumere. -->
+<!-- Porta de entrada para um tema. Liste e comente as notas, nao apenas enumere. -->
 
-## Visão geral
+## Visao geral
 
 ## Notas principais
 
-- [[ ]] —
+- [[ ]] -
 
 ## Perguntas em aberto
 

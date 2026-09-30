@@ -9,22 +9,22 @@ data: {{date:YYYY-MM-DD}}
 resultado: aprovado | reprovado | parcial
 tags: []
 ---
-# VER-#### — {{title}}
+# VER-#### - {{title}}
 
 ## O que foi verificado
 
-| Verificação | Obrigatória | Resultado | Evidência |
+| Verificacao | Obrigatoria | Resultado | Evidencia |
 |---|---|---|---|
-| Testes automáticos | sim |  | <!-- comando + resumo da saída --> |
+| Testes automaticos | sim |  | <!-- comando + resumo da saida --> |
 | Lint | sim |  |  |
-| Revisão de código | sim |  |  |
-| Revisão de segurança | se tocar auth/dados/segredos |  |  |
+| Revisao de codigo | sim |  |  |
+| Revisao de seguranca | se tocar auth/dados/segredos |  |  |
 
-## O que NÃO foi verificado
+## O que NAO foi verificado
 
-<!-- Lacunas explícitas e por quê. Nunca omitir. -->
+<!-- Lacunas explicitas e por que. Nunca omitir. -->
 
 ## Achados
 
-- BUG-#### —
-- SEC-#### —
+- BUG-#### -
+- SEC-#### -

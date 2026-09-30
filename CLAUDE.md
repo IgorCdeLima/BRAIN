@@ -25,6 +25,8 @@ Cada pasta tem um `_LEIAME.md` com o propósito e as regras dela. Leia-o antes d
 4. **Nunca registre segredos** (senhas, tokens, chaves) em notas, logs, commits ou registros de qualidade.
 5. **Diagramas são Mermaid** (texto). Imagem nunca é a fonte de verdade.
 6. Não use `git push --force` nem reescreva histórico já compartilhado.
+7. **Texto novo em arquivos Markdown (.md) sem acentos nem cedilha** (so ASCII: "revisao", "acao", "codigo"), inclusive nomes de arquivo. Texto ja existente pode ficar como esta; ao editar uma linha, nao e preciso converter o resto.
+8. **Arquivos se editam com as ferramentas de edicao (Edit/Write), nunca reescrevendo pelo terminal.** No PowerShell, `Get-Content | Set-Content`, `Out-File` e `>` corrompem a codificacao (bloqueados por permissao).
 
 ## Hierarquia de conhecimento (antes de pesquisar)
 

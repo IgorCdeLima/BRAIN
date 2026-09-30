@@ -18,17 +18,17 @@ tags: []
 
 ## Ambiente
 
-<!-- Sistema, versões de linguagem/bibliotecas/ferramentas. -->
+<!-- Sistema, versoes de linguagem/bibliotecas/ferramentas. -->
 
 ## Causa raiz
 
-## Solução
+## Solucao
 
 ## Como verificar que foi resolvido
 
-## O que não funcionou
+## O que nao funcionou
 
-<!-- Tentativas que falharam e por quê. Evita repetir o erro. -->
+<!-- Tentativas que falharam e por que. Evita repetir o erro. -->
 
 ## Origem
 

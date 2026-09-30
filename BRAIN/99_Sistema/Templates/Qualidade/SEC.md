@@ -15,11 +15,11 @@ commit_correcao:
 verificado_por:
 tags: []
 ---
-# SEC-#### — {{title}}
+# SEC-#### - {{title}}
 
 <!-- NUNCA registrar senhas, tokens, chaves ou dados pessoais reais. -->
 
-## Descrição
+## Descricao
 
 ## Impacto
 
@@ -27,8 +27,8 @@ tags: []
 
 ## Como explorar / reproduzir
 
-## Recomendação de correção
+## Recomendacao de correcao
 
-## Histórico
+## Historico
 
-- {{date:YYYY-MM-DD}} — novo —
+- {{date:YYYY-MM-DD}} - novo -

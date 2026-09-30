@@ -13,14 +13,14 @@ tags: []
 
 ## Contexto
 
-<!-- Em que situação este padrão se aplica. -->
+<!-- Em que situacao este padrao se aplica. -->
 
 ## Problema
 
-## Solução
+## Solucao
 
 ```mermaid
-%% diagrama opcional da solução
+%% diagrama opcional da solucao
 ```
 
 ## Trade-offs
@@ -28,7 +28,7 @@ tags: []
 - **Ganha:**
 - **Perde:**
 
-## Quando NÃO usar
+## Quando NAO usar
 
 ## Relacionadas
 

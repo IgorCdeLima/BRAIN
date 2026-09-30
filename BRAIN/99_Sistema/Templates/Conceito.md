@@ -12,14 +12,14 @@ tags: []
 ---
 # {{title}}
 
-<!-- Título em forma de afirmação. Uma única ideia por nota. -->
+<!-- Titulo em forma de afirmacao. Uma unica ideia por nota. -->
 
 ## Ideia
 
-<!-- A ideia com palavras próprias, em poucos parágrafos. -->
+<!-- A ideia com palavras proprias, em poucos paragrafos. -->
 
 ## Por que importa
 
 ## Relacionadas
 
-- [[ ]] — <!-- por que está ligada -->
+- [[ ]] - <!-- por que esta ligada -->

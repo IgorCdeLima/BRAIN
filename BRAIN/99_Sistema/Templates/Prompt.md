@@ -10,9 +10,9 @@ tags: []
 
 ## Objetivo
 
-## Variáveis
+## Variaveis
 
-| Variável | Descrição |
+| Variavel | Descricao |
 |---|---|
 | `{{variavel}}` |  |
 
@@ -26,6 +26,6 @@ tags: []
 
 <!-- O que funcionou, o que falhou, com data e modelo usado. -->
 
-## Histórico de versões
+## Historico de versoes
 
-- v1 — {{date:YYYY-MM-DD}} —
+- v1 - {{date:YYYY-MM-DD}} -

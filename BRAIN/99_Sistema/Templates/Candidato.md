@@ -14,16 +14,16 @@ tags: []
 ---
 # {{title}}
 
-<!-- Título em forma de afirmação. Uma única ideia.
-     decisao (preenchida pelo Bibliotecário): promovido | fundido | devolvido | arquivado -->
+<!-- Titulo em forma de afirmacao. Uma unica ideia.
+     decisao (preenchida pelo Bibliotecario): promovido | fundido | devolvido | arquivado -->
 
-## Conteúdo proposto
+## Conteudo proposto
 
-## Evidência
+## Evidencia
 
-<!-- Por que é verdade: teste que passou, documentação oficial, experimento, erro reproduzido. -->
+<!-- Por que e verdade: teste que passou, documentacao oficial, experimento, erro reproduzido. -->
 
-## Por que é reaproveitável
+## Por que e reaproveitavel
 
 <!-- Em que outras tarefas ou projetos isso ajudaria. -->
 
@@ -31,6 +31,6 @@ tags: []
 
 - [[ ]]
 
-## Decisão do Bibliotecário
+## Decisao do Bibliotecario
 
-<!-- Preenchido na curadoria: decisão, motivo e link para a nota final. -->
+<!-- Preenchido na curadoria: decisao, motivo e link para a nota final. -->

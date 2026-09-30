@@ -4,33 +4,33 @@ status: rascunho
 versao: 1
 atualizado: {{date:YYYY-MM-DD}}
 ---
-# Requisitos — {{title}}
+# Requisitos - {{title}}
 
-## Visão
+## Visao
 
-<!-- Uma ou duas frases: para quem e para quê. -->
+<!-- Uma ou duas frases: para quem e para que. -->
 
-## Usuários
+## Usuarios
 
-| Tipo de usuário | O que precisa fazer |
+| Tipo de usuario | O que precisa fazer |
 |---|---|
 |  |  |
 
 ## Requisitos funcionais
 
-| ID | Requisito (verificável) | Prioridade | Tarefa |
+| ID | Requisito (verificavel) | Prioridade | Tarefa |
 |---|---|---|---|
 | RF-01 |  | alta |  |
 
-## Regras de validação
+## Regras de validacao
 
 | Campo | Regra |
 |---|---|
 |  |  |
 
-## Requisitos não funcionais
+## Requisitos nao funcionais
 
-| ID | Requisito (com número quando possível) |
+| ID | Requisito (com numero quando possivel) |
 |---|---|
 | RNF-01 |  |
 
@@ -38,14 +38,14 @@ atualizado: {{date:YYYY-MM-DD}}
 
 -
 
-## Decisões do humano
+## Decisoes do humano
 
-- <!-- data — decisão -->
+- <!-- data - decisao -->
 
 ## Premissas
 
-- <!-- assumido, revisável -->
+- <!-- assumido, revisavel -->
 
-## Questões em aberto
+## Questoes em aberto
 
-- <!-- pergunta — bloqueia? sim/não -->
+- <!-- pergunta - bloqueia? sim/nao -->

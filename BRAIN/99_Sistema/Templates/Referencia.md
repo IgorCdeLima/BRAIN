@@ -12,13 +12,13 @@ tags: []
 
 ## Resumo
 
-<!-- O que a fonte diz, com palavras próprias. Sem copiar trechos longos. -->
+<!-- O que a fonte diz, com palavras proprias. Sem copiar trechos longos. -->
 
 ## O que aproveitar
 
 ## Ressalvas
 
-<!-- Viés, data, versão coberta, pontos questionáveis. -->
+<!-- Vies, data, versao coberta, pontos questionaveis. -->
 
 ## Notas derivadas
 

@@ -4,37 +4,37 @@ status: rascunho
 consultado_em: {{date:YYYY-MM-DD}}
 adr:
 ---
-# Avaliação — {{title}}
+# Avaliacao - {{title}}
 
 ## Pergunta
 
-<!-- O que precisamos decidir e por quê agora. -->
+<!-- O que precisamos decidir e por que agora. -->
 
-## Restrições
+## Restricoes
 
 <!-- Dadas pelo humano ou pelo projeto (linguagem, custo, hospedagem...). -->
 
-## Critérios e pesos
+## Criterios e pesos
 
 <!-- Definidos ANTES das notas. Pesos somam 100. -->
 
-| Critério | Peso | Por que importa |
+| Criterio | Peso | Por que importa |
 |---|---|---|
 |  |  |  |
 
 ## Alternativas
 
-| Critério (peso) | Alternativa A | Alternativa B | Alternativa C |
+| Criterio (peso) | Alternativa A | Alternativa B | Alternativa C |
 |---|---|---|---|
-|  | nota — justificativa | nota — justificativa | nota — justificativa |
+|  | nota - justificativa | nota - justificativa | nota - justificativa |
 | **Total ponderado** |  |  |  |
 
-## Fatos voláteis consultados
+## Fatos volateis consultados
 
 | Fato | Valor | Fonte oficial | Data |
 |---|---|---|---|
 |  |  |  |  |
 
-## Recomendação
+## Recomendacao
 
 <!-- Escolha, riscos e o que faria mudar de ideia. Vira ADR com status proposta. -->

@@ -14,7 +14,7 @@ tags: []
 
 ## O que muda a partir de agora
 
-<!-- Ação concreta: regra, workflow, template ou nota a atualizar. -->
+<!-- Acao concreta: regra, workflow, template ou nota a atualizar. -->
 
 ## Origem
 

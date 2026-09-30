@@ -9,21 +9,21 @@ tags: []
 ---
 # {{title}}
 
-<!-- Nome do arquivo: "ADR-#### Título curto". Status: proposta | aceita | rejeitada | substituida -->
+<!-- Nome do arquivo: "ADR-#### Titulo curto". Status: proposta | aceita | rejeitada | substituida -->
 
 ## Contexto
 
-<!-- A situação e as forças em jogo. -->
+<!-- A situacao e as forcas em jogo. -->
 
-## Decisão
+## Decisao
 
 ## Alternativas consideradas
 
-| Alternativa | Prós | Contras |
+| Alternativa | Pros | Contras |
 |---|---|---|
 |  |  |  |
 
-## Consequências
+## Consequencias
 
 - **Positivas:**
 - **Negativas / riscos:**

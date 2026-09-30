@@ -13,10 +13,10 @@ commit_correcao:
 verificado_por:
 tags: []
 ---
-# BUG-#### — {{title}}
+# BUG-#### - {{title}}
 
-<!-- Status: novo → confirmado → em-correcao → corrigido → verificado → fechado
-     (ou duplicado · nao-reproduz · risco-aceito). Quem corrige não verifica. -->
+<!-- Status: novo -> confirmado -> em-correcao -> corrigido -> verificado -> fechado
+     (ou duplicado, nao-reproduz, risco-aceito). Quem corrige nao verifica. -->
 
 ## Como reproduzir
 
@@ -26,12 +26,12 @@ tags: []
 
 ## Obtido
 
-## Evidência
+## Evidencia
 
-<!-- Saída de teste, log, trecho de erro. Sem segredos. -->
+<!-- Saida de teste, log, trecho de erro. Sem segredos. -->
 
 ## Causa raiz
 
-## Histórico
+## Historico
 
-- {{date:YYYY-MM-DD}} — novo —
+- {{date:YYYY-MM-DD}} - novo -
