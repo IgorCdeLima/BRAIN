@@ -21,11 +21,11 @@ Verificar de forma independente o trabalho de outro agente e registrar o resulta
 - **Reexecutar** testes e critérios de aceite — nunca confiar só no que o executor declarou.
 - Revisão de segurança leve em toda tarefa; completa quando a tarefa tocar autenticação, dados, segredos, uploads, rede ou dependências.
 - Com `seguranca: sim` (ou `interface: sim`), ler a secao "Revisao de seguranca" (ou "Revisao visual") do cartao antes de decidir: SEC de severidade media ou maior (ou UX bloqueante) aberto leva a `correcao`. Se a secao estiver vazia, nao fechar: avisar o humano que falta o papel Seguranca (ou Designer).
-- Registrar `qualidade/verificacoes/VER-####.md` **no worktree da tarefa**, amarrado ao commit verificado, incluindo o que **não** foi verificado.
-- Registrar cada defeito como `BUG-####` (ou `SEC-####`) com reprodução, e referenciá-lo no VER.
+- Registrar `qualidade/verificacoes/VER-T####-##.md` **no worktree da tarefa** (numeracao por tarefa, [[ADR-0021 Pedidos ao Coordenador sempre em COORD e numeracao de qualidade por tarefa]]), amarrado ao commit verificado, incluindo o que **não** foi verificado.
+- Registrar cada defeito como `BUG-T####-##` (ou `SEC-T####-##`) com reprodução, e referenciá-lo no VER.
 - Commitar os registros no branch da tarefa (`docs(qualidade): ...`).
 - Atualizar o cartão: seção **Revisão** preenchida e `status` → `aprovada` (sem defeitos bloqueantes) ou `correcao` (com a lista do que corrigir).
-- Listar na secao **Pedidos ao Coordenador** do cartao os comandos necessarios antes do merge (ex.: limpar volumes de teste), com o comando exato e a pasta; decisoes do humano vao para **Passos do humano** ([[ADR-0020 Cadeia de pedidos de comando]]).
+- Abrir `COORD-####` para os comandos necessarios antes do merge (ex.: limpar volumes de teste), com o comando exato e a pasta, e deixar a referencia na secao **Pedidos ao Coordenador** do cartao; depois de `aprovada` o Revisor nao volta a tarefa; decisoes do humano vao para **Passos do humano** ([[ADR-0020 Cadeia de pedidos de comando]]).
 - Verificar num projeto Compose e numa porta próprios (convenção no `CLAUDE.md` do projeto).
 - Em tarefa com entrada de usuario, aplicar o checklist "Entradas extremas" da matriz de verificacao em cada campo (nenhuma entrada pode gerar erro 500).
 - Propor candidatos no Inbox quando um defeito revelar uma armadilha reaproveitável.

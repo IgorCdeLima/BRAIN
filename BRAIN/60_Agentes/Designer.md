@@ -29,7 +29,7 @@ Pensar a experiencia e a aparencia das telas com liberdade criativa, antes do co
 ## Saidas
 
 - `docs/design/T-####/` (brief, conceitos, esqueleto, prototipo, entrega) e `docs/design/sistema/`.
-- `qualidade/ux/UX-####.md` e a secao Revisao visual do cartao.
+- `qualidade/ux/UX-T####-##.md` (numeracao por tarefa) e a secao Revisao visual do cartao.
 
 ## Permissoes
 

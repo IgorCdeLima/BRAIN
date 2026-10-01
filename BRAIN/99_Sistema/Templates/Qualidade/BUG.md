@@ -1,6 +1,6 @@
 ---
 tipo: bug
-id: BUG-####
+id: BUG-T####-##
 status: novo
 severidade: baixa | media | alta | critica
 encontrado_por:
@@ -13,9 +13,10 @@ commit_correcao:
 verificado_por:
 tags: []
 ---
-# BUG-#### - {{title}}
+# BUG-T####-## - {{title}}
 
-<!-- Status: novo -> confirmado -> em-correcao -> corrigido -> verificado -> fechado
+<!-- Numeracao por tarefa (ADR-0021): BUG-T0007-01, -02... Sem tarefa: BUG-####.
+     Status: novo -> confirmado -> em-correcao -> corrigido -> verificado -> fechado
      (ou duplicado, nao-reproduz, risco-aceito). Quem corrige nao verifica. -->
 
 ## Como reproduzir

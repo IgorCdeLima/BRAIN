@@ -1,6 +1,6 @@
 ---
 tipo: ux
-id: UX-####
+id: UX-T####-##
 status: aberta
 severidade: bloqueante | recomendado | sugestao
 tarefa:
@@ -10,9 +10,10 @@ encontrado_por: designer
 data: {{date:YYYY-MM-DD}}
 tags: []
 ---
-# UX-#### - {{title}}
+# UX-T####-## - {{title}}
 
-<!-- Status: aberta -> corrigida -> conferida (ou adiada, descartada). Bloqueante = impede o uso ou falha grave de acessibilidade. -->
+<!-- Numeracao por tarefa (ADR-0021): UX-T0007-01, -02...
+     Status: aberta -> corrigida -> conferida (ou adiada, descartada). Bloqueante = impede o uso ou falha grave de acessibilidade. -->
 
 ## O que se observa
 

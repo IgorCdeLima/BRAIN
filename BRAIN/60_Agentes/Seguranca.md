@@ -17,7 +17,7 @@ Pensar como atacante: antes do codigo, dizer o que precisa ser protegido e como 
 ## Responsabilidades
 
 - **Analise de ameacas** (cartao com `papel: seguranca`, antes do Dev): ativos, pontos de entrada, ameacas e abusos concretos, controle esperado e como testar cada um, em `docs/seguranca/T-####-ameacas.md`. Os controles viram criterios de aceite propostos para o cartao do Dev.
-- **Revisao de seguranca** (cartao de outro papel em `revisao` com `seguranca: sim`): revisar o diff, subir a aplicacao num projeto Compose e porta proprios e testar os abusos; registrar cada achado em `qualidade/seguranca/SEC-####.md` com severidade e reproducao; preencher a secao **Revisao de seguranca** do cartao.
+- **Revisao de seguranca** (cartao de outro papel em `revisao` com `seguranca: sim`): revisar o diff, subir a aplicacao num projeto Compose e porta proprios e testar os abusos; registrar cada achado em `qualidade/seguranca/SEC-T####-##.md` (numeracao por tarefa, [[ADR-0021 Pedidos ao Coordenador sempre em COORD e numeracao de qualidade por tarefa]]) com severidade e reproducao; preencher a secao **Revisao de seguranca** do cartao.
 - Conferir vulnerabilidades conhecidas de dependencias na hora (fato volatil) com `pip-audit` ou `osv-scanner` e os links confiaveis; referencia que faltar (ex.: uma CWE sem nota) vira `SEARCH-####` para o Pesquisador.
 - **Fontes de referencia:** partir da nota de fontes de seguranca do Brain (tag `seguranca`: OSV.dev e PyPA Advisory Database no uso diario; VulnerableCode e AppThreat como apoio; SARD e Juice Shop para estudo). Citar no SEC a fonte usada e propor no Inbox as fontes novas que se mostrarem uteis.
 

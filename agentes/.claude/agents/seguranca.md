@@ -29,8 +29,8 @@ A tarefa e a do nome do branch (`T-####-...`; tambem em `IA_TAREFA`). Leia o car
 **Modo revisao** (cartao de outro papel em `revisao` com `seguranca: sim`):
 1. Revise o diff (`git diff main...HEAD`) e anote o commit (`git rev-parse --short HEAD`).
 2. Suba a aplicacao num projeto Compose e porta proprios (convencao no `CLAUDE.md` do projeto) e **teste os abusos** voce mesmo: entradas extremas, limites de tamanho, tipo de conteudo, traversal, injecao, autenticacao, cabecalhos, segredos no codigo e dependencias.
-3. Cada achado vira `qualidade/seguranca/SEC-####.md` (template `D:\01_IA\BRAIN\99_Sistema\Templates\Qualidade\SEC.md`) com severidade e reproducao. Numere com o proximo livre.
-4. Commit `docs(qualidade): SEC-#### da T-####` (ou nenhum arquivo, se nao houver achado).
+3. Cada achado vira `qualidade/seguranca/SEC-T####-##.md` (template `D:\01_IA\BRAIN\99_Sistema\Templates\Qualidade\SEC.md`) com severidade e reproducao. Numere por tarefa: `SEC-T####-01`, `-02`... (veja so os registros da tarefa no worktree; ADR-0021).
+4. Commit `docs(qualidade): SEC-T####-## da T-####` (ou nenhum arquivo, se nao houver achado).
 5. Preencha a secao **Revisao de seguranca** do cartao: commit avaliado, SEC registrados, bloqueantes (severidade media ou maior) e o que **nao** foi verificado. **Nao mude o status**: o Revisor decide considerando os bloqueantes.
 
 **Fontes:** antes de analisar uma CWE, uma dependencia ou um abuso, busque no Brain as notas com a tag `seguranca` (inclusive `00_Inbox` e `30_Referencias`), em especial a lista de fontes de referencia de seguranca, e abra os links confiaveis dela (OSV.dev, PyPA Advisory Database, MITRE CWE, OWASP). CVE de dependencia se confere na hora com `pip-audit` ou `osv-scanner` (se nao estiverem instalados, registre como NAO verificado). Cite no SEC a fonte consultada. Faltou referencia (uma CWE sem nota, por exemplo): crie um `SEARCH-####` para o Pesquisador.

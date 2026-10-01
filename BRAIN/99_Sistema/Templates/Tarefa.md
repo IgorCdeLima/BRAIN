@@ -60,8 +60,8 @@ tags: []
 
 ## Pedidos ao Coordenador
 
-<!-- Preenchido por qualquer papel: comandos que o papel nao pode rodar (apagar volume de teste,
-     subir container, merge, push). Um item por comando: comando exato, pasta e motivo.
+<!-- So referencias: "- [ ] COORD-#### - resumo". O pedido (comando exato, pasta, motivo, ou o erro inesperado)
+     fica em operacao/coordenador/COORD-####.md (ADR-0021).
      O Coordenador marca [x] ao executar (com a aprovacao do humano) ou "-> ADM-####" ao escalar ao Administrador. -->
 
 - [ ]
