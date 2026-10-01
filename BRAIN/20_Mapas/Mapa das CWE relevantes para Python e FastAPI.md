@@ -36,7 +36,7 @@ Porta de entrada da Seguranca e do Revisor para escolher o que checar. Filtro: C
 | CWE-639 IDOR | #24 | [[CWE-639 IDOR se evita filtrando a consulta pelo dono do objeto]] |
 | CWE-770 recursos sem limite | #25 | [[CWE-770 recursos sem limite se evitam com limite de corpo, timeout e rate limit]] |
 
-### Dependencias, imagem e hardening (SEARCH-0002, fora do Top 25)
+### Dependencias, imagem e hardening (SEARCH-0002 e SEARCH-0003, fora do Top 25)
 
 | CWE | Nota |
 |---|---|
@@ -44,6 +44,10 @@ Porta de entrada da Seguranca e do Revisor para escolher o que checar. Filtro: C
 | CWE-829 origem nao confiavel (sem versao/hash) | [[CWE-829 dependencia sem versao e sem hash se evita com requirements travado com hashes]] |
 | CWE-250 container como root | [[CWE-250 container como root se evita com USER sem privilegio e cuidado com a posse de volumes]] |
 | CWE-1021 clickjacking (rascunho) | [[CWE-1021 clickjacking se evita com CSP frame-ancestors e X-Frame-Options em middleware do Starlette]] |
+| CWE-250 reforco (setuid e capabilities) | [[USER sem privilegio nao basta - no-new-privileges e cap_drop ALL fecham a escalada por setuid]]; volume antigo: [[Volume antigo com dono root exige chown unico ao trocar o container para usuario sem privilegio]] |
+| CWE-409 bomba de descompressao | [[CWE-409 bomba de descompressao se evita com limite de pixels do Pillow tratado como erro e limite de bytes no upload]]; excecoes: [[Except OSError nao basta no Pillow - DecompressionBombError e SyntaxError escapam e viram 500]] |
+| CWE-212 metadado sensivel em imagem | [[CWE-212 metadado sensivel em imagem se evita regravando os pixels sem EXIF, GPS e comentarios]]; detalhes: [[Pillow save padrao mantem o comentario do JPEG e o ICC do PNG ao regravar sem metadados]]; testes: [[Teste de upload com Pillow - CRC do PNG nao e conferido e o ICC do PNG vai comprimido]] |
+| Bibliotecas nativas de wheels (ponto cego do scanner) | [[osv-scanner de imagem nao ve bibliotecas nativas embutidas em wheels Python]]; roteiro: [[Versoes das bibliotecas nativas de uma wheel do Pillow estao em dependencies.json da tag da release e se cruzam com OSV a mao]] |
 
 Automacao no lab: [[ruff e pip-audit em Docker Compose com servicos lint e audit no estagio dev]].
 

@@ -1,6 +1,6 @@
 ---
 tipo: candidato
-status: inbox
+status: obsoleto
 tipo_proposto: problema-solucao
 origem: agente/engenheiro
 tarefa: T-0006
@@ -10,7 +10,7 @@ fontes: ["https://github.com/python-pillow/Pillow/blob/main/docs/reference/Image
 verificado_em: 2026-09-30
 valido_para: "Pillow 12.x; upload de foto de celular"
 criado: 2026-09-30
-decisao:
+decisao: fundido
 tags: [upload, imagem, pillow, exif, armadilha, modelagem]
 ---
 # Regravar imagem sem EXIF exige aplicar a orientacao antes
@@ -43,3 +43,5 @@ Todo projeto que recebe foto e remove metadados.
 ## Decisao do Bibliotecario
 
 **Fundido em parte e devolvido** (2026-09-30): o item 2 (dimensao e `DecompressionBombError`) foi corrigido e promovido em [[Pillow Image.open ja recusa imagem acima do dobro de MAX_IMAGE_PIXELS antes da checagem de dimensao do projeto]]; nao use o texto do item 2 acima. O item 1 (`exif_transpose` antes de regravar sem EXIF) segue como pista: a propria nota admite que nao conferiu em fonte (confianca baixa). Promover quando a T-0010 do lab testar ou houver fonte da funcao `ImageOps.exif_transpose`.
+
+**Fundido e arquivado** (2026-10-01): o item 1 (aplicar `exif_transpose` antes de regravar sem EXIF) foi confirmado por experimento da Seguranca (40x20 com Orientation=6 -> 20x40) e entrou na nota [[Pillow save padrao mantem o comentario do JPEG e o ICC do PNG ao regravar sem metadados]]; o item 2 ja estava em [[Pillow Image.open ja recusa imagem acima do dobro de MAX_IMAGE_PIXELS antes da checagem de dimensao do projeto]]. Nada mais a promover daqui.

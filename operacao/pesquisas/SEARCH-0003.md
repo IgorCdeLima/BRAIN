@@ -1,15 +1,15 @@
 ---
 tipo: pesquisa
 id: SEARCH-0003
-status: respondida
+status: catalogada
 urgencia: nao-bloqueante
 pedido_por: seguranca
 tarefa: T-0012
 criado: 2026-10-01
 pesquisado_por: pesquisador
 pesquisado_em: 2026-10-01
-catalogado_em:
-notas: []
+catalogado_em: 2026-10-01
+notas: ["Versoes das bibliotecas nativas de uma wheel do Pillow estao em dependencies.json da tag da release e se cruzam com OSV a mao", "CWE-409 bomba de descompressao se evita com limite de pixels do Pillow tratado como erro e limite de bytes no upload", "CWE-212 metadado sensivel em imagem se evita regravando os pixels sem EXIF, GPS e comentarios", "osv-scanner de imagem nao ve bibliotecas nativas embutidas em wheels Python"]
 tags: [seguranca, dependencias, pillow, imagem, cwe, cwe-409, cwe-212]
 ---
 # SEARCH-0003 - Como acompanhar CVE das bibliotecas nativas embutidas em wheels (Pillow) e notas de CWE-409 e CWE-212
@@ -46,3 +46,12 @@ tags: [seguranca, dependencias, pillow, imagem, cwe, cwe-409, cwe-212]
 - 
 
 ## Catalogacao
+
+**Decisao (2026-10-01, Bibliotecario):** os 3 candidatos do Pesquisador e o do Seguranca foram promovidos a `10_Conhecimento`, com os Links confiaveis preservados.
+
+- [[Versoes das bibliotecas nativas de uma wheel do Pillow estao em dependencies.json da tag da release e se cruzam com OSV a mao]] (problema-solucao, confianca media; pendente `features.version` real, COORD-0014)
+- [[CWE-409 bomba de descompressao se evita com limite de pixels do Pillow tratado como erro e limite de bytes no upload]] (padrao)
+- [[CWE-212 metadado sensivel em imagem se evita regravando os pixels sem EXIF, GPS e comentarios]] (padrao)
+- [[osv-scanner de imagem nao ve bibliotecas nativas embutidas em wheels Python]] (aprendizado)
+
+Todas indexadas em [[Mapa das CWE relevantes para Python e FastAPI]].

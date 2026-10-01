@@ -49,6 +49,8 @@ Todo container do ambiente.
 ## Relacionadas no Brain
 
 - [[CWE-78 command injection se evita com subprocess em lista e sem shell]]
+- [[Volume antigo com dono root exige chown unico ao trocar o container para usuario sem privilegio]]: testado em 2026-10-01 (T-0008); fecha a ressalva do volume existente.
+- [[USER sem privilegio nao basta - no-new-privileges e cap_drop ALL fecham a escalada por setuid]]: reforco alem do `USER`.
 
 ## Decisao do Bibliotecario
 
