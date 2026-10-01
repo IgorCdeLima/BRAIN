@@ -15,12 +15,13 @@ tags: []
 <!-- Status: aberto -> concluido | escalado (virou ADM-####, campo adm:) | recusado.
      urgencia: bloqueante (o pedinte parou) | nao-bloqueante.
      pedido_por: papel que abriu. tarefa: T-#### ou "ambiente".
-     Pedido ligado a tarefa vai no cartao (secao "Pedidos ao Coordenador"), nao aqui.
+     Com tarefa: deixe a referencia "- [ ] COORD-#### - resumo" na secao "Pedidos ao Coordenador" do cartao.
      Arquivo: operacao/coordenador/COORD-####.md -->
 
 ## Pedido
 
-<!-- Um item por comando: comando exato, pasta onde rodar e o que se espera. -->
+<!-- Um item por comando: comando exato, pasta onde rodar e o que se espera.
+     Erro inesperado: o erro exato, o que tentava fazer e a pasta. -->
 
 - [ ] 
 

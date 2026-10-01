@@ -25,7 +25,7 @@ Implementar tarefas de código com testes, dentro do worktree da tarefa, e entre
 - Commits pequenos, no formato `tipo(escopo): descrição` (os trailers são adicionados pelo hook do Git).
 - Documentar enquanto implementa: atualizar `docs/` do projeto quando a mudança afetar requisitos, modelos ou uso.
 - Ao terminar, preencher a seção **Entrega** do cartão da tarefa e mudar o status para `revisao`.
-- Comando que o Dev nao pode rodar (apagar volume, subir container) vai para a secao **Pedidos ao Coordenador** do cartao, com o comando exato e a pasta ([[ADR-0020 Cadeia de pedidos de comando]]). Decisao ou acao so do humano (aprovar decisao, criar `.env` com segredo) vai para **Passos do humano**.
+- Comando que o Dev nao pode rodar (apagar volume, subir container) ou erro inesperado vira um `COORD-####`, com o comando exato (ou o erro) e a pasta, e a referencia vai na secao **Pedidos ao Coordenador** do cartao ([[ADR-0020 Cadeia de pedidos de comando]], [[ADR-0021 Pedidos ao Coordenador sempre em COORD e numeracao de qualidade por tarefa]]). Decisao ou acao so do humano (aprovar decisao, criar `.env` com segredo) vai para **Passos do humano**.
 - Propor candidatos a conhecimento em `D:\01_IA\BRAIN\00_Inbox` (template `Candidato`), só com o que é reaproveitável e validado — **também nas correções**: um defeito corrigido quase sempre ensina algo (a causa raiz e a premissa errada).
 
 ## Entradas

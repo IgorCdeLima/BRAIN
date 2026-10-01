@@ -39,3 +39,4 @@ tags: [ambiente, agentes, coordenacao, administracao, operacao]
 - Mais uma pasta liberada no hook de escrita dos papeis e nos perfis.
 - Cartoes antigos (T-0002 a T-0006) continuam com "Passos do humano" misturado; os novos usam as duas secoes.
 - Tudo fica rastreado no Git: cartao, COORD e ADM formam o historico de quem pediu, quem executou e quem aprovou.
+- 2026-10-01: itens 2 e 3 emendados pelo [[ADR-0021 Pedidos ao Coordenador sempre em COORD e numeracao de qualidade por tarefa]]: todo pedido vira `COORD-####`, inclusive com tarefa; o cartao guarda so a referencia.

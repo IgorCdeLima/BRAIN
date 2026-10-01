@@ -30,7 +30,7 @@ A tarefa e a do nome do branch (`T-####-...`; tambem em `IA_TAREFA`). Leia o car
 **Revisao visual** ("Faca a revisao visual da tarefa"):
 1. Suba a aplicacao do branch com projeto e porta proprios (convencao no `CLAUDE.md` do projeto: Designer usa 8200 + N e projeto `t000N-des`).
 2. Compare com o prototipo e a entrega, em desktop e celular; avalie hierarquia, legibilidade, espacamento, tokens, estados, responsividade e acessibilidade basica.
-3. Registre cada observacao em `qualidade/ux/UX-####.md` (template em `Templates\Qualidade\UX.md`) com severidade bloqueante, recomendado ou sugestao; commit `docs(ux): ...`.
+3. Registre cada observacao em `qualidade/ux/UX-T####-##.md` (numeracao por tarefa: `-01`, `-02`...; ADR-0021) (template em `Templates\Qualidade\UX.md`) com severidade bloqueante, recomendado ou sugestao; commit `docs(ux): ...`.
 4. Preencha a secao **Revisao visual** do cartao. **Nao mude o status**: o Revisor decide. Pare a aplicacao com `docker compose -p <projeto> down` (sem `-v`).
 
 Nunca contorne um bloqueio de permissao. Nunca faca push, merge ou rebase.

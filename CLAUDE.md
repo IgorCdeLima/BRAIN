@@ -14,7 +14,7 @@ Caminhos: `D:\01_IA` nas regras e definicoes e a raiz do ambiente no Windows. Em
 | `agentes/` | Definições executáveis dos papéis | **Somente o humano** (N4) |
 | `operacao/tarefas` | Cartões de tarefa e handoffs | Agentes conforme o papel |
 | `operacao/pesquisas` | Pedidos de pesquisa `SEARCH-####` | Qualquer papel cria; o Pesquisador responde; o Bibliotecario fecha |
-| `operacao/coordenador` | Pedidos de comando ao Coordenador `COORD-####` (sem tarefa) | Qualquer papel cria; o Coordenador atende ou escala |
+| `operacao/coordenador` | Pedidos ao Coordenador `COORD-####` (com ou sem tarefa; inclui erro inesperado) | Qualquer papel cria; o Coordenador atende ou escala |
 | `operacao/administrador` | Pedidos ao Administrador `ADM-####` (area N4, decisao de ambiente, push) | O Coordenador cria ao escalar; o Administrador cria para pedido direto do humano que altere algo; o Administrador atende com aprovacao do humano |
 | `logs/` | Telemetria automática (fora do Git) | **Somente os hooks** — agentes não escrevem aqui |
 | `operacao/qualidade` | Verificações, bugs e segurança do ambiente | Revisor, Segurança, Coordenador; demais só leem |
@@ -35,7 +35,9 @@ Cada pasta tem um `_LEIAME.md` com o propósito e as regras dela. Leia-o antes d
 
 ## Pedidos de comando
 
-Precisa de um comando que seu papel nao pode rodar? **Nao peca ao humano.** Registre no cartao, secao "Pedidos ao Coordenador" (ou, sem tarefa, em `operacao/coordenador/COORD-####.md`), com o comando exato, a pasta e o motivo. Cadeia: agente -> Coordenador -> Administrador (`ADM-####`) -> humano, que so digita o que e exclusivo dele (Orca, lancador `papel`, senha, `sudo`). "Passos do humano" no cartao sao so decisoes. Ver [[ADR-0020 Cadeia de pedidos de comando]].
+Precisa de algo que so o humano faria (comando fora do seu perfil, merge, push, acao no Orca)? **Nao peca ao humano.** Crie um pedido `operacao/coordenador/COORD-####.md` (template `Pedido ao Coordenador`), **com ou sem tarefa**, com o comando exato, a pasta e o motivo; no cartao, so a referencia na secao "Pedidos ao Coordenador". Ao humano diga so o numero do pedido criado. Cadeia: agente -> Coordenador -> Administrador (`ADM-####`) -> humano, que so digita o que e exclusivo dele (Orca, lancador `papel`, senha, `sudo`). "Passos do humano" no cartao sao so decisoes (ADR, direcao visual, duvida de produto). Ver [[ADR-0020 Cadeia de pedidos de comando]] e [[ADR-0021 Pedidos ao Coordenador sempre em COORD e numeracao de qualidade por tarefa]].
+
+**Erro inesperado** (ferramenta falhou, arquivo ausente ou movido, permissao negada, comando inexistente, lancador recusou, conflito de merge): nao contorne em silencio. Crie um `COORD-####` com o erro exato, o que tentava fazer e a pasta. O Coordenador avalia a causa e propoe a melhoria (ajuste de regra via `ADM-####`, aviso ao papel afetado ou candidato a conhecimento).
 
 ## Hierarquia de conhecimento (antes de pesquisar)
 
@@ -69,5 +71,6 @@ Precisa de um comando que seu papel nao pode rodar? **Nao peca ao humano.** Regi
 ## Qualidade
 
 - Registros em `qualidade/`: `VER-####` (verificação), `BUG-####` (defeito), `SEC-####` (segurança), `UX-####` (observacao visual do Designer). Templates em `BRAIN/99_Sistema/Templates/Qualidade`.
+- **Numeracao por tarefa:** registro de tarefa leva o id dela e uma sequencia propria: `VER-T0007-01`, `BUG-T0007-01`, `SEC-T0007-01`, `UX-T0007-01`. Confira so os registros da mesma tarefa no worktree; sem consulta a outros branches, sem colisao entre tarefas em paralelo. Registro sem tarefa (feito na copia principal) segue `PREFIXO-####`. Registros antigos nao sao renomeados.
 - Toda verificação feita — e toda verificação **não** feita — é registrada. Lacuna omitida é falha.
 - Quem corrige um bug não o verifica.

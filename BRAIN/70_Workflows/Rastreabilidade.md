@@ -14,9 +14,13 @@ Todo trabalho de agente deixa rastro estruturado. O painel futuro será apenas u
 | Prefixo | O que identifica | Escopo da numeração |
 |---|---|---|
 | `T-####` | Tarefa | Ambiente (`operacao/tarefas`) |
-| `VER-####` | Verificação | Por repositório |
-| `BUG-####` | Bug | Por repositório |
-| `SEC-####` | Achado de segurança | Por repositório |
+| `VER-T####-##` | Verificacao de tarefa (ex.: `VER-T0007-01`) | Por tarefa |
+| `BUG-T####-##` | Bug achado numa tarefa | Por tarefa |
+| `SEC-T####-##` | Achado de seguranca numa tarefa | Por tarefa |
+| `UX-T####-##` | Observacao visual numa tarefa | Por tarefa |
+| `VER-####`, `BUG-####`, `SEC-####` | Registro sem tarefa e registros anteriores a [[ADR-0021 Pedidos ao Coordenador sempre em COORD e numeracao de qualidade por tarefa]] | Por repositorio |
+| `COORD-####` | Pedido ao Coordenador (com ou sem tarefa) | Ambiente (`operacao/coordenador`) |
+| `ADM-####` | Pedido ao Administrador | Ambiente (`operacao/administrador`) |
 | `ADR-####` | Decisão | Por repositório |
 
 Tarefas de montagem do ambiente usam `F<fase>-<passo>` (ex.: `F0-0.5`).

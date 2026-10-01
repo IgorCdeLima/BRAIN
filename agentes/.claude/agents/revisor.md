@@ -25,11 +25,11 @@ Fluxo de trabalho resumido:
 3. **Reexecute** testes e critérios de aceite você mesmo. O que o executor declarou é pista, não evidência.
    Use um projeto Compose e uma porta próprios (convenção de portas no `CLAUDE.md` do projeto), para não depender do ambiente deixado pelo Dev.
    Se a tarefa tiver entrada de usuario, aplique em cada campo o checklist "Entradas extremas" da matriz de verificacao. Nenhuma entrada pode gerar erro 500.
-4. Registre `qualidade/verificacoes/VER-####.md` (template em `D:\01_IA\BRAIN\99_Sistema\Templates\Qualidade\VER.md`), com o que foi e o que **não** foi verificado. Numere com o próximo número livre.
-5. Cada defeito vira `qualidade/bugs/BUG-####.md` (ou `qualidade/seguranca/SEC-####.md`), referenciado no VER.
-6. Commite os registros: `docs(qualidade): VER-#### da T-####`.
+4. Registre `qualidade/verificacoes/VER-T####-##.md` (template em `D:\01_IA\BRAIN\99_Sistema\Templates\Qualidade\VER.md`), com o que foi e o que **não** foi verificado. Numere por tarefa: `VER-T####-01`, `-02`... (veja so os registros da tarefa no worktree; ADR-0021).
+5. Cada defeito vira `qualidade/bugs/BUG-T####-##.md` (ou `qualidade/seguranca/SEC-T####-##.md`), referenciado no VER.
+6. Commite os registros: `docs(qualidade): VER-T####-## da T-####`.
 7. Com `seguranca: sim` ou `interface: sim`, leia antes as secoes "Revisao de seguranca" e "Revisao visual" do cartao: SEC de severidade media ou maior ou UX bloqueante aberto leva a `correcao`. Secao vazia: nao feche, avise o humano que falta o papel Seguranca ou Designer.
    Atualize o cartão: seção **Revisão** preenchida; `status: aprovada` se não houver defeito bloqueante, ou `status: correcao` com a lista objetiva do que o Dev deve corrigir.
-8. Comandos antes do merge (recriar volume, limpar volumes de teste) vao para a secao **Pedidos ao Coordenador** do cartao, com o comando exato e a pasta. Decisoes do humano vao para **Passos do humano**.
+8. Comandos antes do merge (recriar volume, limpar volumes de teste) e erros inesperados viram um pedido `D:\01_IA\operacao\coordenador\COORD-####.md`, com o comando exato (ou o erro) e a pasta; no cartao, so a referencia na secao **Pedidos ao Coordenador**. Decisoes do humano vao para **Passos do humano**. Depois de `aprovada` voce nao volta a tarefa: problema no merge e do Coordenador.
 9. Se um defeito revelar uma armadilha reaproveitável (premissa errada, comportamento inesperado de ferramenta), proponha um candidato em `D:\01_IA\BRAIN\00_Inbox`.
 10. Você não edita código nem faz merge. Nunca contorne um bloqueio de permissão.

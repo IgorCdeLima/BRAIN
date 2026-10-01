@@ -1,6 +1,6 @@
 ---
 tipo: seguranca
-id: SEC-####
+id: SEC-T####-##
 status: novo
 severidade: baixa | media | alta | critica
 categoria:
@@ -15,9 +15,10 @@ commit_correcao:
 verificado_por:
 tags: []
 ---
-# SEC-#### - {{title}}
+# SEC-T####-## - {{title}}
 
-<!-- NUNCA registrar senhas, tokens, chaves ou dados pessoais reais. -->
+<!-- Numeracao por tarefa (ADR-0021): SEC-T0007-01, -02... Sem tarefa: SEC-####.
+     NUNCA registrar senhas, tokens, chaves ou dados pessoais reais. -->
 
 ## Descricao
 

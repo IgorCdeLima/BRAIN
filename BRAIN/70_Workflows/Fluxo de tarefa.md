@@ -58,17 +58,18 @@ Os passos marcados sao opcionais conforme a tabela; o minimo e **Dev -> Revisor*
 
 ## Pedidos de comando
 
-Quem precisa de um comando que nao pode rodar nao pede ao humano: sobe a cadeia ([[ADR-0020 Cadeia de pedidos de comando]]).
+Quem precisa de algo que so o humano faria (comando fora do perfil, merge, push, Orca) ou encontra um erro inesperado nao pede ao humano: sobe a cadeia ([[ADR-0020 Cadeia de pedidos de comando]], [[ADR-0021 Pedidos ao Coordenador sempre em COORD e numeracao de qualidade por tarefa]]).
 
 ```mermaid
 flowchart LR
-    A[Agente] -- "cartao: Pedidos ao Coordenador<br/>ou COORD-####" --> C[Coordenador]
+    A[Agente] -- "COORD-####<br/>(referencia no cartao)" --> C[Coordenador]
     C -- "perfil nega ou area N4:<br/>ADM-####" --> AD[Administrador]
     AD -- "so o humano pode:<br/>comando exato" --> H[Humano]
 ```
 
 - Coordenador e Administrador executam com o clique de aprovacao do humano; o humano so digita o que e dele (Orca, lancador `papel`, senha, `sudo`).
-- Sem tarefa (Pesquisador, Bibliotecario, ambiente): `operacao/coordenador/COORD-####.md`.
+- Sempre `operacao/coordenador/COORD-####.md`, com ou sem tarefa; o cartao guarda so a referencia na secao "Pedidos ao Coordenador". Ao humano, o agente diz so o numero do pedido.
+- **Erro inesperado** (ferramenta falhou, arquivo ausente, permissao negada, lancador recusou, conflito de merge): `COORD-####` com o erro exato, o que tentava fazer e a pasta. O Coordenador avalia a causa e propoe a melhoria.
 - **Passos do humano** no cartao: so decisoes e acoes exclusivas do humano.
 
 ## Status do cartão
@@ -105,6 +106,7 @@ stateDiagram-v2
    → o Revisor verifica, commita `VER-####` (e `BUG-`) no branch e muda o status para `aprovada` ou `correcao`, considerando os UX e SEC bloqueantes.
 6. **Se `correcao`**: voltar ao passo 3. O Dev lê o VER, os BUG e os SEC e corrige. Depois, passos 4 e 5 de novo — **todo novo commit exige um novo VER**.
 7. **Merge** (Coordenador prepara, humano aprova): com status `aprovada`, o Coordenador confere VER e bloqueantes, faz o merge `--no-ff` na `main` com o "sim" do humano, executa os Pedidos ao Coordenador pendentes (com aprovação), muda o status para `concluida` e faz push com aprovação. O humano exclui o worktree no Orca.
+   Problema depois de `aprovada` (ex.: conflito no merge): o Revisor **nao volta** e o cartao nao retorna para `revisao`. O Coordenador aborta o merge, registra um `COORD-####` com o erro e decide o proximo passo com o humano.
 8. **Bibliotecário** (humano, num terminal em `D:\01_IA`, quando houver candidatos no Inbox): `D:\01_IA\ferramentas\papel bibliotecario`
    → cura os candidatos do Inbox e commita.
 

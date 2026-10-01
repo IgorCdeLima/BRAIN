@@ -1,6 +1,6 @@
 ---
 tipo: verificacao
-id: VER-####
+id: VER-T####-##
 tarefa:
 commit:
 verificado_por:
@@ -9,7 +9,9 @@ data: {{date:YYYY-MM-DD}}
 resultado: aprovado | reprovado | parcial
 tags: []
 ---
-# VER-#### - {{title}}
+# VER-T####-## - {{title}}
+
+<!-- Numeracao por tarefa (ADR-0021): VER-T0007-01, -02... Sem tarefa: VER-####. -->
 
 ## O que foi verificado
 
