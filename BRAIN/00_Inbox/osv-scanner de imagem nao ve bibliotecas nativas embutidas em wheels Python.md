@@ -26,10 +26,11 @@ Wheels manylinux trazem bibliotecas C proprias em `site-packages/<pacote>.libs/`
 
 ## Evidencia
 
-Experimento de 2026-10-01: imagem `python:3.13.15-slim` + `pip install pillow==12.3.0`, `docker commit` e `osv-scanner scan image --all-packages --format json`: 90 pacotes vistos; relacionados: `pillow` (PyPI), `zlib` e `libzstd` (Debian). Nenhum dos 18 `.so` de `pillow.libs/`. Ver SEC-T0012-02 do lab. Fonte que resolva o acompanhamento: pedida no SEARCH-0003.
+Experimento de 2026-10-01: imagem `python:3.13.15-slim` + `pip install pillow==12.3.0`, `docker commit` e `osv-scanner scan image --all-packages --format json`: 90 pacotes vistos; relacionados: `pillow` (PyPI), `zlib` e `libzstd` (Debian). Nenhum dos 18 `.so` de `pillow.libs/`. Ver SEC-T0012-02 do lab. Roteiro de acompanhamento: [[Versoes das bibliotecas nativas de uma wheel do Pillow estao em dependencies.json da tag da release e se cruzam com OSV a mao]].
 
 ## Links confiaveis
 
+- [osv-scanner: artefatos suportados](https://google.github.io/osv-scanner/supported-languages-and-lockfiles/): confirma que imagens nao tem extrator de `.so`/`.libs`.
 - [OSV.dev](https://osv.dev/): base que o `osv-scanner` consulta.
 - [Pillow PIL.features](https://pillow.readthedocs.io/en/stable/reference/features.html): `features.version("libjpeg")`, `"zlib"`, `"libtiff"`, `"webp"`, etc. informam a versao embutida na wheel instalada.
 - [Politica de seguranca do Pillow](https://github.com/python-pillow/Pillow/security/policy): orienta manter o Pillow e suas bibliotecas C embutidas atualizados; avisos do proprio Pillow aparecem no GitHub Security.
