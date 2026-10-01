@@ -26,7 +26,11 @@ tags: [seguranca, cwe, cwe-829, supply-chain, pip, hashes]
 2. Instalar com `pip install --require-hashes -r requirements.txt` (no Dockerfile). Nesse modo todo requisito precisa de `==` e de hash; um unico `--hash` ja liga o modo para tudo. So sha256 e aceito como algoritmo forte.
 3. Auditar o mesmo arquivo com `pip-audit --require-hashes -r requirements.txt`.
 
-**Como testar:** remover um hash ou trocar `==` por `>=` e ver o `pip install` falhar no build.
+**Como testar:** remover um hash de um pacote e ver o `pip install` falhar no build ("Hashes are required in --require-hashes mode").
+
+**Correcao (T-0009, 2026-10-01):** trocar `==` por `>=` **mantendo os hashes nao falha**: o pip aceita e o hash continua protegendo o artefato. O teste "troque `==` por `>=`" so vale se tambem se tirar o hash; o teste confiavel e remover o hash.
+
+**Detalhes de pip-tools 7.6.1 (experimento da T-0009):** `pip-compile` imprime `--no-index` no cabecalho e avisa que `--strip-extras` sera o padrao no 8.0 (use `--strip-extras` desde ja). Nomes sao normalizados: `pip freeze` mostra `boolean.py`, o travado mostra `boolean-py`; compare contagens normalizando. Cuidado com o servico que roda o `pip-compile`: [[Servico de lock no Compose montando o repositorio inteiro alcanca os hooks do Git e executa no host]].
 
 ## Evidencia
 
