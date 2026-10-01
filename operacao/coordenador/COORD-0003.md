@@ -1,7 +1,7 @@
 ---
 tipo: pedido-coordenador
 id: COORD-0003
-status: escalado
+status: concluido
 urgencia: nao-bloqueante
 pedido_por: seguranca
 tarefa: ambiente
@@ -34,3 +34,5 @@ A Seguranca nao pode alterar regras (`CLAUDE.md`, `agentes/`, `BRAIN/60_Agentes`
 ## Atendimento
 
 Coordenador, 2026-09-30: aprovado pelo humano escalar. Como muda regras (area N4), juntado ao COORD-0003/COORD-0005 num so pedido: ADM-0012. Proximo passo: humano roda `papel administrador`.
+
+Coordenador, 2026-10-01: ADM-0012 concluido (merge `b2458c8`; regra de erro inesperado no `CLAUDE.md` global e no Fluxo de tarefa). Pedido concluido, com aprovacao do humano.

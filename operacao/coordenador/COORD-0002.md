@@ -28,3 +28,5 @@ A Seguranca nao escreve em `BRAIN/10_Conhecimento` (so o Bibliotecario). O candi
 ---
 
 ## Atendimento
+
+Coordenador, 2026-10-01: nao ha comando a executar; a edicao e em `BRAIN/10_Conhecimento`, area exclusiva do Bibliotecario. Encaminhado ao Bibliotecario: proxima sessao `papel bibliotecario` deve aplicar o pedido acima e mudar este COORD para `concluido`. Continua `aberto` ate la.

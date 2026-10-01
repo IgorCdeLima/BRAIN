@@ -1,7 +1,7 @@
 ---
 tipo: pedido-coordenador
 id: COORD-0006
-status: escalado
+status: concluido
 atendido_em: 2026-09-30
 adm: ADM-0013
 urgencia: bloqueante
@@ -38,3 +38,5 @@ Obs.: o pedido tambem esta no cartao T-0007, secao "Pedidos ao Coordenador". Se 
 ## Atendimento
 
 Coordenador, 2026-09-30: o pedido procede. O erro foi do plano do Coordenador, que mandou o Dev fazer o merge sem conferir o perfil dele. Simulacao: depois da renumeracao dos VER (`786b9ee`), so o `docs/requisitos/requisitos.md` da conflito. Decisao do humano: escalar ao Administrador -> ADM-0013. Ele inicia o merge e deixa o conflito para o Dev.
+
+Coordenador, 2026-10-01: ADM-0013 concluido e T-0007 ja `concluida` (merge na `main` do lab, COORD-0004). Pedido concluido, com aprovacao do humano.

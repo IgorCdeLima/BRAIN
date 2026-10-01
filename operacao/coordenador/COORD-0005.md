@@ -1,7 +1,7 @@
 ---
 tipo: pedido-coordenador
 id: COORD-0005
-status: escalado
+status: concluido
 urgencia: nao-bloqueante
 pedido_por: revisor
 tarefa: ambiente
@@ -39,3 +39,5 @@ Relacionado: COORD-0003 (erro inesperado vira pedido de avaliacao ao Coordenador
 ## Atendimento
 
 Coordenador, 2026-09-30: aprovado pelo humano escalar. Como muda regras (area N4), juntado ao COORD-0003/COORD-0005 num so pedido: ADM-0012. Proximo passo: humano roda `papel administrador`.
+
+Coordenador, 2026-10-01: ADM-0012 concluido (merge `b2458c8`; pedidos sempre em `COORD-####`, cadeia agente -> Coordenador -> Administrador -> humano, ADR-0021). Pedido concluido, com aprovacao do humano.
