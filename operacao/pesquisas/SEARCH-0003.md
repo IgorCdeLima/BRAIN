@@ -1,13 +1,13 @@
 ---
 tipo: pesquisa
 id: SEARCH-0003
-status: nao-pesquisada
+status: respondida
 urgencia: nao-bloqueante
 pedido_por: seguranca
 tarefa: T-0012
 criado: 2026-10-01
-pesquisado_por:
-pesquisado_em:
+pesquisado_por: pesquisador
+pesquisado_em: 2026-10-01
 catalogado_em:
 notas: []
 tags: [seguranca, dependencias, pillow, imagem, cwe, cwe-409, cwe-212]
@@ -35,11 +35,11 @@ tags: [seguranca, dependencias, pillow, imagem, cwe, cwe-409, cwe-212]
 
 ## Resposta
 
-- **Resumo (3 a 5 linhas):**
-- **Notas geradas no Inbox:** [[ ]]
-- **Links confiaveis:**
-- **Sem resposta / limites:**
-- **Conteudo suspeito descartado:**
+- **Resumo (3 a 5 linhas):** Item 1: nao achei fonte primaria que liste as versoes embutidas por wheel nem modo do osv-scanner para `<pacote>.libs/`. O que existe: `PIL.features.version(...)` mostra a versao embutida na wheel instalada, e a politica de seguranca do Pillow manda manter Pillow e bibliotecas C embutidas atualizados. Item 2: CWE-409 e CWE-212 viraram notas com controle e teste para Pillow 12.x.
+- **Notas geradas no Inbox:** [[CWE-409 bomba de descompressao se evita com limite de pixels do Pillow tratado como erro e limite de bytes no upload]], [[CWE-212 metadado sensivel em imagem se evita regravando os pixels sem EXIF, GPS e comentarios]]; links acrescentados em [[osv-scanner de imagem nao ve bibliotecas nativas embutidas em wheels Python]].
+- **Links confiaveis:** https://cwe.mitre.org/data/definitions/409.html ; https://cwe.mitre.org/data/definitions/212.html ; https://pillow.readthedocs.io/en/stable/reference/features.html ; https://pillow.readthedocs.io/en/stable/reference/Image.html ; https://github.com/python-pillow/Pillow/security/policy
+- **Sem resposta / limites:** (a) se o osv-scanner tem modo para detectar bibliotecas auditwheel: a documentacao consultada nao diz; so o experimento da T-0012 indica que nao detecta (nao confirmado em fonte oficial). (b) Nao confirmei onde as notas de versao do Pillow listam as versoes embutidas por release; sugestao: comparar `features.version` entre versoes e acompanhar avisos no GitHub do Pillow e dos upstreams (libwebp, libjpeg-turbo etc.).
+- **Conteudo suspeito descartado:** nenhum.
 
 ## Dominios propostos
 

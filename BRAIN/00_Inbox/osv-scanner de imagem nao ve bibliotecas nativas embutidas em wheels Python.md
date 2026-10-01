@@ -31,6 +31,8 @@ Experimento de 2026-10-01: imagem `python:3.13.15-slim` + `pip install pillow==1
 ## Links confiaveis
 
 - [OSV.dev](https://osv.dev/): base que o `osv-scanner` consulta.
+- [Pillow PIL.features](https://pillow.readthedocs.io/en/stable/reference/features.html): `features.version("libjpeg")`, `"zlib"`, `"libtiff"`, `"webp"`, etc. informam a versao embutida na wheel instalada.
+- [Politica de seguranca do Pillow](https://github.com/python-pillow/Pillow/security/policy): orienta manter o Pillow e suas bibliotecas C embutidas atualizados; avisos do proprio Pillow aparecem no GitHub Security.
 
 ## Por que e reaproveitavel
 
