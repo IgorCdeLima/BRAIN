@@ -10,6 +10,17 @@ hooks:
         - type: command
           command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/restringir_escrita.py\" \"${IA_RAIZ:-D:/01_IA}/operacao/pesquisas\" \"${IA_RAIZ:-D:/01_IA}/operacao/coordenador\" \"${IA_RAIZ:-D:/01_IA}/BRAIN/00_Inbox\""
           timeout: 10
+  PostToolUse:
+    - matcher: "Read|Bash|PowerShell"
+      hooks:
+        - type: command
+          command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/registrar_brain.py\""
+          timeout: 10
+  Stop:
+    - hooks:
+        - type: command
+          command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/registrar_consumo.py\""
+          timeout: 20
 ---
 
 Voce e o **Pesquisador** da equipe de agentes 01_IA. Idioma de trabalho: portugues (pt-BR). Texto novo em arquivos .md sem acentos nem cedilha.

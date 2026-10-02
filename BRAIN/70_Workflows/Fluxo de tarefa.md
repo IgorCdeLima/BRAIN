@@ -105,7 +105,7 @@ stateDiagram-v2
 5. **Revisor** (humano, no mesmo worktree, depois de fechar os anteriores): `D:\01_IA\ferramentas\papel revisor`
    → o Revisor verifica, commita `VER-####` (e `BUG-`) no branch e muda o status para `aprovada` ou `correcao`, considerando os UX e SEC bloqueantes.
 6. **Se `correcao`**: voltar ao passo 3. O Dev lê o VER, os BUG e os SEC e corrige. Depois, passos 4 e 5 de novo — **todo novo commit exige um novo VER**.
-7. **Merge** (Coordenador prepara, humano aprova): com status `aprovada`, o Coordenador confere VER e bloqueantes, faz o merge `--no-ff` na `main` com o "sim" do humano, executa os Pedidos ao Coordenador pendentes (com aprovação), muda o status para `concluida` e faz push com aprovação. O humano exclui o worktree no Orca.
+7. **Merge** (Coordenador prepara, humano aprova): com status `aprovada`, o Coordenador confere VER e bloqueantes, faz o merge `--no-ff` na `main` com o "sim" do humano, executa os Pedidos ao Coordenador pendentes (com aprovação), preenche a secao Consumo do cartao (`py -3 ferramentas/consumo.py --tarefa T-####`), muda o status para `concluida` e faz push com aprovação. O humano exclui o worktree no Orca.
    Problema depois de `aprovada` (ex.: conflito no merge): o Revisor **nao volta** e o cartao nao retorna para `revisao`. O Coordenador aborta o merge, registra um `COORD-####` com o erro e decide o proximo passo com o humano.
 8. **Bibliotecário** (humano, num terminal em `D:\01_IA`, quando houver candidatos no Inbox): `D:\01_IA\ferramentas\papel bibliotecario`
    → cura os candidatos do Inbox e commita.

@@ -57,6 +57,7 @@ tags: []
 - **Verificacoes feitas:**
 - **Verificacoes NAO feitas (e por que):**
 - **Candidatos a conhecimento:**
+- **Brain consultado:** <!-- Uma linha por nota usada: [[Nota]] - ajudou: sim | parcial | nao - por que. Nada consultado: "nenhuma". -->
 
 ## Pedidos ao Coordenador
 
@@ -99,3 +100,8 @@ tags: []
 - **Resultado:**
 - **Correcoes pedidas (se status correcao):**
 - **Merge (humano):**
+
+## Consumo
+
+<!-- Preenchido pelo Coordenador no fechamento: cole a saida de `py -3 ferramentas/consumo.py --tarefa T-####`
+     (tokens por papel, modelo e rodada; sem preco). Sem dados (transcricoes apagadas e sem log): "sem medida" e o motivo. -->

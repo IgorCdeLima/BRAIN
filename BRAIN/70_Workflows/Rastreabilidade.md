@@ -49,6 +49,8 @@ Gravados automaticamente por hooks do Claude Code em `D:\01_IA\logs` (cópia pri
 
 - `logs/sessoes/AAAA-MM/AAAA-MM-DD_HHMM_<agente>_<sessao>.md` — todos os eventos de uma sessão.
 - `logs/erros/AAAA-MM-DD.md` — somente falhas do dia, de todas as sessões.
+- `logs/brain/AAAA-MM.jsonl` - cada acesso ao Brain (Read ou comando com `BRAIN/<pasta>`), uma linha JSON: `ts`, `papel`, `tarefa`, `sessao`, `ferramenta`, `tipo` (leitura/busca), `pasta`, `nota`. So o caminho, nunca o comando nem conteudo. Gravado por `ferramentas/hooks/registrar_brain.py`, ligado na definicao de cada papel; lido por `ferramentas/uso_brain.py` ([[ADR-0023 Medir o uso do Brain por acesso, citacao e utilidade declarada]]).
+- `logs/consumo/AAAA-MM.jsonl` - tokens acumulados de cada sessao, uma linha por fim de turno (vale a ultima de cada sessao): `ts`, `sessao`, `papel`, `tarefa` (so `T-####`), `modelos` (entrada, cache criado, cache lido, saida, respostas). So numeros. Gravado por `ferramentas/hooks/registrar_consumo.py` (hook `Stop` na definicao de cada papel); lido por `ferramentas/consumo.py`, que o Coordenador roda no fechamento da tarefa ([[ADM-0011]]).
 
 Arquivo de sessão:
 
