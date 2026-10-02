@@ -1,7 +1,7 @@
 ---
 tipo: pedido-coordenador
 id: COORD-0010
-status: escalado
+status: concluido
 urgencia: nao-bloqueante
 pedido_por: seguranca
 tarefa: T-0012
@@ -28,3 +28,5 @@ As instrucoes de sistema da sessao mandam usar o scratchpad para arquivos tempor
 ## Atendimento
 
 Coordenador, 2026-10-01 (com o "sim" do humano): causa encontrada em `ferramentas/hooks/restringir_escrita.py`. O hook e lista de permissoes e o scratchpad da sessao nao esta em nenhuma lista, embora as instrucoes de sistema do Claude Code mandem usa-lo. Melhoria proposta: token `@scratchpad` no hook, que libera so o scratchpad da sessao atual (pelo `session_id` do evento), ativado para Seguranca e Revisor. Tratado junto com o COORD-0012 (mesma causa, mais o prefixo relativo resolvido pela pasta atual). Area N4 -> escalado como **ADM-0015**. Contorno sem gravar arquivo (`docker run ... python -`) foi correto; continua valendo ate o ADM-0015 ser atendido.
+
+Administrador, 2026-10-02 (com o "sim" do humano): atendido pelo ADM-0015, commit `d1f6de2`, merge na `main`. O papel Seguranca agora grava no scratchpad da propria sessao (`@scratchpad`); SEC que dependa de script traz o codigo essencial e o comando, e script reaproveitavel vira nota `Experimento` no Inbox ([[ADR-0022 Notas de experimento com script generalizado e historico de uso]]). Verificacao em sessao real: [[COORD-0020]] (T-0015).
