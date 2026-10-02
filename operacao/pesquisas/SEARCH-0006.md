@@ -1,15 +1,15 @@
 ---
 tipo: pesquisa
 id: SEARCH-0006
-status: respondida
+status: catalogada
 urgencia: nao-bloqueante
 pedido_por: seguranca
 tarefa: T-0014
 criado: 2026-10-02
 pesquisado_por: pesquisador
 pesquisado_em: 2026-10-02
-catalogado_em:
-notas: []
+catalogado_em: 2026-10-02
+notas: ["[[CWE-345 e a classe de hash copiado sem reconferir no indice - filha mais proxima e CWE-354]]", "[[pip-compile reaproveita os hashes do travado existente e preserva um hash adulterado]]"]
 tags: [seguranca, cwe-345, pip-tools, hashes, supply-chain]
 ---
 # SEARCH-0006 - CWE-345 e o --reuse-hashes do pip-compile
@@ -44,3 +44,8 @@ Revisao de seguranca da T-0014 (lab, SEC-T0014-05). Experimento: com um hash adu
 - 
 
 ## Catalogacao
+
+Decisao (Bibliotecario, 2026-10-02): promovidas as duas notas. Links confiaveis preservados. Ressalvas: a CWE-354 nao foi lida diretamente; os docs do pip-tools nao citam o flag, e a recomendacao de `--no-reuse-hashes` e deducao do experimento.
+
+- [[CWE-345 e a classe de hash copiado sem reconferir no indice - filha mais proxima e CWE-354]] (30_Referencias)
+- [[pip-compile reaproveita os hashes do travado existente e preserva um hash adulterado]] (10_Conhecimento)

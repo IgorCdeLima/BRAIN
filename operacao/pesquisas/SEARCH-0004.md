@@ -1,15 +1,15 @@
 ---
 tipo: pesquisa
 id: SEARCH-0004
-status: respondida
+status: catalogada
 urgencia: nao-bloqueante
 pedido_por: seguranca
 tarefa: T-0010
 criado: 2026-10-02
 pesquisado_por: pesquisador
 pesquisado_em: 2026-10-02
-catalogado_em:
-notas: []
+catalogado_em: 2026-10-02
+notas: ["[[MALLOC_ARENA_MAX limita as arenas do glibc e e o primeiro controle para memoria retida em servidor com threads]]", "[[PILLOW_BLOCKS_MAX vem desligado e so controla o pool do Pillow, nao as arenas do malloc]]", "[[Orcamento de pixels nao segura a memoria se as arenas do malloc retem o que o Pillow libera]]"]
 tags: [seguranca, memoria, glibc, malloc, dos, cwe-770, python, docker]
 ---
 # SEARCH-0004 - Arenas do malloc do glibc retendo memoria em servidor Python com threads: MALLOC_ARENA_MAX, malloc_trim e alternativas
@@ -52,5 +52,11 @@ tags: [seguranca, memoria, glibc, malloc, dos, cwe-770, python, docker]
 - Sugestao a confirmar: `sourceware.org` (manual do glibc), `man7.org` (man pages do Linux, `mallopt(3)`), `pillow.readthedocs.io` (documentacao do Pillow).
 
 ## Catalogacao
+
+Decisao (Bibliotecario, 2026-10-02): promovidas as duas notas do Pesquisador e a armadilha da Seguranca, mais a pista do Dev fundida e arquivada. Links confiaveis preservados nas notas. Ressalvas mantidas: padrao exato de arenas a confirmar no ambiente; custo de desempenho so com medicao local.
+
+- [[MALLOC_ARENA_MAX limita as arenas do glibc e e o primeiro controle para memoria retida em servidor com threads]] (10_Conhecimento)
+- [[Orcamento de pixels nao segura a memoria se as arenas do malloc retem o que o Pillow libera]] (10_Conhecimento)
+- [[PILLOW_BLOCKS_MAX vem desligado e so controla o pool do Pillow, nao as arenas do malloc]] (30_Referencias)
 
 <!-- Preenchido pelo Bibliotecario: decisao e notas finais. -->

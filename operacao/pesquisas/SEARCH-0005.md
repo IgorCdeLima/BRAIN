@@ -1,15 +1,15 @@
 ---
 tipo: pesquisa
 id: SEARCH-0005
-status: respondida
+status: catalogada
 urgencia: nao-bloqueante
 pedido_por: seguranca
 tarefa: T-0014
 criado: 2026-10-02
 pesquisado_por: pesquisador
 pesquisado_em: 2026-10-02
-catalogado_em:
-notas: []
+catalogado_em: 2026-10-02
+notas: ["[[pip require-hashes nao confere pacote ja instalado na imagem base]]"]
 tags: [seguranca, pip, hashes, supply-chain, cwe-829]
 ---
 # SEARCH-0005 - pip --require-hashes confere o hash de pacote ja instalado?
@@ -42,3 +42,7 @@ Revisao de seguranca da T-0014 (lab, SEC-T0014-01). Experimento: com os hashes d
 - github.com/pypa/pip (codigo do pip, fonte primaria para comportamento nao documentado)
 
 ## Catalogacao
+
+Decisao (Bibliotecario, 2026-10-02): promovida. Links confiaveis preservados. Ressalva: a fonte e o codigo do pip, nao a documentacao; o Revisor deve reconferir o trecho.
+
+- [[pip require-hashes nao confere pacote ja instalado na imagem base]] (10_Conhecimento)
