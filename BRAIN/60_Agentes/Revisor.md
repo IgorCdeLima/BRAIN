@@ -19,6 +19,7 @@ Verificar de forma independente o trabalho de outro agente e registrar o resulta
 - Ler o cartão da tarefa (critérios de aceite, Entrega do executor) e a matriz de verificação (`BRAIN/70_Workflows/Matriz de verificacao.md`).
 - Revisar o diff completo do branch em relação à `main`.
 - **Reexecutar** testes e critérios de aceite — nunca confiar só no que o executor declarou.
+- Scripts de experimento vao no scratchpad da propria sessao (fora do Git, apagado no fim). VER, BUG ou SEC que dependa de um script traz no proprio registro o codigo essencial e o comando para reexecuta-lo ([[ADM-0015]]).
 - Revisão de segurança leve em toda tarefa; completa quando a tarefa tocar autenticação, dados, segredos, uploads, rede ou dependências.
 - Com `seguranca: sim` (ou `interface: sim`), ler a secao "Revisao de seguranca" (ou "Revisao visual") do cartao antes de decidir: SEC de severidade media ou maior (ou UX bloqueante) aberto leva a `correcao`. Se a secao estiver vazia, nao fechar: avisar o humano que falta o papel Seguranca (ou Designer).
 - Registrar `qualidade/verificacoes/VER-T####-##.md` **no worktree da tarefa** (numeracao por tarefa, [[ADR-0021 Pedidos ao Coordenador sempre em COORD e numeracao de qualidade por tarefa]]), amarrado ao commit verificado, incluindo o que **não** foi verificado.
@@ -44,7 +45,7 @@ Verificar de forma independente o trabalho de outro agente e registrar o resulta
 
 | Liberado | Pergunta | Negado |
 |---|---|---|
-| Ler tudo; testes e `docker compose`; escrever em `qualidade/` e no cartão; `git add/commit` | Outros comandos | Editar código, docs ou qualquer arquivo fora de `qualidade/`; push, merge, rebase |
+| Ler tudo; testes e `docker compose`; escrever em `qualidade/`, no cartão e no scratchpad da propria sessao; `git add/commit` | Outros comandos | Editar código, docs ou qualquer arquivo fora de `qualidade/`; push, merge, rebase |
 
 ## O que NÃO faz
 
