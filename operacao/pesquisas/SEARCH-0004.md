@@ -1,13 +1,13 @@
 ---
 tipo: pesquisa
 id: SEARCH-0004
-status: nao-pesquisada
+status: respondida
 urgencia: nao-bloqueante
 pedido_por: seguranca
 tarefa: T-0010
 criado: 2026-10-02
-pesquisado_por:
-pesquisado_em:
+pesquisado_por: pesquisador
+pesquisado_em: 2026-10-02
 catalogado_em:
 notas: []
 tags: [seguranca, memoria, glibc, malloc, dos, cwe-770, python, docker]
@@ -39,11 +39,11 @@ tags: [seguranca, memoria, glibc, malloc, dos, cwe-770, python, docker]
 
 <!-- Preenchido pelo Pesquisador. -->
 
-- **Resumo (3 a 5 linhas):**
-- **Notas geradas no Inbox:** [[ ]]
-- **Links confiaveis:**
-- **Sem resposta / limites:**
-- **Conteudo suspeito descartado:**
+- **Resumo (3 a 5 linhas):** O glibc cria arenas por thread e o que e liberado nelas nem sempre volta ao SO; `MALLOC_ARENA_MAX` (tunable `glibc.malloc.arena_max`) limita as arenas e e o controle recomendado, coerente com o medido na T-0010. `malloc_trim(0)` libera paginas livres de todas as arenas (glibc >= 2.8) mas so alivia depois do fato; jemalloc (`dirty_decay_ms`, `narenas`) e alternativa com custo de manter outro alocador. Definir `MALLOC_TRIM_THRESHOLD_` desliga o limiar dinamico de mmap. No Pillow, `PILLOW_BLOCKS_MAX` vem desligado (0) e so afeta o pool do Pillow, nao as arenas; as variaveis valem para Pillow >= 10. A imagem `python:3.13-slim` e Debian/glibc, entao se aplica.
+- **Notas geradas no Inbox:** [[MALLOC_ARENA_MAX limita as arenas do glibc e e o primeiro controle para memoria retida em servidor com threads]], [[PILLOW_BLOCKS_MAX vem desligado e so controla o pool do Pillow, nao as arenas do malloc]]
+- **Links confiaveis:** https://man7.org/linux/man-pages/man3/mallopt.3.html ; https://sourceware.org/glibc/manual/latest/html_node/Memory-Allocation-Tunables.html ; https://man7.org/linux/man-pages/man3/malloc_trim.3.html ; https://pillow.readthedocs.io/en/stable/reference/block_allocator.html ; https://github.com/jemalloc/jemalloc/blob/dev/TUNING.md
+- **Sem resposta / limites:** (a) O padrao exato de arenas (8 x CPUs em 64 bits) nao ficou literal nas paginas lidas: o manual traz `arena_test`=8 e a man page diz "multiplo de CPUs"; recomendo conferir no ambiente. (b) A wiki MallocInternals do sourceware retornou pagina de acesso negado. (c) Nao encontrei `Image.core.set_blocks_max` documentado como API publica. (d) Custo de desempenho de `MALLOC_ARENA_MAX=2` nao tem fonte oficial: so medicao local. (e) Pagina do manual no gnu.org redireciona; usei a copia do sourceware.
+- **Conteudo suspeito descartado:** nenhum.
 
 ## Dominios propostos
 
