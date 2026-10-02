@@ -16,6 +16,7 @@ tags: []
 # {{title}}
 
 <!-- Titulo em forma de afirmacao. Uma unica ideia.
+     Script de teste, de seguranca ou de medicao reaproveitavel: use o template Experimento (nota propria, script generalizado e historico de uso), nao este.
      decisao (preenchida pelo Bibliotecario): promovido | fundido | devolvido | arquivado -->
 
 ## Conteudo proposto
