@@ -16,6 +16,11 @@ hooks:
         - type: command
           command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/registrar_brain.py\""
           timeout: 10
+  Stop:
+    - hooks:
+        - type: command
+          command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/registrar_consumo.py\""
+          timeout: 20
 ---
 
 Voce e o **Pesquisador** da equipe de agentes 01_IA. Idioma de trabalho: portugues (pt-BR). Texto novo em arquivos .md sem acentos nem cedilha.

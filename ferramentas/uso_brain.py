@@ -25,12 +25,13 @@ from datetime import date, datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent / "hooks"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from registrar_brain import extrair_acessos  # noqa: E402  (mesmo leitor de caminhos do hook)
+from transcricoes import ler_transcricoes  # noqa: E402  (leitor comum, ADM-0011)
 
 REGRAS = {"60_Agentes", "70_Workflows", "99_Sistema"}  # regras e templates, nao conhecimento
 WIKILINK = re.compile(r"\[\[([^\]|#]+)(?:#[^\]|]*)?(?:\|[^\]]*)?\]\]")
 AJUDOU = re.compile(r"\[\[([^\]|#]+)[^\]]*\]\][^\n]{0,20}?ajudou:\s*(sim|parcial|nao)", re.I)
-TAREFA = re.compile(r"\bT-\d{4}\b")
 
 
 def notas_do_brain(brain: Path) -> dict:
@@ -65,28 +66,12 @@ def acessos_do_log(dir_logs: Path, desde: str):
 
 
 def acessos_das_transcricoes(dir_tr: Path, raiz: Path, desde: str, ignorar: set):
-    for arq in dir_tr.glob("*/*.jsonl"):
-        papel = None
-        for linha in arq.open(encoding="utf-8", errors="replace"):
-            try:
-                r = json.loads(linha)
-            except ValueError:
-                continue
-            if "agentSetting" in r:
-                papel = r.get("agentSetting") or papel
-            msg = r.get("message") or {}
-            if r.get("type") != "assistant" or not isinstance(msg.get("content"), list):
-                continue
-            sessao = r.get("sessionId") or ""
-            dia = (r.get("timestamp") or "")[:10]
-            if sessao in ignorar or (desde and dia < desde):
-                continue
-            m = TAREFA.search(r.get("gitBranch") or "") or TAREFA.search(r.get("cwd") or "")
-            for c in msg["content"]:
-                if isinstance(c, dict) and c.get("type") == "tool_use":
-                    for tipo, pasta, nota in extrair_acessos(c.get("name", ""), c.get("input") or {}, raiz):
-                        yield {"sessao": sessao, "papel": papel or "sem-papel", "tarefa": m.group(0) if m else "",
-                               "dia": dia, "tipo": tipo, "pasta": pasta, "nota": nota}
+    # Sem filtro de ambiente: so contam caminhos do Brain deste ambiente, de qualquer pasta.
+    for rec in ler_transcricoes(dir_tr, raiz, desde, ignorar, so_ambiente=False):
+        for f in rec["ferramentas"]:
+            for tipo, pasta, nota in extrair_acessos(f["nome"], f["entrada"], raiz):
+                yield {"sessao": rec["sessao"], "papel": rec["papel"], "tarefa": rec["tarefa"],
+                       "dia": rec["dia"], "tipo": tipo, "pasta": pasta, "nota": nota}
 
 
 def registros_de_trabalho(raiz: Path):

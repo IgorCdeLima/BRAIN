@@ -17,6 +17,8 @@
       "Bash(git add operacao/administrador/*)",
       "Bash(git add operacao/coordenador/*)",
       "Bash(git commit *)",
+      "Bash(py -3 ferramentas/consumo.py*)",
+      "Bash(python3 ferramentas/consumo.py*)",
       "Bash(docker ps*)",
       "Bash(docker compose ps*)",
       "Bash(docker compose logs*)",
