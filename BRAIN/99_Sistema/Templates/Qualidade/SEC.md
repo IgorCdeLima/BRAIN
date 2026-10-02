@@ -28,6 +28,9 @@ tags: []
 
 ## Como explorar / reproduzir
 
+<!-- Codigo essencial do script e comando, contra alvo isolado (localhost, container proprio).
+     Nota de experimento do Brain usada: [[nota]] - contexto - resultado - script mudou? (sim: propor a versao nova no Inbox). -->
+
 ## Recomendacao de correcao
 
 ## Historico

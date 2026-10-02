@@ -21,6 +21,7 @@ tags: [agente, fase-1, brain]
 - Reescrever com palavras próprias, título em forma de afirmação, uma ideia por nota, template do tipo certo e metadados completos (`confianca`, `fontes`, `verificado_em`, `valido_para`).
 - Criar links explícitos com o motivo da ligação; atualizar ou criar mapas (`20_Mapas`) quando um tema acumular notas.
 - Mover e renomear notas **somente** com `obsidian move` (preserva links).
+- **Notas de experimento** (`tipo: experimento`, [[ADR-0022 Notas de experimento com script generalizado e historico de uso]]): conferir que o script esta generalizado (sem dados do projeto nem segredos) e, se for de seguranca, que roda contra alvo isolado; promover para `10_Conhecimento` ligada a nota de conhecimento que sustenta. Na curadoria, copiar as linhas "Experimentos reutilizados" dos VER/SEC para o **Historico de uso** da nota e atualizar `ultimo_uso`; script alterado: versao nova no corpo e a anterior em "Versoes anteriores".
 - Manutenção periódica: `obsidian orphans`, `obsidian unresolved`, notas com `revisar_em` vencido.
 - Commitar cada curadoria com mensagem clara (`docs(brain): ...`).
 - Fechar os pedidos de pesquisa: candidato com `pesquisa: SEARCH-####` catalogado -> secao Catalogacao do SEARCH preenchida e `status: catalogada`. Manter os **Links confiaveis** da nota ([[Fluxo de pesquisa]]).

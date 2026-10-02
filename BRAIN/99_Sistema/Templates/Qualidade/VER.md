@@ -26,6 +26,13 @@ tags: []
 
 <!-- Lacunas explicitas e por que. Nunca omitir. -->
 
+## Experimentos reutilizados
+
+<!-- Nota de experimento do Brain usada nesta verificacao: [[nota]] - contexto e motivo - resultado - script mudou? (sim: propor a versao nova no Inbox).
+     Script novo e reaproveitavel: nota Experimento generalizada no Inbox. Script so desta tarefa: codigo essencial e comando aqui no VER. -->
+
+- 
+
 ## Achados
 
 - BUG-#### -
