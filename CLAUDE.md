@@ -42,7 +42,7 @@ Precisa de algo que so o humano faria (comando fora do seu perfil, merge, push, 
 ## Hierarquia de conhecimento (antes de pesquisar)
 
 0. Contexto da tarefa + documentação do projeto + **bugs abertos** relacionados aos arquivos que vai alterar.
-1. Brain: busque por título, tags, backlinks e texto — **inclusive em `00_Inbox`**. Se usar uma nota, **cite-a** com `[[link]]`.
+1. Brain: busque por título, tags, backlinks e texto — **inclusive em `00_Inbox`**. Se usar uma nota, **cite-a** com `[[link]]` e registre-a em "Brain consultado" (Entrega do cartao ou VER): `[[Nota]] - ajudou: sim | parcial | nao - por que` ([[ADR-0023 Medir o uso do Brain por acesso, citacao e utilidade declarada]]).
    Nota do Inbox, antiga (`verificado_em`) ou de baixa confiança = pista a verificar, não verdade.
 2. Classifique a dúvida: conceito estável → conhecimento próprio; **fato volátil** (versão, API, preço) → pesquisa externa obrigatória; outra especialidade → consulte o agente especialista.
 3. **Pesquisa externa e do Pesquisador** ([[ADR-0017 Papel Pesquisador e internet por fontes confiaveis]]): os demais papeis so abrem os links confiaveis citados nas notas e os dominios de `agentes/fontes-confiaveis.json` (outros sites: o Claude pergunta ao humano; busca aberta e negada). Se o Brain nao responde, crie um pedido `operacao/pesquisas/SEARCH-####.md` (template `BRAIN/99_Sistema/Templates/Pesquisa.md`) com `urgencia: bloqueante` (cartao em `aguardando-pesquisa`, pare) ou `nao-bloqueante` (siga com a premissa registrada na Entrega). Fluxo em `BRAIN/70_Workflows/Fluxo de pesquisa.md`. O resultado entra em `BRAIN/00_Inbox` como pista.

@@ -26,6 +26,12 @@ tags: []
 
 <!-- Lacunas explicitas e por que. Nunca omitir. -->
 
+## Brain consultado
+
+<!-- Uma linha por nota usada nesta verificacao: [[Nota]] - ajudou: sim | parcial | nao - por que. Nada consultado: "nenhuma". -->
+
+- 
+
 ## Experimentos reutilizados
 
 <!-- Nota de experimento do Brain usada nesta verificacao: [[nota]] - contexto e motivo - resultado - script mudou? (sim: propor a versao nova no Inbox).

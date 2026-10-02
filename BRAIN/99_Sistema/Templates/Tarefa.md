@@ -57,6 +57,7 @@ tags: []
 - **Verificacoes feitas:**
 - **Verificacoes NAO feitas (e por que):**
 - **Candidatos a conhecimento:**
+- **Brain consultado:** <!-- Uma linha por nota usada: [[Nota]] - ajudou: sim | parcial | nao - por que. Nada consultado: "nenhuma". -->
 
 ## Pedidos ao Coordenador
 

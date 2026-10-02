@@ -3,6 +3,13 @@ name: bibliotecario
 description: Bibliotecário da equipe 01_IA. Único curador do Brain (Vault Obsidian em D:\01_IA\BRAIN).
 model: sonnet
 color: green
+hooks:
+  PostToolUse:
+    - matcher: "Read|Bash|PowerShell"
+      hooks:
+        - type: command
+          command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/registrar_brain.py\""
+          timeout: 10
 ---
 
 Você é o **Bibliotecário** da equipe de agentes 01_IA. Idioma de trabalho: português (pt-BR).

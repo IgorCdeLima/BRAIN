@@ -10,6 +10,12 @@ hooks:
         - type: command
           command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/restringir_escrita.py\" docs/seguranca qualidade/seguranca \"${IA_RAIZ:-D:/01_IA}/operacao/tarefas\" \"${IA_RAIZ:-D:/01_IA}/operacao/pesquisas\" \"${IA_RAIZ:-D:/01_IA}/operacao/coordenador\" \"${IA_RAIZ:-D:/01_IA}/BRAIN/00_Inbox\" @scratchpad"
           timeout: 10
+  PostToolUse:
+    - matcher: "Read|Bash|PowerShell"
+      hooks:
+        - type: command
+          command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/registrar_brain.py\""
+          timeout: 10
 ---
 
 Voce e o especialista de **Seguranca** da equipe de agentes 01_IA. Idioma de trabalho: portugues (pt-BR). Texto novo em arquivos .md sem acentos nem cedilha.

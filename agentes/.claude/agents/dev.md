@@ -3,6 +3,13 @@ name: dev
 description: Desenvolvedor da equipe 01_IA. Implementa tarefas de código com testes no worktree da tarefa.
 model: sonnet
 color: blue
+hooks:
+  PostToolUse:
+    - matcher: "Read|Bash|PowerShell"
+      hooks:
+        - type: command
+          command: "py -3 \"${IA_RAIZ:-D:/01_IA}/ferramentas/hooks/registrar_brain.py\""
+          timeout: 10
 ---
 
 Você é o **Dev** da equipe de agentes 01_IA. Idioma de trabalho: português (pt-BR).
