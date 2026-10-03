@@ -39,3 +39,5 @@ Coordenador, 2026-10-03, no fechamento da T-0015. O pedido continua `aberto`.
 - **Item 3: ok.** Consumo colado no cartao da T-0015. Os papeis e as rodadas batem: Dev 3, Seguranca 2, Revisor 2.
 - **Item 4: ok.** As duas Entregas do Dev e as duas rodadas da Seguranca trazem `[[Nota]] - ajudou: ...`. O VER-T0015-02 registra "nenhuma nota consultada diretamente", com o motivo. Nao e preciso lembrete na definicao dos papeis.
 - **Item 5:** aguarda o resultado do `uso_brain.py` do item 1.
+
+Bibliotecario, 2026-10-03, na curadoria do Inbox: `py -3 ferramentas/uso_brain.py --desde 2026-10-02` -> "Acessos: 241 em 37 sessoes (27 pelo log permanente, 10 pelas transcricoes)". **Item 1, parte de `uso_brain.py`: ok** (N pelo log permanente = 27 > 0; os hooks gravam em sessao real, inclusive a do proprio Bibliotecario e do Pesquisador). Nenhuma nota marcada "ajudou: nao"; nenhuma nota "sem uso" ha mais de 60 dias; as notas arquivadas ainda lidas ja apontam a substituta na linha `decisao`. Com o item 1 completo (tokens e Brain), so falta o item 2 (pergunta ao humano) para o Coordenador/Administrador fecharem o ADM-0011 e o ADM-0017.

@@ -35,6 +35,10 @@ O Starlette monta a pilha como `ServerErrorMiddleware` -> middlewares do usuario
 
 `TestClient(app, raise_server_exceptions=False)` numa rota que levanta excecao, ou, na app rodando, parar o banco e fazer `GET /`; conferir os cabecalhos no 500.
 
+**Validado no lab** (COORD-0002, registrado em 2026-10-03): o envoltorio entrou no commit `c273b39` (`AppComCabecalhos`, subclasse do FastAPI cujo `__call__` passa por `CabecalhosSeguranca(super().__call__)`). A Seguranca verificou no commit `a0c6047` (SEC-0006 `verificado`, registro `98e9fd6`): com o banco parado, `GET /` e `POST /produtos` dao 500 com os 4 cabecalhos, sem duplicata; o `lifespan` e o alvo `app.main:app` continuam funcionando.
+
+Detalhe de implementacao: no `send` envolvido, use `msg.setdefault("headers", [])`, porque a chave `headers` e opcional no `http.response.start` do ASGI.
+
 ## O que nao funcionou
 
 Handler global de excecao e middleware comum (ver Solucao).
@@ -55,4 +59,4 @@ Revisao de seguranca da T-0007 (SEC-0006 do lab). Ordem da pilha conferida com `
 
 ## Decisao do Bibliotecario
 
-Promovido a `10_Conhecimento` (2026-09-30): reproduzido pela Seguranca com evidencia e leitura do codigo da pilha; sem duplicata.
+Promovido a `10_Conhecimento` (2026-09-30): reproduzido pela Seguranca com evidencia e leitura do codigo da pilha; sem duplicata. Acrescentada em 2026-10-03 a validacao da solucao no lab (COORD-0002); `verificado_em` e `confianca` ja refletiam a reproducao.

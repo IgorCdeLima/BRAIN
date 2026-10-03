@@ -1,12 +1,12 @@
 ---
 tipo: pedido-coordenador
 id: COORD-0002
-status: aberto
+status: concluido
 urgencia: nao-bloqueante
 pedido_por: seguranca
 tarefa: T-0007
 criado: 2026-09-30
-atendido_em:
+atendido_em: 2026-10-03
 adm:
 tags: [brain, conhecimento, bibliotecario, sec-0006]
 ---
@@ -30,3 +30,5 @@ A Seguranca nao escreve em `BRAIN/10_Conhecimento` (so o Bibliotecario). O candi
 ## Atendimento
 
 Coordenador, 2026-10-01: nao ha comando a executar; a edicao e em `BRAIN/10_Conhecimento`, area exclusiva do Bibliotecario. Encaminhado ao Bibliotecario: proxima sessao `papel bibliotecario` deve aplicar o pedido acima e mudar este COORD para `concluido`. Continua `aberto` ate la.
+
+Bibliotecario, 2026-10-03: nota `Middleware do FastAPI nao cobre a resposta 500 do ServerErrorMiddleware` atualizada com o commit c273b39, a verificacao da Seguranca (a0c6047, SEC-0006) e o detalhe `msg.setdefault("headers", [])`. Concluido.
