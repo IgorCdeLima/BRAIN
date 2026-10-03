@@ -161,17 +161,6 @@ def campo_do_cartao(cartao: Path, campo: str) -> str:
     return m.group(1) if m else ""
 
 
-def obsidian_aberto() -> bool:
-    """O CLI do Obsidian só funciona com o aplicativo aberto."""
-    cli = shutil.which("obsidian") or str(Path.home() / "AppData" / "Local" / "Programs" / "Obsidian" / "Obsidian.com")
-    try:
-        r = subprocess.run([cli, "version"], capture_output=True, text=True, timeout=15, cwd=str(RAIZ / "BRAIN"))
-    except Exception:
-        return False
-    saida = (r.stdout + r.stderr).lower()
-    return r.returncode == 0 and "unable to find" not in saida and bool(saida.strip())
-
-
 def raiz_e_padrao() -> bool:
     return RAIZ.as_posix().lower() == RAIZ_PADRAO.lower()
 
@@ -235,8 +224,7 @@ def main() -> None:
                   f"Pasta atual: {topo} ({branch}).")
         # Trabalho contínuo, sem cartão: a "tarefa" dos commits é a curadoria/coordenação do dia.
         tarefa = f"{regra['tarefa']}-{date.today():%Y-%m-%d}"
-        if papel == "bibliotecario" and not obsidian_aberto():
-            parar("o Obsidian precisa estar aberto (com o Vault BRAIN) para o bibliotecario usar o CLI. Abra o Obsidian e rode de novo.")
+        # O bibliotecario nao depende mais do Obsidian aberto: move notas com ferramentas/notas.py (ADM-0018).
     else:
         if not em_worktree:
             parar(f"o {papel} trabalha num worktree de tarefa criado no Orca, nunca na copia principal. Pasta atual: {topo} ({branch}).")
