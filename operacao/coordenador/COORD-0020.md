@@ -30,3 +30,7 @@ O teste na T-0012 nao foi possivel: o cartao esta `concluida` e o lancador so ab
 ---
 
 ## Atendimento
+
+Coordenador, 2026-10-03: o teste nao foi feito na revisao da T-0015. A tarefa passou por `revisao` sem que o roteiro fosse levado ao humano, e o cartao agora esta `concluida`, entao o lancador nao abre mais o Revisor nela. O pedido continua `aberto` e **passa para a revisao da T-0013**: quando ela chegar a `revisao`, levar ao humano os 4 passos acima, na sessao `papel seguranca` ou `papel revisor` do worktree da T-0013. A referencia entra no cartao da T-0013.
+- **Causa:** o Coordenador nao estava em sessao quando a T-0015 entrou em `revisao`, e nada lembrou o humano.
+- **Melhoria:** citar o COORD no proprio cartao, em "Pedidos ao Coordenador", e no topo da secao "Revisao", para o Revisor ver.

@@ -32,3 +32,10 @@ Itens marcados como "Nao verificado" no ADM-0011 e no ADM-0017: os hooks so roda
 ---
 
 ## Atendimento
+
+Coordenador, 2026-10-03, no fechamento da T-0015. O pedido continua `aberto`.
+- **Item 1, parte de tokens: ok.** `consumo.py --tarefa T-0015` mostrou "7 sessoes (7 pelo log, 0 pelas transcricoes)", entao os hooks gravam em sessao real. A parte de `uso_brain.py` fica para o Bibliotecario, na proxima curadoria.
+- **Item 2: pendente.** Falta perguntar ao humano se notou demora no fim das respostas.
+- **Item 3: ok.** Consumo colado no cartao da T-0015. Os papeis e as rodadas batem: Dev 3, Seguranca 2, Revisor 2.
+- **Item 4: ok.** As duas Entregas do Dev e as duas rodadas da Seguranca trazem `[[Nota]] - ajudou: ...`. O VER-T0015-02 registra "nenhuma nota consultada diretamente", com o motivo. Nao e preciso lembrete na definicao dos papeis.
+- **Item 5:** aguarda o resultado do `uso_brain.py` do item 1.
