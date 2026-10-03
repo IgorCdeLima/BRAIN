@@ -49,7 +49,7 @@ Crie `C:\Users\<usuario>\.claude\settings.json` com:
 ## 5. Obsidian
 
 - Abrir a pasta `D:\01_IA\BRAIN` como Vault.
-- Configuracoes -> Sobre -> **Interface de linha de comando**: ativar e clicar em **Registrar**. Abrir um terminal novo e conferir com `obsidian version`.
+- O Obsidian e so o leitor do humano: os agentes nao usam o aplicativo nem o CLI (ADR-0025). Nao e preciso ativar a interface de linha de comando.
 - O Git e a fonte de verdade: nao use o Obsidian Sync para editar o mesmo conteudo nas duas maquinas.
 
 ## 6. Orca
@@ -60,7 +60,7 @@ Crie `C:\Users\<usuario>\.claude\settings.json` com:
 
 ## 7. Conferir
 
-Num terminal em `D:\01_IA`, com o Obsidian aberto:
+Num terminal em `D:\01_IA`:
 
 ```powershell
 D:\01_IA\ferramentas\papel bibliotecario --verificar

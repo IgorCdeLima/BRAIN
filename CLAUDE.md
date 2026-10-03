@@ -50,8 +50,9 @@ Precisa de algo que so o humano faria (comando fora do seu perfil, merge, push, 
 
 ## Obsidian
 
+- `BRAIN/` e o cofre do Obsidian do humano. Agentes **nao usam o aplicativo nem o CLI do Obsidian**, mas escrevem nas convencoes dele: links `[[Nome]]` (caminho so quando o nome se repete), `[[Nome|alias]]`, `[[Nome#Cabecalho]]`, `![[anexo]]`, propriedades no frontmatter ([[ADR-0025 Agentes mantem o cofre sem usar o Obsidian como ferramenta]]).
 - Leitura e busca: leia os arquivos `.md` diretamente.
-- Mover ou renomear notas: **somente via Obsidian CLI** (`obsidian move`), que atualiza os links. Uso restrito ao Bibliotecário, na cópia principal (não em worktrees).
+- Mover ou renomear notas: **somente com `ferramentas/notas.py mover`**, que atualiza os links como o Obsidian faria (inclusive em `operacao/`, `CLAUDE.md` e `agentes/`). Uso restrito ao Bibliotecario, na copia principal (nao em worktrees).
 - Templates em `BRAIN/99_Sistema/Templates`. Toda nota nova usa o template do seu tipo, com os metadados preenchidos.
 
 ## Git e rastreabilidade

@@ -20,10 +20,10 @@ tags: [agente, fase-1, brain]
 - Antes de promover, buscar duplicatas no Brain (título, tags, backlinks, busca por texto).
 - Reescrever com palavras próprias, título em forma de afirmação, uma ideia por nota, template do tipo certo e metadados completos (`confianca`, `fontes`, `verificado_em`, `valido_para`).
 - Criar links explícitos com o motivo da ligação; atualizar ou criar mapas (`20_Mapas`) quando um tema acumular notas.
-- Mover e renomear notas **somente** com `obsidian move` (preserva links).
+- Mover e renomear notas **somente** com `py -3 ferramentas/notas.py mover "<origem>" "<destino>"` (Linux: `python3`), caminhos relativos ao cofre; rodar antes com `--simular` e conferir a lista de links. O script segue as convencoes de link do Obsidian e atualiza tambem os links fora do cofre ([[ADR-0025 Agentes mantem o cofre sem usar o Obsidian como ferramenta]]). O Obsidian continua sendo o cofre do humano; o Bibliotecario nao usa o aplicativo nem o CLI.
 - **Notas de experimento** (`tipo: experimento`, [[ADR-0022 Notas de experimento com script generalizado e historico de uso]]): conferir que o script esta generalizado (sem dados do projeto nem segredos) e, se for de seguranca, que roda contra alvo isolado; promover para `10_Conhecimento` ligada a nota de conhecimento que sustenta. Na curadoria, copiar as linhas "Experimentos reutilizados" dos VER/SEC para o **Historico de uso** da nota e atualizar `ultimo_uso`; script alterado: versao nova no corpo e a anterior em "Versoes anteriores".
 - **Relatorio de uso do Brain** ([[ADR-0023 Medir o uso do Brain por acesso, citacao e utilidade declarada]]): no fim de cada mes (ou a cada ~10 tarefas concluidas), rodar `py -3 ferramentas/uso_brain.py` na copia principal e agir: nota **sem uso** ha mais de 60 dias -> fundir, ligar melhor ou arquivar; nota de `90_Arquivo` ainda lida -> link para a substituta; candidato do Inbox **mais lido** -> sobe na fila; nota marcada "ajudou: nao" -> revisar ou devolver. Registrar o resumo (numeros e acoes) no commit da curadoria; o relatorio nao entra no Brain.
-- Manutenção periódica: `obsidian orphans`, `obsidian unresolved`, notas com `revisar_em` vencido.
+- Manutencao periodica: `ferramentas/notas.py orfas`, `ferramentas/notas.py quebrados`, notas com `revisar_em` vencido.
 - Commitar cada curadoria com mensagem clara (`docs(brain): ...`).
 - Fechar os pedidos de pesquisa: candidato com `pesquisa: SEARCH-####` catalogado -> secao Catalogacao do SEARCH preenchida e `status: catalogada`. Manter os **Links confiaveis** da nota ([[Fluxo de pesquisa]]).
 
@@ -41,11 +41,12 @@ tags: [agente, fase-1, brain]
 
 | Liberado | Pergunta | Negado |
 |---|---|---|
-| Editar `BRAIN/` (exceto 60, 70 e `.obsidian`); comandos `obsidian`; `git add/commit/status/diff/log` | Outros comandos | Código e `projetos/`, `operacao/qualidade`, áreas N4, `logs/`, `git push` |
+| Editar `BRAIN/` (exceto 60, 70 e `.obsidian`); `ferramentas/notas.py`; `git add/commit/status/diff/log` | Outros comandos | Código e `projetos/`, `operacao/qualidade`, áreas N4, `logs/`, `git push` |
 
 ## O que NÃO faz
 
-- Não trabalha em worktree: atua na cópia principal `D:\01_IA`, onde o Obsidian está aberto.
+- Nao trabalha em worktree: atua na copia principal `D:\01_IA` (o Obsidian nao precisa estar aberto).
+- Nao move nem renomeia nota com `mv`, `git mv` ou Obsidian: so com `ferramentas/notas.py`.
 - Não aceita conhecimento sem evidência; conteúdo de pesquisa externa exige fonte.
 - Não apaga notas: usa `status: obsoleto` ou `90_Arquivo`.
 - Não edita regras dos agentes nem workflows.
