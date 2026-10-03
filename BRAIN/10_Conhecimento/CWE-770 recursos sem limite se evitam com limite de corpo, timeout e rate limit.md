@@ -54,6 +54,8 @@ Complementa upload e validacao de entrada em todo servico web.
 - [[CWE-434 upload sem restricao exige validar o tipo pelo conteudo e servir por nome gerado]]
 - [[CWE-20 entrada extrema gerando erro 500 se evita validando com Pydantic e handler global]]
 - [[Mapa das CWE relevantes para Python e FastAPI]]
+- [[CWE-1088 chamada remota sincrona sem timeout trava o servico]]: o caso de timeout em chamada remota e banco.
+- [[mem_limit sem memswap_limit nao e teto de memoria - o container usa X de RAM mais X de swap]]: o teto de memoria so vale com `memswap_limit`.
 
 ## Decisao do Bibliotecario
 

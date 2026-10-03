@@ -30,10 +30,12 @@ A resposta de erro renderiza a mesma pagina completa, que consulta o banco. Sob 
 
 - Tratar erro de conexao do banco com um handler global que mostre uma pagina de indisponibilidade **sem consulta** ([[CWE-200 vazamento de informacao se evita com handler global de erros sem stack trace]] tem o desenho do handler global).
 - Fazer o caminho do 503 (e do 422) nao depender do banco nem de outro recurso disputado.
+- Correcao validada na T-0015 (lab): na pagina compartilhada, capturar `sqlalchemy.exc.OperationalError` na consulta da lista, fazer `rollback` e renderizar com lista vazia mais um aviso, **mantendo o status original** (422/503); `GET /` vira 503. Num commit com o banco fora, remover o arquivo ja gravado e responder 503. A premissa errada era "se chegou ao tratamento de erro, o banco esta de pe".
+- Para a consulta nao ficar presa ate o handler agir, limite-a no servidor: [[statement_timeout via connect_args options cobre lock mas nao banco congelado]].
 
 ## Como verificar que foi resolvido
 
-Ao revisar load shedding, limite de concorrencia ou rate limit: parar o banco (`docker compose stop db`) e pedir `GET /` e um `POST` invalido. O esperado e 503 (nunca 500).
+Ao revisar load shedding, limite de concorrencia ou rate limit: parar o banco (`docker compose stop db`) e pedir `GET /` e um `POST` invalido. O esperado e 503 (nunca 500). Teste automatico sem parar o banco: `monkeypatch` de `sessao.scalars`/`commit` levantando `OperationalError`.
 
 ## O que nao funcionou
 
@@ -51,4 +53,4 @@ T-0010 (lab): 6 rodadas de 10 envios paralelos de WebP 50 MP; numa rodada, 2 x 5
 
 ## Decisao do Bibliotecario
 
-Promovido (2026-10-02). Sem duplicata. Serve de lembrete ao Revisor e a Seguranca: testar a resposta de erro com a dependencia indisponivel.
+Promovido (2026-10-02). Sem duplicata. Fundido em 2026-10-03 o candidato da T-0015 (correcao validada e teste com monkeypatch; arquivado em `90_Arquivo`). O trecho do candidato sobre `mem_limit`, `cpus`, `pids_limit`, `cap_drop` e `no-new-privileges` nao quebrarem health nem upload ficou fora: ja coberto por [[USER sem privilegio nao basta - no-new-privileges e cap_drop ALL fecham a escalada por setuid]] e [[mem_limit sem memswap_limit nao e teto de memoria - o container usa X de RAM mais X de swap]]. Serve de lembrete ao Revisor e a Seguranca: testar a resposta de erro com a dependencia indisponivel.

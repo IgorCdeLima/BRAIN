@@ -1,15 +1,15 @@
 ---
 tipo: pesquisa
 id: SEARCH-0007
-status: respondida
+status: catalogada
 urgencia: nao-bloqueante
 pedido_por: seguranca
 tarefa: T-0015
 criado: 2026-10-03
 pesquisado_por: pesquisador
 pesquisado_em: 2026-10-03
-catalogado_em:
-notas: []
+catalogado_em: 2026-10-03
+notas: ["statement_timeout se passa em options da libpq e vira QueryCanceled no psycopg 3", "Nao ha controle simples no cliente para consulta presa em servidor Postgres congelado", "CWE-1088 chamada remota sincrona sem timeout trava o servico"]
 tags: [seguranca, cwe-1088, timeout, postgresql, psycopg, sqlalchemy, disponibilidade]
 ---
 # SEARCH-0007 - CWE-1088 e timeouts de consulta no psycopg 3 / libpq / SQLAlchemy
@@ -49,3 +49,11 @@ Revisao de seguranca da T-0015 (lab, SEC-T0015-03). O humano decidiu que a corre
 - docs.sqlalchemy.org, cwe.mitre.org, psycopg.org, postgresql.org: conferir se ja constam em `agentes/fontes-confiaveis.json`; se nao, incluir (fontes primarias para Dev e Seguranca).
 
 ## Catalogacao
+
+Catalogada pelo Bibliotecario em 2026-10-03. Os 3 candidatos foram promovidos, com links confiaveis preservados:
+
+- [[statement_timeout se passa em options da libpq e vira QueryCanceled no psycopg 3]] (referencia, `30_Referencias`, confianca media).
+- [[Nao ha controle simples no cliente para consulta presa em servidor Postgres congelado]] (problema-solucao, **confianca baixa**: inferencia da documentacao, revisao em 2026-12-03).
+- [[CWE-1088 chamada remota sincrona sem timeout trava o servico]] (conceito, confianca media).
+
+Tambem curada a nota de aplicacao do Dev: [[statement_timeout via connect_args options cobre lock mas nao banco congelado]]. Indexadas em [[Mapa das CWE relevantes para Python e FastAPI]]. Dominios propostos (docs.sqlalchemy.org, cwe.mitre.org, psycopg.org, postgresql.org): conferir em `agentes/fontes-confiaveis.json` e responsabilidade do Coordenador/Administrador (area N4).

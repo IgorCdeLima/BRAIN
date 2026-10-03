@@ -33,7 +33,7 @@ Com o arquivo de saida presente, o `pip-compile --generate-hashes` reaproveita n
 
 ## Como verificar que foi resolvido
 
-Numa copia descartavel, trocar o hash de um pacote por zeros e rodar o `pip-compile`: com reaproveitamento o hash falso permanece; com `--no-reuse-hashes` o verdadeiro volta, com as versoes iguais. No experimento (SEC-T0014-05), 24 hashes de sdist sairam do arquivo que tinha `--only-binary :all:`.
+Numa copia descartavel, trocar o hash de um pacote por zeros e rodar o `pip-compile`: com reaproveitamento o hash falso permanece; com `--no-reuse-hashes` o verdadeiro volta, com as versoes iguais. No experimento (SEC-T0014-05), 24 hashes de sdist sairam do arquivo que tinha `--only-binary :all:`. Confirmado pelo Dev na T-0014: starlette com hash trocado por zeros numa copia, regeneracao com `--no-reuse-hashes` removeu o hash falso; versoes identicas; linhas sha256 de 744 para 720 (requirements), 396 para 358 (dev) e 16 para 8 (lock); segunda execucao com `git status` limpo. Custo: a geracao leva cerca de 10 min ou mais neste projeto, pois baixa os arquivos para hashear. Conferencia independente do resultado: [[Conferir os hashes de um requirements travado contra a API JSON do PyPI]].
 
 ## O que nao funcionou
 
@@ -57,4 +57,4 @@ Experimento da Seguranca (T-0014, lab, SEC-T0014-05) e `pip-compile --help` (7.6
 
 ## Decisao do Bibliotecario
 
-Promovido (2026-10-02). Sem duplicata. Pedido SEARCH-0006 catalogado.
+Promovido (2026-10-02). Sem duplicata. Pedido SEARCH-0006 catalogado. Fundido em 2026-10-03 o candidato do Dev da T-0014 sobre `--no-reuse-hashes` (mesma ideia; so acrescentou as medicoes e o custo, agora na secao de verificacao; arquivado em `90_Arquivo`).
