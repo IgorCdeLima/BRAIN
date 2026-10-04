@@ -42,10 +42,10 @@
       "PowerShell(Move-Item*)",
       "PowerShell(Rename-Item*)",
       "Bash(git push*)",
-      "Bash(git merge*)",
+      "Bash(git merge *)",
       "Bash(git rebase*)",
       "PowerShell(git push*)",
-      "PowerShell(git merge*)",
+      "PowerShell(git merge *)",
       "PowerShell(git rebase*)"
     ]
   }
