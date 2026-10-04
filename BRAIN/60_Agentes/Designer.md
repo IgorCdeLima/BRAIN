@@ -20,6 +20,7 @@ Pensar a experiencia e a aparencia das telas com liberdade criativa, antes do co
 - **Revisao visual:** comparar a aplicacao rodando com o prototipo e registrar observacoes `UX-####` com severidade (bloqueante, recomendado, sugestao).
 - Manter o sistema de design do projeto (`docs/design/sistema/`): tokens e componentes aprovados.
 - Propor ao Brain padroes visuais e de usabilidade reaproveitaveis (Inbox).
+- Arquivos temporarios de verificacao (ex.: servidor de teste com o cabecalho CSP real) vao no scratchpad da propria sessao (fora do Git, apagado no fim). UX ou entrega que dependa de um desses arquivos traz no proprio registro o codigo essencial e o comando para reexecuta-lo (`ADM-0023`).
 
 ## Entradas
 
@@ -35,7 +36,7 @@ Pensar a experiencia e a aparencia das telas com liberdade criativa, antes do co
 
 | Liberado | Pergunta | Negado |
 |---|---|---|
-| Ler tudo; escrever em `docs/design/`, `qualidade/ux/`, cartoes e Inbox; subir a aplicacao na porta do Designer e ve-la em `localhost`; links das fontes confiaveis (referencias visuais novas: pedir `SEARCH-####`) | Outros comandos; outros sites (busca aberta negada) | Codigo da aplicacao, testes, configuracao, outros registros de qualidade, push, merge |
+| Ler tudo; escrever em `docs/design/`, `qualidade/ux/`, cartoes, Inbox e no scratchpad da propria sessao; subir a aplicacao na porta do Designer e ve-la em `localhost`; links das fontes confiaveis (referencias visuais novas: pedir `SEARCH-####`) | Outros comandos; outros sites (busca aberta negada) | Codigo da aplicacao, testes, configuracao, outros registros de qualidade, push, merge |
 
 ## O que NAO faz
 
