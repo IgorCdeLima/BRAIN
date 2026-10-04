@@ -11,7 +11,7 @@ tags: [tokens, consumo, telemetria, hooks, coordenador, ambiente]
 
 ## Contexto
 
-- Nenhum papel media consumo; a retrospectiva da T-0006 registrou que nao havia medida de custo por rodada ([[ADM-0011]], escalado do COORD-0001).
+- Nenhum papel media consumo; a retrospectiva da T-0006 registrou que nao havia medida de custo por rodada (`ADM-0011`, escalado do COORD-0001).
 - As transcricoes do Claude Code trazem o `usage` de cada resposta (entrada, cache criado, cache lido, saida), o modelo, o papel e o branch (tarefa). Sondagem de 2026-10-02: 6630 linhas com `usage`, das quais 3902 sao a mesma resposta repetida (uma linha por bloco de conteudo, `usage` identico); somar tudo dobraria o total.
 - O cache lido domina (T-0010: ~23,9 M lidos, ~1 M criados, ~0,24 M de saida).
 - As transcricoes sao apagadas depois de um prazo; o leitor ja existe para o [[ADR-0023 Medir o uso do Brain por acesso, citacao e utilidade declarada]].
@@ -41,6 +41,6 @@ tags: [tokens, consumo, telemetria, hooks, coordenador, ambiente]
 
 ## Relacionadas
 
-- [[ADM-0011]] - pedido.
+- `ADM-0011` - pedido.
 - [[ADR-0023 Medir o uso do Brain por acesso, citacao e utilidade declarada]] - mesmo leitor de transcricoes.
 - [[Coordenador]], [[Rastreabilidade]].

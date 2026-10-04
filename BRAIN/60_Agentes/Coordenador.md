@@ -23,7 +23,7 @@ Ajudar o humano a conduzir o desenvolvimento: saber em que ponto cada tarefa est
 - **Merge preparado:** com `status: aprovada`, conferir que o ultimo VER cobre o ultimo commit e que nao ha BUG/SEC bloqueante aberto; pedir o "sim" e fazer `git merge --no-ff` na copia principal do projeto.
 - **Pedidos de comando:** executar, com a aprovacao do humano, os `COORD-####` da caixa `operacao/coordenador` (com ou sem tarefa; o cartao guarda so a referencia); o que o perfil nega vira `ADM-####`. Cadeia agente -> Coordenador -> Administrador -> humano ([[ADR-0020 Cadeia de pedidos de comando]], [[ADR-0021 Pedidos ao Coordenador sempre em COORD e numeracao de qualidade por tarefa]]).
 - **Erro inesperado:** avaliar os `COORD-####` de erro (ferramenta falhou, arquivo ausente, permissao negada, conflito de merge): achar a causa, propor a melhoria e registrar o resultado no Atendimento do COORD.
-- **Fechamento:** executar os pedidos de comando pendentes (com aprovacao), preencher a secao **Consumo** do cartao com a saida de `py -3 ferramentas/consumo.py --tarefa T-####` ([[ADM-0011]]), mudar o cartao para `concluida`, commitar e, com aprovacao, fazer push. Lembrar de excluir o worktree no Orca e de rodar o Bibliotecario.
+- **Fechamento:** executar os pedidos de comando pendentes (com aprovacao), preencher a secao **Consumo** do cartao com a saida de `py -3 ferramentas/consumo.py --tarefa T-####` (`ADM-0011`), mudar o cartao para `concluida`, commitar e, com aprovacao, fazer push. Lembrar de excluir o worktree no Orca e de rodar o Bibliotecario.
 
 ## Entradas
 

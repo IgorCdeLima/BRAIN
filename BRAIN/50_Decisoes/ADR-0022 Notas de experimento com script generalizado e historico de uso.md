@@ -11,9 +11,9 @@ tags: [brain, experimento, scripts, seguranca, revisor, bibliotecario, ambiente]
 
 ## Contexto
 
-- Seguranca e Revisor escrevem scripts para provar abusos, reproduzir defeitos e medir recursos (ex.: T-0010 e T-0012: pico de memoria do Pillow, PNG de 16 bits saturado). Com o `@scratchpad` ([[ADM-0015]]) os scripts podem ser gravados, mas ficam fora do Git e somem no fim da sessao.
+- Seguranca e Revisor escrevem scripts para provar abusos, reproduzir defeitos e medir recursos (ex.: T-0010 e T-0012: pico de memoria do Pillow, PNG de 16 bits saturado). Com o `@scratchpad` (`ADM-0015`) os scripts podem ser gravados, mas ficam fora do Git e somem no fim da sessao.
 - Os candidatos atuais descrevem o metodo e nao trazem o script. Quem repete o experimento reescreve do zero e pode errar num detalhe que o codigo deixaria evidente (ex.: gerar a entrada num subprocesso para nao contaminar o pico de memoria).
-- O humano quer notas que digam por que o script e usado, como, quando e por que ele e nao outro; que acompanhem onde foi reutilizado, em que contexto e se precisou mudar; e que ele mesmo possa ler. Pedido em [[ADM-0016]].
+- O humano quer notas que digam por que o script e usado, como, quando e por que ele e nao outro; que acompanhem onde foi reutilizado, em que contexto e se precisou mudar; e que ele mesmo possa ler. Pedido em `ADM-0016`.
 
 ## Decisao
 
@@ -40,6 +40,6 @@ tags: [brain, experimento, scripts, seguranca, revisor, bibliotecario, ambiente]
 
 ## Relacionadas
 
-- [[ADM-0015]] - scratchpad da sessao para Seguranca e Revisor.
-- [[ADM-0016]] - pedido do humano que originou esta decisao.
+- `ADM-0015` - scratchpad da sessao para Seguranca e Revisor.
+- `ADM-0016` - pedido do humano que originou esta decisao.
 - [[Seguranca]], [[Revisor]], [[Bibliotecario]] - quem propoe, registra o reuso e cura.

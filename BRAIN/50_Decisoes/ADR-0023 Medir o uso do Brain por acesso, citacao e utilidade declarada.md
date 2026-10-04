@@ -11,7 +11,7 @@ tags: [brain, telemetria, uso, hooks, bibliotecario, ambiente]
 
 ## Contexto
 
-- O humano nao sabe quanto o Brain e acessado nem se as notas sao uteis ([[ADM-0017]]).
+- O humano nao sabe quanto o Brain e acessado nem se as notas sao uteis (`ADM-0017`).
 - O hook `registrar_evento.py` registra Edit, Write, Bash e PowerShell, mas nao `Read`: leitura de nota nao deixa rastro em `logs/`.
 - As transcricoes do Claude Code tem papel, sessao, pasta e cada caminho lido, mas sao apagadas depois de um prazo; hoje so ha dados a partir de 2026-09-30.
 - Nas sessoes de worktree, os hooks de log vem do `.claude/settings.json` de cada projeto (outro repositorio). Hook de ambiente posto ali precisaria ser repetido em todo projeto novo.
@@ -40,12 +40,12 @@ Medir em tres niveis, do mais fraco ao mais forte:
 
 ## Consequencias
 
-- **Positivas:** dados por pasta, papel, tarefa e nota; notas mortas e notas que nao ajudam aparecem; o Inbox mais lido orienta a curadoria; o mesmo leitor de transcricoes serve ao [[ADM-0011]] (tokens).
+- **Positivas:** dados por pasta, papel, tarefa e nota; notas mortas e notas que nao ajudam aparecem; o Inbox mais lido orienta a curadoria; o mesmo leitor de transcricoes serve ao `ADM-0011` (tokens).
 - **Negativas / riscos:** um processo Python a mais por `Read` e `Bash` (hook leve, timeout de 10 s, nunca falha); busca por `grep` que so lista arquivos conta como busca na pasta, nao como leitura; "Brain consultado" depende de os papeis preencherem; leitura no Inbox de nota depois promovida ou arquivada aparece na pasta nova.
 
 ## Relacionadas
 
-- [[ADM-0017]] - pedido do humano.
+- `ADM-0017` - pedido do humano.
 - [[Rastreabilidade]] - formato de `logs/brain`.
 - [[Bibliotecario]] - rotina mensal.
 - [[ADR-0012 Logs em Markdown fora do Git]] - logs fora do Git (aqui em JSONL, por ser contagem).
