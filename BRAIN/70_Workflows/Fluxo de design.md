@@ -53,12 +53,14 @@ Regras:
    - **sugestao**: ideia para depois.
 5. Preenche a secao **Revisao visual** do cartao. O Designer **nao muda o status**: o Revisor considera as observacoes bloqueantes na decisao (`aprovada` ou `correcao`). Por isso o Designer revisa **antes** do Revisor fechar.
 
+**Como ver a pagina** ([[ADM-0025]]): o caminho padrao e a extensao Claude in Chrome, que exige o Chrome do humano aberto e o servidor local rodando em segundo plano (`run_in_background`), senao ele morre quando o comando termina. Se a extensao nao estiver conectada, a revisao visual usa o Chrome headless do terminal com o CDP (`Emulation.setDeviceMetricsOverride` para medir 360 px), com script temporario no scratchpad da sessao, e registra como lacuna so o que o headless nao cobre (toque real, leitor de tela).
+
 ## Como o Designer "enxerga"
 
 | Situacao | Hoje | Proximo passo (skills) |
 |---|---|---|
 | Ver o proprio SVG/PNG | Le o arquivo (o modelo entende imagem) | - |
-| Ver o HTML renderizado e a aplicacao rodando | Le HTML/CSS e o humano pode anexar capturas de tela | Ferramenta de captura de tela (navegador automatizado) em desktop e celular |
+| Ver o HTML renderizado e a aplicacao rodando | Extensao Claude in Chrome (Chrome do humano aberto); sem ela, Chrome headless com CDP em desktop e 360 px | - |
 | Gerar imagem raster no conceito | Conceito em SVG colorido | Skill de geracao de imagem |
 
 ## Lancador
