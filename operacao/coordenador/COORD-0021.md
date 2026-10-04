@@ -1,12 +1,12 @@
 ---
 tipo: pedido-coordenador
 id: COORD-0021
-status: aberto
+status: concluido
 urgencia: nao-bloqueante
 pedido_por: administrador
 tarefa: ambiente
 criado: 2026-10-02
-atendido_em:
+atendido_em: 2026-10-04
 adm: ADM-0011, ADM-0017
 tags: [ambiente, hooks, telemetria, tokens, brain, verificacao]
 ---
@@ -16,14 +16,14 @@ tags: [ambiente, hooks, telemetria, tokens, brain, verificacao]
 
 Os hooks e scripts do [[ADM-0017]] (uso do Brain) e do [[ADM-0011]] (tokens) entraram na `main` em 2026-10-02, testados so com eventos simulados. Conferir no uso real e orientar o humano se algo falhar. Todos os comandos rodam na copia principal (`$IA_RAIZ`), sao somente leitura e estao liberados no perfil do Coordenador (`consumo.py`) ou do Bibliotecario (`uso_brain.py`).
 
-- [ ] 1. **Hooks gravando** (depois da primeira sessao de qualquer papel aberta pelo lancador apos o merge, ex.: o Dev da T-0015):
+- [x] 1. **Hooks gravando** (depois da primeira sessao de qualquer papel aberta pelo lancador apos o merge, ex.: o Dev da T-0015):
   - `py -3 ferramentas/consumo.py --desde <data do merge>` -> a linha de cabecalho deve mostrar "N pelo log" com N > 0.
   - Pedir ao Bibliotecario, na proxima curadoria: `py -3 ferramentas/uso_brain.py --desde <data do merge>` -> "N pelo log permanente" com N > 0.
   - Se N = 0 depois de uma sessao de papel: os hooks no frontmatter da definicao do papel (`PostToolUse` e `Stop`) nao estao rodando. Abrir `ADM-####` com a saida; alternativa ja prevista: ligar os hooks no `.claude/settings.json` (copia principal e projetos).
-- [ ] 2. **Tempo do hook `Stop`**: perguntar ao humano se notou demora ao fim de cada resposta numa sessao longa (o hook rele a transcricao inteira; timeout de 20 s). Se notou: `ADM-####` pedindo leitura incremental.
-- [ ] 3. **Primeiro fechamento com "Consumo"** (proxima tarefa que for para `concluida`, ex.: T-0015): rodar `py -3 ferramentas/consumo.py --tarefa T-####`, colar na secao **Consumo** do cartao e conferir se os papeis e as rodadas batem com o que aconteceu na tarefa. Divergencia: `ADM-####` com o exemplo.
-- [ ] 4. **"Brain consultado"**: no mesmo fechamento, conferir se a Entrega e o VER trouxeram a linha `[[Nota]] - ajudou: sim | parcial | nao`. Se os papeis nao estiverem preenchendo, avisar o humano (pode precisar de lembrete na definicao do papel, via `ADM-####`).
-- [ ] 5. Quando 1 e 3 estiverem ok: avisar o Administrador (ou registrar aqui) para fechar o ADM-0011 e o ADM-0017 (`concluido`).
+- [x] 2. **Tempo do hook `Stop`**: perguntar ao humano se notou demora ao fim de cada resposta numa sessao longa (o hook rele a transcricao inteira; timeout de 20 s). Se notou: `ADM-####` pedindo leitura incremental.
+- [x] 3. **Primeiro fechamento com "Consumo"** (proxima tarefa que for para `concluida`, ex.: T-0015): rodar `py -3 ferramentas/consumo.py --tarefa T-####`, colar na secao **Consumo** do cartao e conferir se os papeis e as rodadas batem com o que aconteceu na tarefa. Divergencia: `ADM-####` com o exemplo.
+- [x] 4. **"Brain consultado"**: no mesmo fechamento, conferir se a Entrega e o VER trouxeram a linha `[[Nota]] - ajudou: sim | parcial | nao`. Se os papeis nao estiverem preenchendo, avisar o humano (pode precisar de lembrete na definicao do papel, via `ADM-####`).
+- [x] 5. Quando 1 e 3 estiverem ok: avisar o Administrador (ou registrar aqui) para fechar o ADM-0011 e o ADM-0017 (`concluido`).
 
 ## Motivo
 
@@ -41,3 +41,7 @@ Coordenador, 2026-10-03, no fechamento da T-0015. O pedido continua `aberto`.
 - **Item 5:** aguarda o resultado do `uso_brain.py` do item 1.
 
 Bibliotecario, 2026-10-03, na curadoria do Inbox: `py -3 ferramentas/uso_brain.py --desde 2026-10-02` -> "Acessos: 241 em 37 sessoes (27 pelo log permanente, 10 pelas transcricoes)". **Item 1, parte de `uso_brain.py`: ok** (N pelo log permanente = 27 > 0; os hooks gravam em sessao real, inclusive a do proprio Bibliotecario e do Pesquisador). Nenhuma nota marcada "ajudou: nao"; nenhuma nota "sem uso" ha mais de 60 dias; as notas arquivadas ainda lidas ja apontam a substituta na linha `decisao`. Com o item 1 completo (tokens e Brain), so falta o item 2 (pergunta ao humano) para o Coordenador/Administrador fecharem o ADM-0011 e o ADM-0017.
+
+Coordenador, 2026-10-04. **Item 2: respondido.** O humano notou demora no fim das respostas, mas decidiu ignorar ("sim. mas tudo bem. Pode ignorar"). Nao abrir ADM de leitura incremental do hook `Stop`; se a demora piorar, o humano reabre o assunto.
+- **Item 5:** itens 1 a 4 concluidos. Registrado aqui, como o proprio item permite: o Administrador pode fechar o ADM-0011 e o ADM-0017 (`concluido`) na proxima sessao.
+- Pedido `concluido`.
