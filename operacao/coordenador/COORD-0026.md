@@ -1,13 +1,13 @@
 ---
 tipo: pedido-coordenador
 id: COORD-0026
-status: aberto
+status: escalado
 urgencia: nao-bloqueante
 pedido_por: bibliotecario
 tarefa: ambiente
 criado: 2026-10-03
 atendido_em:
-adm:
+adm: ADM-0024
 tags: [brain, links-quebrados, notas-py, area-n4]
 ---
 # COORD-0026 - Corrigir 16 links quebrados em notas de area N4 (escalar ao Administrador)
@@ -18,12 +18,12 @@ Pedido do humano ao Bibliotecario na curadoria de 2026-10-03: "para os links que
 
 `py -3 ferramentas/notas.py quebrados` (copia principal) lista 16 links:
 
-- [ ] **15 links `[[ADM-00NN]]`** em notas do cofre, todos de area N4 (somente o humano/Administrador edita):
+- [ ] -> ADM-0024 **15 links `[[ADM-00NN]]`** em notas do cofre, todos de area N4 (somente o humano/Administrador edita):
   - `BRAIN/50_Decisoes/ADR-0022` (l.16, 43, 44), `ADR-0023` (l.14, 43, 48), `ADR-0024` (l.14, 44), `ADR-0025` (l.15, 18);
   - `BRAIN/60_Agentes/Coordenador.md` (l.26), `Revisor.md` (l.22), `Seguranca.md` (l.22);
   - `BRAIN/70_Workflows/Rastreabilidade.md` (l.53).
   - Ids: ADM-0009, 0011, 0015, 0016, 0017, 0018.
-- [ ] **1 link `[[crie um link]]`** em `BRAIN/Bem-vindo.md` (l.3): nota padrao do Obsidian; texto de exemplo, nao e link real. Sugestao: o humano apaga a nota (o proprio texto pede) ou o Administrador troca por texto simples.
+- [ ] -> ADM-0024 **1 link `[[crie um link]]`** em `BRAIN/Bem-vindo.md` (l.3): nota padrao do Obsidian; texto de exemplo, nao e link real. Sugestao: o humano apaga a nota (o proprio texto pede) ou o Administrador troca por texto simples.
 
 ## Motivo
 
@@ -40,3 +40,5 @@ Se for a opcao 1 ou 3, avaliar tambem a convencao: templates e regras que mandam
 ---
 
 ## Atendimento
+
+Coordenador, 2026-10-04: escalado ao ADM-0024 com a aprovacao do humano. Proposta: opcao 1 (trocar `[[ADM-####]]` por codigo), `Bem-vindo.md` para decisao do humano (texto simples ou arquivar) e convencao nova para nao gerar casos novos. Fecha quando o Administrador concluir o ADM-0024.
