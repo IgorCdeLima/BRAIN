@@ -31,7 +31,7 @@ O desenho atual nao preve Designer revisando Designer. Para tarefa de criacao do
 
 ## Origem
 
-[[T-0011]] (Revisor, 2026-09-30; fato do lancador reconferido em 2026-10-01). Papeis: [[ADR-0015 Papel Designer]].
+T-0011, cartao `operacao/tarefas/T-0011.md` (Revisor, 2026-09-30; fato do lancador reconferido em 2026-10-01). Papeis: [[ADR-0015 Papel Designer]].
 
 ## Decisao do Bibliotecario
 
