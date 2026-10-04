@@ -12,10 +12,10 @@ tags: [obsidian, brain, bibliotecario, ferramentas, ambiente]
 ## Contexto
 
 - O Bibliotecario movia e renomeava notas so com `obsidian move` (o CLI atualiza os links). O CLI exige o aplicativo aberto, e o lancador recusava o papel sem ele.
-- Isso prende o ambiente a uma interface grafica e atrapalha a ida para Docker ([[ADM-0009]], em stand by).
+- Isso prende o ambiente a uma interface grafica e atrapalha a ida para Docker (`ADM-0009`, em stand by).
 - O CLI so atualiza links dentro do cofre; links para notas do Brain em `operacao/`, `CLAUDE.md` e `agentes/` ficavam de fora.
 - Uso medido em 2026-10-02: 4 commits com renomeacao no `BRAIN/` desde 2026-09-01; 154 notas, todos os links `[[Nome]]` simples.
-- O humano continua usando o Obsidian como cofre e leitor ([[ADM-0018]]): "mantenha os padroes de escrita e de como e realizada a logica e links do Obsidian".
+- O humano continua usando o Obsidian como cofre e leitor (`ADM-0018`): "mantenha os padroes de escrita e de como e realizada a logica e links do Obsidian".
 
 ## Decisao
 
@@ -46,6 +46,6 @@ tags: [obsidian, brain, bibliotecario, ferramentas, ambiente]
 
 ## Relacionadas
 
-- [[ADM-0018]] - pedido e execucao.
-- [[ADM-0009]] - ambiente em Docker (stand by).
+- `ADM-0018` - pedido e execucao.
+- `ADM-0009` - ambiente em Docker (stand by).
 - [[Bibliotecario]] - regra que usa o script.

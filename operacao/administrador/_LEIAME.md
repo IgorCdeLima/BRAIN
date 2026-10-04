@@ -11,3 +11,4 @@ Serve para o que exige area N4 (regras, perfis, lancador, hooks, `CLAUDE.md` do 
 - O **Administrador** le os pedidos com `status: aberto` no inicio da sessao, apresenta ao humano, executa com a aprovacao dele e preenche "Decisao do humano" e "Execucao".
 - Status: `aberto` -> `em-andamento` -> `concluido` | `recusado`.
 - Nada e apagado: pedidos antigos ficam como historico das mudancas de ambiente.
+- **Citacao em notas do cofre (`BRAIN/`):** escreva pedidos `ADM-`, `COORD-`, `SEARCH-` e cartoes `T-` como codigo (`` `ADM-0011` ``), nunca como `[[link]]`. Esses arquivos ficam fora do cofre e o link quebra. Dentro de `operacao/` o `[[ADM-####]]` pode continuar (`ADM-0024`).
