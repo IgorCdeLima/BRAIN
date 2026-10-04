@@ -1,15 +1,15 @@
 ---
 tipo: pesquisa
 id: SEARCH-0008
-status: respondida
+status: catalogada
 urgencia: nao-bloqueante
 pedido_por: seguranca
 tarefa: T-0013
 criado: 2026-10-04
 pesquisado_por: pesquisador
 pesquisado_em: 2026-10-04
-catalogado_em:
-notas: []
+catalogado_em: 2026-10-04
+notas: ["CWE-778 registro insuficiente se evita registrando erro de banco com classe e sqlstate no log do servidor", "SQLAlchemyError no log: registrar classe e sqlstate, nunca str(erro) inteiro"]
 tags: [seguranca, cwe-778, logs, sqlalchemy, fastapi]
 ---
 # SEARCH-0008 - CWE-778 registro insuficiente: o que registrar de erro de banco sem vazar dado
@@ -43,3 +43,7 @@ Revisao de seguranca da T-0013 (lab), `SEC-T0013-01`: `except SQLAlchemyError` e
 - 
 
 ## Catalogacao
+
+- **Decisao:** promovidas as duas notas (2026-10-04), como padrao em `10_Conhecimento`.
+- **Notas finais:** [[CWE-778 registro insuficiente se evita registrando erro de banco com classe e sqlstate no log do servidor]], [[SQLAlchemyError no log: registrar classe e sqlstate, nunca str(erro) inteiro]]. A CWE-778 entrou no [[Mapa das CWE relevantes para Python e FastAPI]]. Links confiaveis preservados nas duas notas.
+- **Pendencia:** teste do formato da mensagem do SQLAlchemy com parametro conhecido (confianca fica `media` ate la).

@@ -36,6 +36,8 @@ Recomendacao do Revisor: opcao 1 ou 2, ja que a trava do lancador confirma que o
 
 **Mantido no Inbox, aguardando o humano** (2026-10-01): e proposta de mudanca de regra (Revisor, Matriz de verificacao, lancador), area N4; o Bibliotecario nao pode promover nem editar. O humano ja adotou na T-0011 a opcao 2 (dispensa anotada no cartao); falta decidir se vira regra. Nao e conhecimento a catalogar ate la.
 
+**Reconferido em 2026-10-04** (curadoria do Inbox): sem decisao do humano nem mudanca de regra desde 2026-10-01; segue no Inbox. Registrado so aqui, sem promover.
+
 ## Por que vale guardar
 
 Toda nova tarefa de design vai bater na mesma trava.
