@@ -1,12 +1,12 @@
 ---
 tipo: pedido-coordenador
 id: COORD-0026
-status: escalado
+status: concluido
 urgencia: nao-bloqueante
 pedido_por: bibliotecario
 tarefa: ambiente
 criado: 2026-10-03
-atendido_em:
+atendido_em: 2026-10-04
 adm: ADM-0024
 tags: [brain, links-quebrados, notas-py, area-n4]
 ---
@@ -42,3 +42,5 @@ Se for a opcao 1 ou 3, avaliar tambem a convencao: templates e regras que mandam
 ## Atendimento
 
 Coordenador, 2026-10-04: escalado ao ADM-0024 com a aprovacao do humano. Proposta: opcao 1 (trocar `[[ADM-####]]` por codigo), `Bem-vindo.md` para decisao do humano (texto simples ou arquivar) e convencao nova para nao gerar casos novos. Fecha quando o Administrador concluir o ADM-0024.
+
+Coordenador, 2026-10-04: **concluido.** O Administrador concluiu o ADM-0024 e corrigiu os 15 links `[[ADM-00NN]]` (commit `4e01855`, merge `49cd50d`; aviso registrado no COORD-0029). O link de `BRAIN/Bem-vindo.md` virou texto, e o arquivamento da nota segue no COORD-0029 (Bibliotecario).
