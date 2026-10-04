@@ -38,6 +38,10 @@ Recomendacao do Revisor: opcao 1 ou 2, ja que a trava do lancador confirma que o
 
 **Reconferido em 2026-10-04** (curadoria do Inbox): sem decisao do humano nem mudanca de regra desde 2026-10-01; segue no Inbox. Registrado so aqui, sem promover.
 
+**Encaminhado em 2026-10-04:** aberto `COORD-0031` pedindo a formalizacao da opcao 2 como regra (via ADM, area N4). Segue no Inbox ate haver decisao; depois, promover ou arquivar ligado a regra.
+
+**Reconferido em 2026-10-04 (2a passada):** `COORD-0031` ainda `aberto`, sem ADM nem mudanca de regra. Nenhuma acao do Bibliotecario possivel.
+
 ## Por que vale guardar
 
 Toda nova tarefa de design vai bater na mesma trava.
