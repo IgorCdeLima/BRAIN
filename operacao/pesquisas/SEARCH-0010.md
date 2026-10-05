@@ -1,13 +1,13 @@
 ---
 tipo: pesquisa
 id: SEARCH-0010
-status: em-pesquisa
+status: respondida
 urgencia: nao-bloqueante
 pedido_por: engenheiro
 tarefa: T-0018
 criado: 2026-10-05
-pesquisado_por:
-pesquisado_em:
+pesquisado_por: pesquisador
+pesquisado_em: 2026-10-05
 catalogado_em:
 notas: []
 tags: [ambiente, container, claude-code, docker, podman, adm-0009]
@@ -36,14 +36,16 @@ T-0018 (Engenheiro, projeto `ambiente`, fase 2 do `ADM-0009`): requisitos e ADR-
 
 ## Resposta
 
-- **Resumo (3 a 5 linhas):**
-- **Notas geradas no Inbox:** [[ ]]
-- **Links confiaveis:**
-- **Sem resposta / limites:**
-- **Conteudo suspeito descartado:**
+- **Resumo (3 a 5 linhas):** (1) Managed settings no Linux: `/etc/claude-code/managed-settings.json`; nenhuma doc liga isso a `CLAUDE_CONFIG_DIR` (o `<dir>/managed` do resumo antigo nao se confirmou). (2) Hooks herdam o ambiente do pai, entao a variavel chega; transcricoes ficam em `<CLAUDE_CONFIG_DIR>/projects`. (3) apt mantem 60 versoes: `apt install claude-code=2.1.285-1` vale. (4) Podman aninhado: README oficial usa `--privileged`/fuse/seccomp=unconfined; sem privileged nao ha receita. (6) Bubblewrap: `enableWeakerNestedSandbox` resolve o `/proc`, custo em isolamento. (7) Codex: ver nota. (5) docker-socket-proxy filtra por rota, nao documenta compose nem corpo.
+- **Notas geradas no Inbox:** [[Managed settings do Claude Code no Linux ficam em etc claude-code e a documentacao nao liga esse caminho ao CLAUDE_CONFIG_DIR]], [[CLAUDE_CONFIG_DIR e herdada pelos hooks como qualquer variavel do ambiente e as transcricoes ficam em projects dentro dela]], [[O repositorio apt do Claude Code mantem versoes antigas e permite fixar com apt install claude-code igual versao]], [[Bubblewrap do Claude Code em container sem privilegio falha no proc e enableWeakerNestedSandbox resolve ao custo de isolamento]], [[Podman rootless dentro de container Docker - a doc oficial do Podman usa privileged e fuse, sem privileged nao esta documentado]], [[Codex CLI instala por script, guarda credencial em CODEX_HOME auth.json e limita comandos com sandbox bwrap e seccomp]], [[Proxy de socket do Docker filtra por secao da API e nao e fronteira de seguranca - a doc nao cobre compose nem o corpo das requisicoes]]
+- **Links confiaveis:** code.claude.com/docs/en/{managed-settings,env-vars,hooks,setup,sandboxing}; downloads.claude.ai (indice apt); github.com/containers/image_build (podman); github.com/Tecnativa/docker-socket-proxy; learn.chatgpt.com/docs (Codex).
+- **Sem resposta / limites:** nao confirmado por teste: item 1 (interacao managed x `CLAUDE_CONFIG_DIR`) e item 2 (so inferido do heranca de ambiente); item 6 (userns com seccomp/AppArmor padrao e `cap_drop: ALL`: a doc so trata o `/proc`); item 4 sem `--privileged` e `podman compose` com `docker-compose`; item 5 (secoes exigidas pelo compose e inspecao de corpo); item 7 (chaves do `config.toml`, comportamento em container sem privilegio; pagina de sandboxing dedicada deu 404). Recomendado teste no T-0020. `curl` ao indice apt e negado ao papel: usei WebFetch.
+- **Conteudo suspeito descartado:** nenhum.
 
 ## Dominios propostos
 
-- 
+- `learn.chatgpt.com` (e `developers.openai.com`, que redireciona para ele): documentacao oficial do Codex CLI, necessaria para a T-0023.
+- `downloads.claude.ai`: ja usado nas instrucoes de apt do Claude Code (chave e indice de versoes); conferir se esta na lista.
+- `github.com/containers` e `github.com/Tecnativa`: so se algum papel precisar abrir os READMEs; propor apenas se a lista nao cobrir github.com.
 
 ## Catalogacao
