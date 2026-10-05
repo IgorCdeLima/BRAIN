@@ -17,7 +17,7 @@ O repasse entre agentes acontece **por arquivos** — cartão da tarefa, commits
 
 | Conceito | O que define | Onde |
 |---|---|---|
-| **Onde** | A pasta em que o agente trabalha | Worktree da tarefa (criado no Orca) ou cópia principal `D:\01_IA` |
+| **Onde** | A pasta em que o agente trabalha | Worktree da tarefa (criado ao aceitar: `tarefa aceitar T-####`) ou cópia principal `D:\01_IA` |
 | **Quem** | O papel do agente: regras, permissões e modelo | Escolhido no lançador: `papel <papel>` — tem que bater com o campo `papel:` do cartão (ou com a marca, nos modos de revisão) |
 | **O quê** | A tarefa | Cartão `operacao/tarefas/T-####.md`, identificado pelo nome do worktree |
 
@@ -58,7 +58,7 @@ Os passos marcados sao opcionais conforme a tabela; o minimo e **Dev -> Revisor*
 
 ## Pedidos de comando
 
-Quem precisa de algo que so o humano faria (comando fora do perfil, merge, push, Orca) ou encontra um erro inesperado nao pede ao humano: sobe a cadeia ([[ADR-0020 Cadeia de pedidos de comando]], [[ADR-0021 Pedidos ao Coordenador sempre em COORD e numeracao de qualidade por tarefa]]).
+Quem precisa de algo que so o humano faria (comando fora do perfil, merge, push, aceitar tarefa, abrir papel) ou encontra um erro inesperado nao pede ao humano: sobe a cadeia ([[ADR-0020 Cadeia de pedidos de comando]], [[ADR-0021 Pedidos ao Coordenador sempre em COORD e numeracao de qualidade por tarefa]]).
 
 ```mermaid
 flowchart LR
@@ -67,7 +67,7 @@ flowchart LR
     AD -- "so o humano pode:<br/>comando exato" --> H[Humano]
 ```
 
-- Coordenador e Administrador executam com o clique de aprovacao do humano; o humano so digita o que e dele (Orca, lancador `papel`, senha, `sudo`).
+- Coordenador e Administrador executam com o clique de aprovacao do humano; o humano so digita o que e dele (`tarefa aceitar`/`abrir`, lancador `papel`, senha, `sudo`).
 - Sempre `operacao/coordenador/COORD-####.md`, com ou sem tarefa; o cartao guarda so a referencia na secao "Pedidos ao Coordenador". Ao humano, o agente diz so o numero do pedido.
 - **Erro inesperado** (ferramenta falhou, arquivo ausente, permissao negada, lancador recusou, conflito de merge): `COORD-####` com o erro exato, o que tentava fazer e a pasta. O Coordenador avalia a causa e propoe a melhoria.
 - **Passos do humano** no cartao: so decisoes e acoes exclusivas do humano.
@@ -97,15 +97,15 @@ stateDiagram-v2
    → mostra o panorama e faz a triagem do cartão (tabela acima). Com o "sim" do humano, muda o cartão para `pronta` e diz o próximo comando.
 1. **Cartão** (humano, com o Coordenador): criar ou revisar `operacao/tarefas/T-####.md`, com as marcas `interface:` e `seguranca:`, e mudar o status para `pronta`.
    **Funcionalidade com entrada de usuario** (formulario, upload, parametro): antes do cartao do Dev, um cartao do **Engenheiro** define as regras de formato de cada campo com exemplos validos e invalidos. O cartao do Dev so fica `pronta` depois disso. (Retrospectiva da T-0002: regra ambigua virou o BUG-0003.)
-2. **Worktree** (humano): no Orca, *Create Worktree* no repositório do projeto, nome `T-####-descricao`, *Branch from* `main`, **terminal em branco** (não escolher agente).
-3. **Dev** (humano digita no terminal do worktree): `D:\01_IA\ferramentas\papel dev`
+2. **Aceitar a tarefa** (humano, num terminal comum; no futuro, o botao do quadro): `ferramentas/tarefa.sh aceitar T-####`. Cria o branch e o worktree `T-####-descricao` a partir da `main` do projeto do cartao e a sessao tmux `T-####`; nao muda o status do cartao. Se ja aceita, so reabre. Ver as tarefas aceitas: `tarefa listar`.
+3. **Dev** (humano): `ferramentas/tarefa.sh abrir T-#### dev` abre a janela `dev` na sessao da tarefa e chama o lancador `papel dev` no worktree. Entrar na sessao: `tmux attach -t T-####` (trocar de janela: `Ctrl-b w`; sair sem fechar: `Ctrl-b d`).
    → o Dev implementa, commita, preenche a Entrega e muda o status para `revisao`.
-4. **Designer e Seguranca** (se `interface: sim` / `seguranca: sim`), no mesmo worktree, um de cada vez: `papel designer`, `papel seguranca`
+4. **Designer e Seguranca** (se `interface: sim` / `seguranca: sim`), no mesmo worktree, um de cada vez: `tarefa abrir T-#### designer`, `tarefa abrir T-#### seguranca`
    → registram `UX-####` / `SEC-####` e preenchem "Revisao visual" / "Revisao de seguranca" **sem mudar o status**.
-5. **Revisor** (humano, no mesmo worktree, depois de fechar os anteriores): `D:\01_IA\ferramentas\papel revisor`
+5. **Revisor** (humano, no mesmo worktree, depois de fechar os anteriores): `tarefa abrir T-#### revisor`
    → o Revisor verifica, commita `VER-####` (e `BUG-`) no branch e muda o status para `aprovada` ou `correcao`, considerando os UX e SEC bloqueantes.
 6. **Se `correcao`**: voltar ao passo 3. O Dev lê o VER, os BUG e os SEC e corrige. Depois, passos 4 e 5 de novo — **todo novo commit exige um novo VER**.
-7. **Merge** (Coordenador prepara, humano aprova): com status `aprovada`, o Coordenador confere VER e bloqueantes, faz o merge `--no-ff` na `main` com o "sim" do humano, executa os Pedidos ao Coordenador pendentes (com aprovação), preenche a secao Consumo do cartao (`py -3 ferramentas/consumo.py --tarefa T-####`), muda o status para `concluida` e faz push com aprovação. O humano exclui o worktree no Orca.
+7. **Merge** (Coordenador prepara, humano aprova): com status `aprovada`, o Coordenador confere VER e bloqueantes, faz o merge `--no-ff` na `main` com o "sim" do humano, executa os Pedidos ao Coordenador pendentes (com aprovação), preenche a secao Consumo do cartao (`py -3 ferramentas/consumo.py --tarefa T-####`), muda o status para `concluida` e faz push com aprovação. O humano fecha a tarefa com `ferramentas/tarefa.sh fechar T-####` (so com o cartao `concluida` ou `cancelada`, o worktree sem mudanca pendente e, se `concluida`, o branch na `main`): fecha a sessao tmux, remove o worktree e apaga o branch ja mergeado (`git branch -d`).
    Problema depois de `aprovada` (ex.: conflito no merge): o Revisor **nao volta** e o cartao nao retorna para `revisao`. O Coordenador aborta o merge, registra um `COORD-####` com o erro e decide o proximo passo com o humano.
 8. **Bibliotecário** (humano, num terminal em `D:\01_IA`, quando houver candidatos no Inbox): `D:\01_IA\ferramentas\papel bibliotecario`
    → cura os candidatos do Inbox e commita.

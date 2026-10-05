@@ -20,6 +20,7 @@ tags: [ambiente, docker, container, claude-code, tmux, adm-0009]
 2. **Docker dos projetos dentro do container** (o lab usa Docker Compose): comparar, com fontes oficiais (Docker, Podman), (a) montar o socket do Docker do host, (b) Docker-in-Docker (container privilegiado), (c) Docker rootless ou Podman. Para cada um: o que o container passa a poder fazer no host, requisitos no Linux e limitacoes conhecidas com Compose.
 3. **Usuario e arquivos:** como rodar o container com usuario sem privilegio cujo UID/GID bate com o do humano no host, para que os arquivos do repositorio montado (worktrees, `.git`) nao fiquem com dono root.
 4. **tmux dentro do container:** acessar a sessao tmux do container a partir do terminal do host (`docker exec -it ... tmux attach`): ressalvas de TERM, UTF-8 e tamanho da janela.
+5. **Orquestracao (fase 3 do ADM-0009, acrescentada em 2026-10-05):** uma sessao do Claude Code (o "Coordenador da tarefa") abrir e acompanhar outras sessoes em janelas tmux. Na documentacao oficial: modo nao interativo (`-p`) e seus limites; como uma sessao percebe que outra terminou (codigo de saida, hooks `Stop`/`SessionEnd`, arquivos); como ficam os pedidos de permissao numa sessao sem ninguem olhando (o que acontece com `ask` no modo `-p`); se ha recurso oficial de varias sessoes ou agentes coordenados que sirva sem dar ao orquestrador as permissoes dos outros.
 
 ## Contexto
 

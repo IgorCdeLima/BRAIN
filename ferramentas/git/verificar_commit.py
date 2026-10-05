@@ -5,7 +5,7 @@ Uso (chamado pelos scripts em <repo>/.githooks/):
     py -3 verificar_commit.py commit-msg <arquivo-da-mensagem>
 
 As regras só valem para commits de agentes, identificados pela variável de
-ambiente IA_PAPEL (definida pelo Quick Command que inicia cada papel no Orca).
+ambiente IA_PAPEL (definida pelo lancador ferramentas/papel ao iniciar cada papel).
 Commits humanos (sem IA_PAPEL) passam sem restrição.
 
 Regras de cada repositório: <repo>/.githooks/regras.json
