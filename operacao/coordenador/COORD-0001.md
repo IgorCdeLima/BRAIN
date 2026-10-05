@@ -1,7 +1,7 @@
 ---
 tipo: pedido-coordenador
 id: COORD-0001
-status: escalado
+status: concluido
 urgencia: nao-bloqueante
 pedido_por: engenheiro
 tarefa: ambiente
@@ -65,3 +65,5 @@ Pedido do humano. Nenhum papel mede isso hoje, e a retrospectiva da T-0006 regis
 ## Atendimento
 
 Coordenador, 2026-09-30: avaliado como viavel (as transcricoes ja trazem `usage` e `model`; a pasta da a tarefa e o id da sessao da o papel). Apresentado ao humano no panorama; ele aprovou seguir. Como a solucao mexe em `ferramentas/`/hooks (N4), escalado ao Administrador: ADM-0011.
+
+Coordenador, 2026-10-05, com aprovacao do humano: ADM-0011 `concluido` (commits `ca28fe6`, `2071579`; `ferramentas/consumo.py` e secao Consumo no cartao). Pedido `concluido`.

@@ -1,7 +1,7 @@
 ---
 tipo: pedido-coordenador
 id: COORD-0030
-status: escalado
+status: concluido
 urgencia: nao-bloqueante
 pedido_por: revisor
 tarefa: T-0013
@@ -19,7 +19,7 @@ tags: [t-0013, docker, volumes, limpeza, permissao]
   docker volume rm t0013-rev_db_data t0013-rev_uploads
   ```
   Esperado: os dois nomes impressos de volta. Pode ser feito antes ou depois do merge; junto, se quiser, com os volumes do Designer e da Seguranca ja listados em "Passos do humano" do cartao (`t0013-des_*`, `t0013-seg_*`).
-- [ ] -> ADM-0025 Erro de permissao (nao bloqueante), para avaliar se o perfil do Revisor deve liberar: no worktree `/home/igor/orca/workspaces/lab/T-0013`, o comando de leitura `git merge-base --is-ancestor 79ead1c main` foi **negado** ("Permission to use Bash with command ... has been denied"). Tambem foram negados comandos compostos com `;`/`&&` que misturavam `cmp`, `grep`, `ls .env` e `docker compose ... up` (separados, passaram). Eu queria confirmar que o commit de correcao do SEC-T0008-01/SEC-T0012-01 esta na `main`; contornei conferindo o estado ao vivo do container (registrado no VER-T0013-01 como lacuna).
+- [x] -> ADM-0025 Erro de permissao (nao bloqueante), para avaliar se o perfil do Revisor deve liberar: no worktree `/home/igor/orca/workspaces/lab/T-0013`, o comando de leitura `git merge-base --is-ancestor 79ead1c main` foi **negado** ("Permission to use Bash with command ... has been denied"). Tambem foram negados comandos compostos com `;`/`&&` que misturavam `cmp`, `grep`, `ls .env` e `docker compose ... up` (separados, passaram). Eu queria confirmar que o commit de correcao do SEC-T0008-01/SEC-T0012-01 esta na `main`; contornei conferindo o estado ao vivo do container (registrado no VER-T0013-01 como lacuna).
 
 ## Motivo
 
@@ -35,3 +35,5 @@ Coordenador, 2026-10-04 (depois do merge da T-0013, `c9d0f4b`):
 - **Erro de permissao, causa confirmada:** em `agentes/perfis/revisor.json` a negacao `"Bash(git merge*)"` (sem espaco) tambem casa com `git merge-base`, e a negacao prevalece sobre a liberacao. O mesmo padrao esta em 7 perfis; so Coordenador e Administrador usam `git merge *`. Escalado ao ADM-0025, item 2 (troca para `git merge *` e liberacao de `git merge-base *` no Revisor e na Seguranca). O Revisor agiu certo: registrou a lacuna e conferiu o estado ao vivo.
 - **Comandos compostos com `;`/`&&` negados:** comportamento esperado. Cada parte do comando composto precisa estar liberada, e `ls .env` cai na protecao do `.env`. Aviso aos papeis: rodar comandos separados, como o Revisor acabou fazendo. Sem mudanca de regra.
 - Fecha quando o ADM-0025 concluir o item 2.
+
+Coordenador, 2026-10-05, com aprovacao do humano: ADM-0025 `concluido`. Item 2: `git merge *` (com espaco) nos 7 perfis e `git merge-base *` liberado ao Revisor e a Seguranca (`c6015c0`, merge `c08f58f`); teste em 2026-10-05 com o perfil do Revisor: `git merge-base --is-ancestor` rodou. Pedido `concluido`.

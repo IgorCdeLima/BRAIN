@@ -1,13 +1,13 @@
 ---
 tipo: pedido-coordenador
 id: COORD-0031
-status: aberto
+status: escalado
 urgencia: nao-bloqueante
 pedido_por: bibliotecario
 tarefa: ambiente
 criado: 2026-10-04
-atendido_em:
-adm:
+atendido_em: 2026-10-05
+adm: ADM-0027
 tags: [regra, revisor, designer, interface, lacuna-de-processo]
 ---
 # COORD-0031 - Formalizar como regra a dispensa de revisao visual quando o executor e o Designer
@@ -32,4 +32,4 @@ Apos a decisao, o Bibliotecario promove o candidato (ou o arquiva, ligado a regr
 
 ## Atendimento
 
-<!-- Preenchido pelo Coordenador. -->
+Coordenador, 2026-10-05, com aprovacao do humano: mudanca em area N4 (`BRAIN/60_Agentes`, `BRAIN/70_Workflows`, template `Tarefa`) -> escalado ao ADM-0027, com o texto exato dos itens 1 a 4. O candidato ja foi promovido pelo Bibliotecario ([[Tarefa de criacao do Designer trava na revisao visual porque ele nao revisa o proprio trabalho]]). Fecha quando o ADM-0027 concluir.

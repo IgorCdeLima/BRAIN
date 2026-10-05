@@ -16,7 +16,7 @@ tags: [ambiente, container, projeto-ambiente, cartoes, adm-0009]
 
 O humano aprovou a fase 2 do `ADM-0009` como um **projeto novo**, `projetos/ambiente` (repositorio proprio, esqueleto criado pelo Administrador, commit `2d0135f`). Criar e triar os cartoes, com o "sim" do humano, nesta ordem:
 
-- [ ] 1. **Engenheiro** - `projeto: ambiente`, `papel: engenheiro`, `seguranca: sim`, `tamanho: grande`. Requisitos e arquitetura do container em `projetos/ambiente/docs` (requisitos, modelos em Mermaid, ADR do projeto). Cobrir no minimo:
+- [x] 1. -> T-0018 **Engenheiro** - `projeto: ambiente`, `papel: engenheiro`, `seguranca: sim`, `tamanho: grande`. Requisitos e arquitetura do container em `projetos/ambiente/docs` (requisitos, modelos em Mermaid, ADR do projeto). Cobrir no minimo:
   - o que vai na imagem (Claude Code, git, Python 3, tmux, `ferramentas/`, `py` como em `~/.local/bin/py`) e como o repositorio 01_IA, `projetos/*` e `$IA_WORKTREES` entram como volumes;
   - login e configuracao do Claude Code fora da imagem (`CLAUDE_CONFIG_DIR` em volume), sem segredo no repositorio;
   - usuario sem privilegio com o UID/GID do humano (arquivos do volume com o dono certo);
@@ -27,7 +27,7 @@ O humano aprovou a fase 2 do `ADM-0009` como um **projeto novo**, `projetos/ambi
   Insumos: `SEARCH-0009` e as 5 notas que ele gerou no `BRAIN/00_Inbox` (pistas), `ADR-0026`, `ADM-0009`.
 - [ ] 2. **Seguranca** - analise de ameacas do desenho do Engenheiro (`papel: seguranca`, depois do item 1), com foco na opcao de Docker dos projetos, no login do Claude Code em volume e no que o container enxerga do host. Saida em `projetos/ambiente/docs/seguranca/`. Depois dela, o humano escolhe a opcao de Docker (ADR do projeto).
 - [ ] 3. **Dev** - so depois da escolha: `Dockerfile`, `compose` e roteiro de verificacao. Revisao pela Seguranca e pelo Revisor; merge pelo Administrador ou Coordenador, como no lab.
-- [ ] 4. Lembrar o humano: o **Bibliotecario** cataloga o `SEARCH-0009` (pode ser antes do item 1, para as notas sairem do Inbox).
+- [x] 4. Lembrar o humano: o **Bibliotecario** cataloga o `SEARCH-0009` (pode ser antes do item 1, para as notas sairem do Inbox).
 
 Como abrir o papel de cada cartao (o humano roda, num terminal comum): `ferramentas/tarefa.sh aceitar T-####` e `ferramentas/tarefa.sh abrir T-#### engenheiro` (ADR-0026).
 
@@ -38,3 +38,8 @@ Criar e triar cartoes e do Coordenador; o Administrador cuidou so da parte de am
 ---
 
 ## Atendimento
+
+Coordenador, 2026-10-05, com aprovacao do humano:
+- Item 1: cartao [[T-0018]] criado em `backlog` (`papel: engenheiro`, `seguranca: sim`, `interface: nao`, `tamanho: grande`), com os criterios do item 1. Vai para `pronta` com o "sim" do humano.
+- Item 4: o Bibliotecario catalogou o `SEARCH-0009` (`03f0d54`); as 5 notas sairam do Inbox.
+- Itens 2 e 3 (Seguranca e Dev): cartoes criados depois da entrega do Engenheiro, que tambem propoe os cartoes seguintes. Pedido continua `aberto`.
