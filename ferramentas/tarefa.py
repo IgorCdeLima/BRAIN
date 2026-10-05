@@ -5,14 +5,16 @@ projeto e uma sessao tmux com o nome da tarefa; cada papel abre numa janela.
 
 Uso (terminal comum, fora do Claude):
     tarefa aceitar T-0017         cria o worktree T-0017-<descricao> a partir da main
-                                  do projeto do cartao e a sessao tmux (se ja existe, reabre)
+                                  do projeto do cartao e a sessao tmux (se ja existe, reabre);
+                                  cartao em backlog passa para pronta (commit so do cartao)
     tarefa abrir T-0017 dev       abre o papel numa janela da sessao T-0017 (chama o lancador)
     tarefa listar                 worktrees de tarefa, status do cartao e sessao tmux
     tarefa fechar T-0017          cartao concluida/cancelada: fecha a sessao e remove o worktree
 Opcao:
     --simular                     mostra o que faria, sem mudar nada (liberado dentro do Claude)
 
-Aceitar nao muda o status do cartao. Esta ferramenta nao define IA_PAPEL: quem
+Aceitar um cartao em backlog o passa para pronta (decisao do humano, ADM-0009):
+aceitar e o "sim" para comecar. Os demais status nao mudam. Esta ferramenta nao define IA_PAPEL: quem
 confere o cartao e define o papel continua sendo o lancador. Na fase 3 o quadro
 web chama estas mesmas acoes.
 
@@ -36,7 +38,8 @@ DIR_WORKTREES = Path(os.environ.get("IA_WORKTREES") or Path.home() / "01_ia" / "
 LANCADOR = RAIZ / "ferramentas" / "papel.py"
 
 PAPEIS_DE_WORKTREE = ("dev", "engenheiro", "designer", "seguranca", "revisor")
-STATUS_SEM_WORKTREE = {"backlog", "concluida", "cancelada"}  # aceitar recusa
+STATUS_SEM_WORKTREE = {"concluida", "cancelada"}  # aceitar recusa
+STATUS_ACEITAR_MUDA = {"backlog": "pronta"}  # aceitar muda o status (so depois de criar o worktree)
 STATUS_FECHAR = {"concluida", "cancelada"}
 RE_TAREFA = re.compile(r"^T-\d{4}$")
 RE_PROJETO = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
@@ -167,8 +170,37 @@ def aceitar(tarefa, simular=False):
             caminho.parent.mkdir(parents=True, exist_ok=True)
         rodar(cmd, simular)
     garantir_sessao(tarefa, caminho, simular)
-    print(f"[tarefa] Pronto. Status do cartao: '{c['status']}' (aceitar nao muda o status).")
+    status = c["status"]
+    if status in STATUS_ACEITAR_MUDA:
+        status = mudar_status(tarefa, status, STATUS_ACEITAR_MUDA[status], simular)
+    print(f"[tarefa] Pronto. Status do cartao: '{status}'.")
     print(f"         Proximo: tarefa abrir {tarefa} <{'|'.join(PAPEIS_DE_WORKTREE)}>")
+
+
+def mudar_status(tarefa, de, para, simular):
+    """Troca o status no frontmatter do cartao e commita so o cartao na copia principal."""
+    cartao = DIR_TAREFAS / f"{tarefa}.md"
+    texto = cartao.read_text(encoding="utf-8")
+    novo, n = re.subn(rf"^status:\s*{re.escape(de)}\s*$", f"status: {para}", texto, count=1, flags=re.MULTILINE)
+    if n != 1:
+        print(f"[tarefa] AVISO: nao achei 'status: {de}' no cartao; status nao alterado.")
+        return de
+    print(f"[tarefa] cartao {tarefa}: status {de} -> {para}")
+    if simular:
+        return para
+    cartao.write_text(novo, encoding="utf-8")
+    relativo = cartao.relative_to(RAIZ).as_posix()
+    branch = ler(["git", "-C", RAIZ, "rev-parse", "--abbrev-ref", "HEAD"])[1]
+    if branch != "main":
+        print(f"[tarefa] AVISO: a copia principal esta no branch '{branch}', nao na main: status alterado no arquivo, "
+              f"sem commit. Commite na main: git -C {RAIZ} commit -m 'docs(tarefas): aceita {tarefa}' -- {relativo}")
+        return para
+    try:
+        rodar(["git", "-C", RAIZ, "commit", "-q", "-m", f"docs(tarefas): aceita {tarefa} ({de} -> {para})", "--", relativo])
+    except Erro as e:
+        print(f"[tarefa] AVISO: status alterado no arquivo, mas o commit falhou: {e}\n"
+              f"         Commite o cartao a mao: git -C {RAIZ} commit -m 'docs(tarefas): aceita {tarefa}' -- {relativo}")
+    return para
 
 
 def garantir_sessao(tarefa, caminho, simular):

@@ -19,7 +19,7 @@ tags: [ambiente, orca, worktree, tmux, ferramentas, adm-0009]
 ## Decisao
 
 - **`ferramentas/tarefa.py`** (Linux: `tarefa.sh`), com quatro acoes:
-  - `aceitar T-####`: le `projeto:` e o titulo do cartao; cria o branch e o worktree `T-####-<descricao>` a partir da `main` de `projetos/<projeto>` em `$IA_WORKTREES/<projeto>/` (padrao `~/01_ia/worktrees`) e a sessao tmux `T-####`. Se ja aceita, so reabre; se o branch ja existe, cria so o worktree. Recusa cartao em `backlog`, `concluida` ou `cancelada`. **Nao muda o status do cartao.**
+  - `aceitar T-####`: le `projeto:` e o titulo do cartao; cria o branch e o worktree `T-####-<descricao>` a partir da `main` de `projetos/<projeto>` em `$IA_WORKTREES/<projeto>/` (padrao `~/01_ia/worktrees`) e a sessao tmux `T-####`. Se ja aceita, so reabre; se o branch ja existe, cria so o worktree. Recusa cartao em `concluida` ou `cancelada`. **Cartao em `backlog` passa para `pronta`** depois de criado o worktree, com commit so do cartao na `main` do 01_IA (ver Emenda 2026-10-05).
   - `abrir T-#### <papel>`: so papeis de worktree (dev, engenheiro, designer, seguranca, revisor); abre a janela do papel na sessao da tarefa, que chama o lancador `papel` no worktree. Quem confere cartao e status e define `IA_PAPEL` continua sendo o lancador.
   - `listar`: tarefas com worktree, branch, status do cartao e sessao tmux.
   - `fechar T-####`: so com o cartao `concluida` ou `cancelada` e o worktree sem mudanca pendente; `concluida` exige o branch na `main`. Fecha a sessao tmux, remove o worktree (sem `--force`) e apaga o branch so se ja estiver na `main` (`git branch -d`); branch fora da `main` fica (nada e apagado).
@@ -41,6 +41,13 @@ tags: [ambiente, orca, worktree, tmux, ferramentas, adm-0009]
 - **Positivas:** o Orca sai do ambiente; o quadro da fase 4 e o Coordenador por tarefa da fase 3 chamam as mesmas acoes; `IA_WORKTREES` permite montar os worktrees como volume no container (fase 2).
 - **Negativas / riscos:** tmux precisa estar instalado (`sudo apt install tmux`); a sessao tmux nao mostra pedidos de permissao de varias janelas ao mesmo tempo (o humano troca de janela); worktrees antigos do Orca (`~/orca/workspaces`) nao aparecem em `listar` se o repositorio nao os tiver (hoje nao ha nenhum).
 - **Verificacao:** teste do ciclo num ambiente falso no scratchpad do Administrador, 14/14 (aceitar, reabrir, listar, recusas de fechar, fechar com e sem merge, cancelada mantendo o branch, aceitar com branch existente, abrir sem tmux). **Nao verificado:** tmux (nao instalado) e o lancador aberto pela janela do tmux numa tarefa real.
+
+## Emenda 2026-10-05: aceitar passa o cartao de backlog para pronta
+
+- **Antes:** "Recusa cartao em `backlog`, `concluida` ou `cancelada`. Nao muda o status do cartao."
+- **Decisao do humano (confirmada com o Coordenador):** "Quando criamos um worktree ao aceitar alguma tarefa, essa tarefa deve passar automaticamente com o status: pronta para que os agentes consigam fazer algo." Aceitar e o "sim" para comecar (no futuro, o botao do quadro).
+- **Agora:** `aceitar` em cartao `backlog` cria o worktree e a sessao e so entao troca `status: backlog` por `status: pronta` e commita **so o cartao** (`docs(tarefas): aceita T-#### (backlog -> pronta)`) na copia principal. Se a copia principal nao estiver na `main`, troca o status no arquivo, nao commita e avisa. `pronta`, `em-andamento`, `correcao`, `revisao`: so reabre, sem mudar o status. `concluida`/`cancelada`: recusa.
+- **Verificacao:** teste no ambiente falso 22/22 (inclui `--simular` sem mudar o arquivo, backlog -> pronta com commit, reaceitar sem novo commit, raiz fora da `main` sem commit, e sessoes tmux reais criadas e fechadas). Nao verificado: o caso real com o humano (primeiro uso: T-0018).
 
 ## Relacionadas
 

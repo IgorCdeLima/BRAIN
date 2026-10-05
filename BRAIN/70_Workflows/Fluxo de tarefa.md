@@ -94,10 +94,10 @@ stateDiagram-v2
 ## Passo a passo
 
 0. **Coordenador** (humano, terminal na cópia principal): `D:\01_IA\ferramentas\papel coordenador`
-   → mostra o panorama e faz a triagem do cartão (tabela acima). Com o "sim" do humano, muda o cartão para `pronta` e diz o próximo comando.
+   → mostra o panorama e faz a triagem do cartão (tabela acima). Com o "sim" do humano, muda o cartão para `pronta` (ou o deixa triado em `backlog`: aceitar a tarefa no passo 2 o passa para `pronta`) e diz o próximo comando.
 1. **Cartão** (humano, com o Coordenador): criar ou revisar `operacao/tarefas/T-####.md`, com as marcas `interface:` e `seguranca:`, e mudar o status para `pronta`.
    **Funcionalidade com entrada de usuario** (formulario, upload, parametro): antes do cartao do Dev, um cartao do **Engenheiro** define as regras de formato de cada campo com exemplos validos e invalidos. O cartao do Dev so fica `pronta` depois disso. (Retrospectiva da T-0002: regra ambigua virou o BUG-0003.)
-2. **Aceitar a tarefa** (humano, num terminal comum; no futuro, o botao do quadro): `ferramentas/tarefa.sh aceitar T-####`. Cria o branch e o worktree `T-####-descricao` a partir da `main` do projeto do cartao e a sessao tmux `T-####`; nao muda o status do cartao. Se ja aceita, so reabre. Ver as tarefas aceitas: `tarefa listar`.
+2. **Aceitar a tarefa** (humano, num terminal comum; no futuro, o botao do quadro): `ferramentas/tarefa.sh aceitar T-####`. Cria o branch e o worktree `T-####-descricao` a partir da `main` do projeto do cartao e a sessao tmux `T-####`. **Cartao em `backlog` passa para `pronta`** (aceitar e o "sim" para comecar; commit so do cartao na `main` do 01_IA, depois de criado o worktree); os demais status nao mudam, e `concluida`/`cancelada` sao recusados. Se ja aceita, so reabre. Ver as tarefas aceitas: `tarefa listar`.
 3. **Dev** (humano): `ferramentas/tarefa.sh abrir T-#### dev` abre a janela `dev` na sessao da tarefa e chama o lancador `papel dev` no worktree. Entrar na sessao: `tmux attach -t T-####` (trocar de janela: `Ctrl-b w`; sair sem fechar: `Ctrl-b d`).
    → o Dev implementa, commita, preenche a Entrega e muda o status para `revisao`.
 4. **Designer e Seguranca** (se `interface: sim` / `seguranca: sim`), no mesmo worktree, um de cada vez: `tarefa abrir T-#### designer`, `tarefa abrir T-#### seguranca`
