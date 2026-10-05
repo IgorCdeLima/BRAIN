@@ -21,6 +21,7 @@
     {"dominio": "developer.mozilla.org", "motivo": "MDN: HTML, CSS, HTTP e acessibilidade"},
     {"dominio": "www.w3.org", "motivo": "WCAG e especificacoes web"},
     {"dominio": "code.claude.com", "motivo": "documentacao do Claude Code"},
+    {"dominio": "docs.podman.io", "motivo": "Podman e containers rootless (proposto no SEARCH-0009, ADM-0009 fase 2)"},
     {"dominio": "help.obsidian.md", "motivo": "documentacao do Obsidian"}
   ]
 }
