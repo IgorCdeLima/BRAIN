@@ -41,7 +41,7 @@ Consulta: `git log --format='%h %s%n%(trailers:key=Agente,key=Tarefa)'`.
 
 ## Branches
 
-Um worktree do Orca por tarefa, com o nome `T-0012-descricao-curta` — o Orca usa esse nome para o branch. Os hooks do Git extraem o `T-####` do nome do branch.
+Um worktree por tarefa, criado por `ferramentas/tarefa.sh aceitar T-####` em `$IA_WORKTREES/<projeto>/T-####-descricao-curta` (padrao `~/01_ia/worktrees`), com branch de mesmo nome a partir da `main` do projeto ([[ADR-0026 Ferramenta tarefa substitui o Orca nos worktrees e terminais]]). Os hooks do Git extraem o `T-####` do nome do branch. Worktrees antigos do Orca (`orca/workspaces/...`, branch so `T-####`) seguem a mesma regra.
 
 ## Logs (Markdown)
 

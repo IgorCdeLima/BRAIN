@@ -1,6 +1,6 @@
 # Ambiente 01_IA — regras globais
 
-Ambiente de uma equipe de agentes de IA para desenvolvimento de software, executada no Orca.
+Ambiente de uma equipe de agentes de IA para desenvolvimento de software. Cada tarefa roda num worktree proprio, com uma sessao tmux, criados pela ferramenta `ferramentas/tarefa` ([[ADR-0026 Ferramenta tarefa substitui o Orca nos worktrees e terminais]]).
 O humano (Igor) é o Product Owner e o aprovador final. Idioma de trabalho: português (pt-BR).
 
 Caminhos: `D:\01_IA` nas regras e definicoes e a raiz do ambiente no Windows. Em outra maquina (ex.: Linux) a raiz e a variavel `IA_RAIZ`; leia `D:\01_IA` como `$IA_RAIZ`.
@@ -35,7 +35,7 @@ Cada pasta tem um `_LEIAME.md` com o propósito e as regras dela. Leia-o antes d
 
 ## Pedidos de comando
 
-Precisa de algo que so o humano faria (comando fora do seu perfil, merge, push, acao no Orca)? **Nao peca ao humano.** Crie um pedido `operacao/coordenador/COORD-####.md` (template `Pedido ao Coordenador`), **com ou sem tarefa**, com o comando exato, a pasta e o motivo; no cartao, so a referencia na secao "Pedidos ao Coordenador". Ao humano diga so o numero do pedido criado. Cadeia: agente -> Coordenador -> Administrador (`ADM-####`) -> humano, que so digita o que e exclusivo dele (Orca, lancador `papel`, senha, `sudo`). "Passos do humano" no cartao sao so decisoes (ADR, direcao visual, duvida de produto). Ver [[ADR-0020 Cadeia de pedidos de comando]] e [[ADR-0021 Pedidos ao Coordenador sempre em COORD e numeracao de qualidade por tarefa]].
+Precisa de algo que so o humano faria (comando fora do seu perfil, merge, push, aceitar tarefa ou abrir papel)? **Nao peca ao humano.** Crie um pedido `operacao/coordenador/COORD-####.md` (template `Pedido ao Coordenador`), **com ou sem tarefa**, com o comando exato, a pasta e o motivo; no cartao, so a referencia na secao "Pedidos ao Coordenador". Ao humano diga so o numero do pedido criado. Cadeia: agente -> Coordenador -> Administrador (`ADM-####`) -> humano, que so digita o que e exclusivo dele (`tarefa aceitar`/`abrir`, lancador `papel`, senha, `sudo`). "Passos do humano" no cartao sao so decisoes (ADR, direcao visual, duvida de produto). Ver [[ADR-0020 Cadeia de pedidos de comando]] e [[ADR-0021 Pedidos ao Coordenador sempre em COORD e numeracao de qualidade por tarefa]].
 
 **Erro inesperado** (ferramenta falhou, arquivo ausente ou movido, permissao negada, comando inexistente, lancador recusou, conflito de merge): nao contorne em silencio. Crie um `COORD-####` com o erro exato, o que tentava fazer e a pasta. O Coordenador avalia a causa e propoe a melhoria (ajuste de regra via `ADM-####`, aviso ao papel afetado ou candidato a conhecimento).
 
@@ -66,7 +66,7 @@ Precisa de algo que so o humano faria (comando fora do seu perfil, merge, push, 
   Modelo: <modelo>
   ```
 
-- Trabalho de agente acontece **sempre num worktree próprio criado pelo Orca**; merge na `main` conforme aprovação. A cópia principal `D:\01_IA` é do humano, do Coordenador e do Bibliotecário.
+- Trabalho de agente acontece **sempre num worktree proprio, criado ao aceitar a tarefa** (`ferramentas/tarefa.sh aceitar T-####`; o papel abre numa janela da sessao tmux da tarefa com `tarefa abrir T-#### <papel>`); merge na `main` conforme aprovação. A cópia principal `D:\01_IA` é do humano, do Coordenador e do Bibliotecário.
 - Cada papel é iniciado pelo humano com o lançador `D:\01_IA\ferramentas\papel <administrador|coordenador|engenheiro|designer|seguranca|dev|revisor|pesquisador|bibliotecario>` (Linux: `ferramentas/papel.sh`), que confere pasta e cartão e abre o Claude com a definição, o perfil de permissões e o modelo do papel. O perfil prevalece sobre a tabela acima. **Um agente nunca define `IA_PAPEL` nem se atribui um papel.** Sessão sem papel não trabalha: avisa o humano. Fluxo completo em `BRAIN/70_Workflows/Fluxo de tarefa.md`.
 
 ## Qualidade

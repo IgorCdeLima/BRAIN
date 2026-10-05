@@ -20,7 +20,7 @@ tags: []
      -> a Seguranca faz a revisao antes do Revisor fechar. Criterios no Fluxo de tarefa. -->
 <!--
      Tamanho: trivial | normal | grande. Arquivo: operacao/tarefas/T-####.md
-     Worktree no Orca: T-####-descricao-curta -->
+     Worktree: criado ao aceitar a tarefa (ferramentas/tarefa.sh aceitar T-####), branch T-####-descricao-curta -->
 
 ## Objetivo
 
@@ -70,7 +70,7 @@ tags: []
 ## Passos do humano
 
 <!-- So decisoes (escolher direcao visual, aceitar ADR, responder duvida) e acoes que so o humano pode
-     fazer (Orca, lancador papel, senha, sudo, criar .env com segredo). Comandos vao em "Pedidos ao Coordenador". -->
+     fazer (tarefa aceitar/abrir, lancador papel, senha, sudo, criar .env com segredo). Comandos vao em "Pedidos ao Coordenador". -->
 
 - [ ]
 

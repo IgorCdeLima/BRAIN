@@ -206,7 +206,7 @@ def main() -> None:
     if os.environ.get("CLAUDECODE") and "--verificar" not in opcoes:
         # Agente não se atribui papel (ADR-0013): o lançador só abre o Claude a partir do terminal do humano.
         parar("o lancador foi chamado de dentro de uma sessao do Claude. Rode-o num terminal comum "
-              "(ex.: o terminal do worktree no Orca). Dentro do Claude, so --verificar.")
+              "(ex.: a janela da tarefa no tmux, aberta com 'tarefa abrir'). Dentro do Claude, so --verificar.")
 
     topo = git("rev-parse", "--show-toplevel")
     if not topo:
@@ -227,10 +227,10 @@ def main() -> None:
         # O bibliotecario nao depende mais do Obsidian aberto: move notas com ferramentas/notas.py (ADM-0018).
     else:
         if not em_worktree:
-            parar(f"o {papel} trabalha num worktree de tarefa criado no Orca, nunca na copia principal. Pasta atual: {topo} ({branch}).")
+            parar(f"o {papel} trabalha num worktree de tarefa (criado com 'tarefa aceitar T-####'), nunca na copia principal. Pasta atual: {topo} ({branch}).")
         m = re.search(r"\bT-\d{4}\b", branch)
         if not m:
-            parar(f"o branch '{branch}' nao tem numero de tarefa. Crie o worktree com nome 'T-####-descricao'.")
+            parar(f"o branch '{branch}' nao tem numero de tarefa. Crie o worktree com 'tarefa aceitar T-####'.")
         tarefa = m.group(0)
         cartao = DIR_TAREFAS / f"{tarefa}.md"
         if not cartao.exists():
