@@ -1,15 +1,15 @@
 ---
 tipo: pesquisa
 id: SEARCH-0009
-status: respondida
+status: catalogada
 urgencia: nao-bloqueante
 pedido_por: administrador
 tarefa: ambiente
 criado: 2026-10-05
 pesquisado_por: pesquisador
 pesquisado_em: 2026-10-05
-catalogado_em:
-notas: []
+catalogado_em: 2026-10-05
+notas: ["Arquivos do volume montado ficam com o dono certo rodando o container com o UID do usuario do host", "Claude Code em container usa a Dev Container Feature, volume em CLAUDE_CONFIG_DIR e usuario nao root", "Docker dentro de container - socket do host equivale a root no host, DinD exige privileged, rootless tem limites", "tmux em container exige TERM tmux ou screen, locale UTF-8 e window-size para varios clientes", "Orquestrar sessoes do Claude Code - -p com permission-prompts none, hooks Stop e SessionEnd, mensagem entre sessoes e agent teams experimental"]
 tags: [ambiente, docker, container, claude-code, tmux, adm-0009]
 ---
 # SEARCH-0009 - Rodar o ambiente 01_IA (Claude Code, git, hooks, tmux) dentro de um container
@@ -55,4 +55,12 @@ tags: [ambiente, docker, container, claude-code, tmux, adm-0009]
 
 ## Catalogacao
 
-<!-- Preenchido pelo Bibliotecario: decisao e notas finais. -->
+Decisao (2026-10-05): os 5 candidatos foram **promovidos**; nenhuma duplicata no Brain. Confianca media mantida (documentacao oficial, nada executado).
+
+- [[Arquivos do volume montado ficam com o dono certo rodando o container com o UID do usuario do host]] (10_Conhecimento, problema-solucao)
+- [[Claude Code em container usa a Dev Container Feature, volume em CLAUDE_CONFIG_DIR e usuario nao root]] (30_Referencias)
+- [[Docker dentro de container - socket do host equivale a root no host, DinD exige privileged, rootless tem limites]] (30_Referencias)
+- [[tmux em container exige TERM tmux ou screen, locale UTF-8 e window-size para varios clientes]] (30_Referencias)
+- [[Orquestrar sessoes do Claude Code - -p com permission-prompts none, hooks Stop e SessionEnd, mensagem entre sessoes e agent teams experimental]] (30_Referencias)
+
+Links confiaveis preservados em cada nota. Os dominios propostos continuam para decisao do humano.
