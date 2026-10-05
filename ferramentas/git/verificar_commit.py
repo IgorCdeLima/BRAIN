@@ -25,6 +25,8 @@ from pathlib import Path
 
 PADRAO_TAREFA = re.compile(r"\b(T-\d{4}|F\d+-\d+(?:\.\d+)?)\b")
 TRAILERS = ("Agente", "Tarefa", "Modelo")
+RE_NOSSO = re.compile(r"^(Agente|Tarefa|Modelo):\s*(.+)$")
+RE_TRAILER = re.compile(r"^[A-Za-z][A-Za-z0-9-]*:\s")  # linha "Chave: valor" (ex.: Co-Authored-By)
 
 
 def git(*args: str) -> str:
@@ -80,13 +82,35 @@ def pre_commit(papel: str) -> None:
         falhar(f"o papel '{papel}' nao pode alterar:\n  - {lista}\nProponha a mudanca em BRAIN/00_Inbox ou peca ao humano.")
 
 
+def normalizar_trailers(mensagem: str, valores: dict) -> str:
+    """Poe Agente/Tarefa/Modelo no bloco final de trailers (ADM-0026).
+
+    O Git so le como trailer o ultimo paragrafo. Se o agente escreveu as linhas
+    no meio da mensagem (ex.: antes do Co-Authored-By), elas saem de la e entram
+    no ultimo paragrafo, se ele ja for de trailers, ou num paragrafo novo.
+    Linhas de comentario (#) ficam no fim, como estavam.
+    """
+    linhas = mensagem.splitlines()
+    comentarios = [l for l in linhas if l.startswith("#")]
+    corpo = [l for l in linhas if not l.startswith("#") and not RE_NOSSO.match(l.strip())]
+    texto = re.sub(r"\n{3,}", "\n\n", "\n".join(l.rstrip() for l in corpo)).strip("\n")
+    nossos = "\n".join(f"{nome}: {valores[nome]}" for nome in TRAILERS)
+    paragrafos = texto.split("\n\n")
+    ultimo = paragrafos[-1].splitlines() if len(paragrafos) > 1 else []
+    juntar = bool(ultimo) and all(RE_TRAILER.match(l) for l in ultimo)
+    texto += ("\n" if juntar else "\n\n") + nossos + "\n"
+    if comentarios:
+        texto += "\n".join(comentarios) + "\n"
+    return texto
+
+
 def commit_msg(papel: str, arquivo_msg: str) -> None:
     caminho = Path(arquivo_msg)
     mensagem = caminho.read_text(encoding="utf-8")
     existentes = {}
     for linha in mensagem.splitlines():
-        m = re.match(r"^(Agente|Tarefa|Modelo):\s*(.+)$", linha.strip())
-        if m:
+        m = RE_NOSSO.match(linha.strip())
+        if m and not linha.startswith("#"):
             existentes[m.group(1)] = m.group(2).strip()
 
     if existentes.get("Agente") and existentes["Agente"] != papel:
@@ -104,11 +128,9 @@ def commit_msg(papel: str, arquivo_msg: str) -> None:
         "Tarefa": tarefa,
         "Modelo": existentes.get("Modelo") or os.environ.get("IA_MODELO", "desconhecido"),
     }
-    faltando = [f"{nome}: {valores[nome]}" for nome in TRAILERS if nome not in existentes]
-    if faltando:
-        mensagem = mensagem.rstrip("\n")
-        separador = "\n" if existentes else "\n\n"
-        caminho.write_text(mensagem + separador + "\n".join(faltando) + "\n", encoding="utf-8")
+    nova = normalizar_trailers(mensagem, valores)
+    if nova != mensagem:
+        caminho.write_text(nova, encoding="utf-8")
 
 
 def sessao_claude_sem_papel() -> bool:
