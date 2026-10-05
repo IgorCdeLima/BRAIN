@@ -42,6 +42,8 @@ RAIZ_PADRAO = "D:/01_IA"  # caminho escrito nas definições e perfis dos papéi
 RAIZ = Path(os.environ.get("IA_RAIZ") or Path(__file__).resolve().parents[1])
 DIR_AGENTES = RAIZ / "agentes"
 DIR_TAREFAS = RAIZ / "operacao" / "tarefas"
+# Mesmo padrão de ferramentas/tarefa.py: worktree de tarefa só nesta pasta (ADM-0028).
+DIR_WORKTREES = Path(os.environ.get("IA_WORKTREES") or Path.home() / "01_ia" / "worktrees")
 
 PAPEIS = {
     "dev": {
@@ -228,6 +230,11 @@ def main() -> None:
     else:
         if not em_worktree:
             parar(f"o {papel} trabalha num worktree de tarefa (criado com 'tarefa aceitar T-####'), nunca na copia principal. Pasta atual: {topo} ({branch}).")
+        if not topo.resolve().is_relative_to(DIR_WORKTREES.resolve()):
+            # Worktree criado por outra ferramenta (ex.: Orca) não é aceito (ADM-0028, ADR-0026).
+            parar(f"pasta fora de $IA_WORKTREES ({topo}; esperado dentro de {DIR_WORKTREES}). "
+                  "Worktree de tarefa se cria e se abre com a ferramenta tarefa: 'tarefa aceitar T-####' e "
+                  "'tarefa abrir T-#### <papel>' (ADR-0026). Worktrees do Orca nao sao aceitos.")
         m = re.search(r"\bT-\d{4}\b", branch)
         if not m:
             parar(f"o branch '{branch}' nao tem numero de tarefa. Crie o worktree com 'tarefa aceitar T-####'.")
