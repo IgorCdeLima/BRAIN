@@ -37,7 +37,11 @@ Tarefa: <id>             # T-0012
 Modelo: <modelo>         # claude-sonnet-5, claude-opus-5-5...
 ```
 
-Consulta: `git log --format='%h %s%n%(trailers:key=Agente,key=Tarefa)'`.
+O hook `commit-msg` (`ferramentas/git/verificar_commit.py`) acrescenta o que faltar e move as tres linhas para o **bloco final de trailers** (junto do `Co-Authored-By`), mesmo que o agente as tenha escrito no meio da mensagem: o Git so le como trailer o ultimo paragrafo (`ADM-0026`).
+
+Consulta:
+- Commits novos: `git log --format='%h %s%n%(trailers:key=Agente,key=Tarefa)'`.
+- Todo o historico: `git log --format='%h %s' --grep='^Agente: dev'` (troque o papel; `--grep='^Tarefa: T-0013'` por tarefa). Commits ate 2026-10-05 podem ter os trailers num paragrafo antes do `Co-Authored-By` (BRAIN: 59 de 126; lab: 22 de 92), que o `%(trailers)` nao ve. O historico nao e reescrito.
 
 ## Branches
 
