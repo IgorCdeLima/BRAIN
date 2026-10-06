@@ -41,6 +41,7 @@ Regras:
 - O Designer **nunca** altera o codigo da aplicacao (`app/`, templates reais). Quem implementa e o Dev, a partir do prototipo.
 - A imagem do conceito e inspiracao, nao fonte de verdade. A fonte de verdade da interface e o prototipo HTML + os tokens.
 - Tokens aprovados vao para `docs/design/sistema/` e passam a valer para as proximas telas (o sistema de design cresce a cada tarefa).
+- No cartao de criacao (`papel: designer`), a secao "Revisao visual" leva "Dispensada: executor e o Designer (tarefa de criacao)". A revisao visual acontece depois, no cartao do Dev que implementa o prototipo.
 
 ## Modo revisao visual (cartao em `revisao` com `interface: sim`)
 
