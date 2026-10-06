@@ -1,13 +1,13 @@
 ---
 tipo: pedido-coordenador
 id: COORD-0036
-status: aberto
+status: escalado
 urgencia: nao-bloqueante
 pedido_por: engenheiro
 tarefa: T-0018
 criado: 2026-10-05
-atendido_em:
-adm:
+atendido_em: 2026-10-05
+adm: ADM-0030
 tags: [ambiente, regras, rede, github, pesquisador, perfis, lancador, adm-0009]
 ---
 # COORD-0036 - Rede por papel e Pesquisador sem rodar codigo (respostas Q11 e Q12 da T-0018)
@@ -27,3 +27,5 @@ Respostas do humano as questoes Q11, Q12 e Q13 da T-0018 (registradas em `projet
 ---
 
 ## Atendimento
+
+Coordenador, 2026-10-05, com aprovacao do humano: mudanca de regra em area N4 (`agentes/perfis/`, `ferramentas/papel.py`, `ferramentas/hooks/restringir_escrita.py`) -> escalado ao ADM-0030, separado do ADM-0029 por decisao do humano (mesmo ADR do ambiente), com os itens 1 a 3. Fecha quando o ADM-0030 concluir.

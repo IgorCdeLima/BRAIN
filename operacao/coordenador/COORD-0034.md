@@ -1,7 +1,7 @@
 ---
 tipo: pedido-coordenador
 id: COORD-0034
-status: escalado
+status: concluido
 urgencia: nao-bloqueante
 pedido_por: revisor
 tarefa: T-0018
@@ -18,7 +18,7 @@ tags: [ambiente, worktree, orca, revisor, qualidade, erro-inesperado]
 - [x] 2. Levar ao branch da tarefa o commit do Revisor `docs(qualidade): VER-T0018-01 da T-0018` (feito no branch `-2`; o hash esta no cartao, secao Revisao). So arquivos novos em `qualidade/`, sem conflito esperado:
   - pasta: `/home/igor/01_ia/worktrees/ambiente/T-0018-requisitos-arquitetura-ambiente-01`
   - comando: `git cherry-pick 619037a`
-- [ ] 3. -> ADM-0028. Depois do item 2, o branch `T-0018-requisitos-arquitetura-ambiente-01-2` nao tem nada que o `-01` nao tenha. Remover o worktree e o branch `-2` (com o "sim" do humano):
+- [x] 3. -> ADM-0028. Depois do item 2, o branch `T-0018-requisitos-arquitetura-ambiente-01-2` nao tem nada que o `-01` nao tenha. Remover o worktree e o branch `-2` (com o "sim" do humano):
   - pasta: `/home/igor/Documentos/01.GITHUB/BRAIN/projetos/ambiente`
   - comandos: `git worktree remove /home/igor/orca/workspaces/ambiente/T-0018-requisitos-arquitetura-ambiente-01-2` e `git branch -D T-0018-requisitos-arquitetura-ambiente-01-2`
 
@@ -34,3 +34,5 @@ Coordenador, 2026-10-05, com aprovacao do humano:
 - Item 1 (causa): o reflog mostra o branch `-2` "Created from 407f095" (a partir do branch da tarefa, nao da `main`), na pasta `~/orca/workspaces`, com o sufixo `-2` do Orca. A `ferramentas/tarefa` sempre cria a partir da `main` em `$IA_WORKTREES`: as sessoes foram abertas pelo Orca, nao por `tarefa abrir`. O lancador aceitou porque a pasta comeca com `T-0018`. Melhoria: o `papel` passa a recusar papel de worktree fora de `$IA_WORKTREES` (ADM-0028).
 - Item 2: `git cherry-pick 619037a` no worktree `-01` -> `65a6254` (VER-T0018-01, BUG-T0018-01, BUG-T0018-02), sem conflito.
 - Item 3: apagar worktree e branch e negado ao Coordenador -> ADM-0028.
+
+Coordenador, 2026-10-05: ADM-0028 `concluido`. Worktree `-2` removido pelo Administrador; branch `T-0018-requisitos-arquitetura-ambiente-01-2` apagado (conferido: `git worktree list` e `git branch -a` do projeto `ambiente` so mostram `main` e o `-01`). Lancador passou a recusar papel de worktree fora de `$IA_WORKTREES` (`b9dde47`, merge `c3b6209`). Pedido `concluido`.
