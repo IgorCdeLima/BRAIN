@@ -1,6 +1,6 @@
 ---
 tipo: candidato
-status: inbox
+status: arquivado
 tipo_proposto: referencia
 origem: agente/pesquisador
 tarefa: T-0018
@@ -10,7 +10,7 @@ fontes: [https://code.claude.com/docs/en/setup, https://downloads.claude.ai/clau
 verificado_em: 2026-10-05
 valido_para: repositorio apt stable em 2026-10-05 (60 versoes, 2.1.108-1 a 2.1.285-1)
 criado: 2026-10-05
-decisao:
+decisao: fundido em [[Claude Code numa imagem - instalador nativo aceita versao exata e DISABLE_UPDATES trava toda atualizacao]]
 tags: [claude-code, apt, versao, container, instalacao]
 ---
 # O repositorio apt do Claude Code mantem versoes antigas e permite fixar com apt install claude-code=versao
@@ -40,3 +40,5 @@ Imagens reprodutiveis (Dockerfile) com versao fixa e atualizacao deliberada.
 - [[Claude Code numa imagem - instalador nativo aceita versao exata e DISABLE_UPDATES trava toda atualizacao]]
 
 ## Decisao do Bibliotecario
+
+**Fundir** (2026-10-05). O conteudo (60 versoes no indice `Packages`, `apt install claude-code=versao`, `apt-mark hold`, chave e canais) entrou na referencia [[Claude Code numa imagem - instalador nativo aceita versao exata e DISABLE_UPDATES trava toda atualizacao]], que ja cobria o mesmo tema de instalacao com versao fixa. Mantido aqui como registro; nada apagado.

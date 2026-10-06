@@ -1,15 +1,15 @@
 ---
 tipo: pesquisa
 id: SEARCH-0010
-status: respondida
+status: catalogada
 urgencia: nao-bloqueante
 pedido_por: engenheiro
 tarefa: T-0018
 criado: 2026-10-05
 pesquisado_por: pesquisador
 pesquisado_em: 2026-10-05
-catalogado_em:
-notas: []
+catalogado_em: 2026-10-05
+notas: ["Managed settings do Claude Code no Linux ficam em etc claude-code e a documentacao nao liga esse caminho ao CLAUDE_CONFIG_DIR", "CLAUDE_CONFIG_DIR e herdada pelos hooks como qualquer variavel do ambiente e as transcricoes ficam em projects dentro dela", "Claude Code numa imagem - instalador nativo aceita versao exata e DISABLE_UPDATES trava toda atualizacao", "Bubblewrap do Claude Code em container sem privilegio falha no proc e enableWeakerNestedSandbox resolve ao custo de isolamento", "Podman rootless dentro de container Docker - a doc oficial do Podman usa privileged e fuse, sem privileged nao esta documentado", "Codex CLI instala por script, guarda credencial em CODEX_HOME auth.json e limita comandos com sandbox bwrap e seccomp", "Proxy de socket do Docker filtra por secao da API e nao e fronteira de seguranca - a doc nao cobre compose nem o corpo das requisicoes"]
 tags: [ambiente, container, claude-code, docker, podman, adm-0009]
 ---
 # SEARCH-0010 - Fatos a confirmar para o container do ambiente (managed settings, CLAUDE_CONFIG_DIR, apt com versao, Podman aninhado, proxy de socket)
@@ -49,3 +49,15 @@ T-0018 (Engenheiro, projeto `ambiente`, fase 2 do `ADM-0009`): requisitos e ADR-
 - `github.com/containers` e `github.com/Tecnativa`: so se algum papel precisar abrir os READMEs; propor apenas se a lista nao cobrir github.com.
 
 ## Catalogacao
+
+Decisao (2026-10-05): os 7 candidatos do Pesquisador foram **promovidos**; nenhum foi devolvido. Confianca media mantida (documentacao oficial, nada executado); a nota de `CLAUDE_CONFIG_DIR` e hooks entrou como `rascunho` com confianca baixa (conclusao inferida).
+
+- [[Managed settings do Claude Code no Linux ficam em etc claude-code e a documentacao nao liga esse caminho ao CLAUDE_CONFIG_DIR]] (30_Referencias; itens 1)
+- [[CLAUDE_CONFIG_DIR e herdada pelos hooks como qualquer variavel do ambiente e as transcricoes ficam em projects dentro dela]] (30_Referencias, rascunho; item 2)
+- [[Claude Code numa imagem - instalador nativo aceita versao exata e DISABLE_UPDATES trava toda atualizacao]] (30_Referencias; item 3, fundida com o candidato do apt, arquivado em 90_Arquivo)
+- [[Podman rootless dentro de container Docker - a doc oficial do Podman usa privileged e fuse, sem privileged nao esta documentado]] (30_Referencias; item 4)
+- [[Proxy de socket do Docker filtra por secao da API e nao e fronteira de seguranca - a doc nao cobre compose nem o corpo das requisicoes]] (30_Referencias; item 5)
+- [[Bubblewrap do Claude Code em container sem privilegio falha no proc e enableWeakerNestedSandbox resolve ao custo de isolamento]] (10_Conhecimento, problema-solucao; item 6)
+- [[Codex CLI instala por script, guarda credencial em CODEX_HOME auth.json e limita comandos com sandbox bwrap e seccomp]] (30_Referencias; item 7)
+
+Links confiaveis preservados em cada nota. Lacunas continuam abertas e dependem de teste (T-0020): interacao managed settings x `CLAUDE_CONFIG_DIR`, heranca da variavel pelos hooks, user namespace com seccomp padrao e `cap_drop: ALL`, Podman sem `--privileged`, secoes exigidas pelo compose no proxy. Os dominios propostos continuam para decisao do humano.

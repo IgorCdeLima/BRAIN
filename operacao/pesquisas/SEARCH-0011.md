@@ -1,15 +1,15 @@
 ---
 tipo: pesquisa
 id: SEARCH-0011
-status: respondida
+status: catalogada
 urgencia: nao-bloqueante
 pedido_por: seguranca
 tarefa: T-0018
 criado: 2026-10-05
 pesquisado_por: pesquisador
 pesquisado_em: 2026-10-05
-catalogado_em:
-notas: []
+catalogado_em: 2026-10-05
+notas: ["CWE-522 token de ferramenta legivel pelo mesmo usuario se trata com permissao 0600 e escopo minimo", "CWE-653 sessoes no mesmo container e mesmo UID so tem isolamento de processo - separe por usuario ou container", "CWE-494 curl pipe bash e atualizacao automatica se mitigam conferindo o manifesto assinado com gpg"]
 tags: [seguranca, cwe, container, credencial, isolamento, cadeia-de-suprimento]
 ---
 # SEARCH-0011 - Notas de referencia para CWE-522, CWE-653 e CWE-494
@@ -46,3 +46,11 @@ Busca por `CWE-522`, `CWE-653`, `CWE-494` em `10_Conhecimento`, `30_Referencias`
 - code.claude.com e downloads.claude.ai: documentacao e manifesto assinado do Claude Code, necessarios para a verificacao de integridade (CWE-494).
 
 ## Catalogacao
+
+Decisao (2026-10-05): os 3 candidatos foram **promovidos** para `10_Conhecimento` (template padrao, como as demais notas CWE) e incluidos no [[Mapa das CWE relevantes para Python e FastAPI]]. Nenhuma duplicata. Confianca media. Os "controles verificaveis" inferidos pelo Pesquisador ficaram rotulados como proposta, a validar.
+
+- [[CWE-522 token de ferramenta legivel pelo mesmo usuario se trata com permissao 0600 e escopo minimo]]
+- [[CWE-653 sessoes no mesmo container e mesmo UID so tem isolamento de processo - separe por usuario ou container]]
+- [[CWE-494 curl pipe bash e atualizacao automatica se mitigam conferindo o manifesto assinado com gpg]]
+
+Links confiaveis preservados em cada nota. Os dominios propostos continuam para decisao do humano.
