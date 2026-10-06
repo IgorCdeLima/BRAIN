@@ -17,7 +17,7 @@ Verificações obrigatórias por tipo de mudança. Uma tarefa só é concluída 
 | Revisão de segurança | se tocar auth, dados, segredos, rede ou dependências | — | — | ✅ |
 | Revisao do papel Seguranca (`SEC-####`), sem bloqueante aberto | se `seguranca: sim` | — | — | — |
 | Entradas extremas (ver lista abaixo) testadas em cada campo de entrada do usuario | se houver entrada de usuario | — | — | — |
-| Revisao visual do Designer (`UX-####`), sem bloqueante aberto | se `interface: sim` | — | — | — |
+| Revisao visual do Designer (`UX-####`), sem bloqueante aberto | se `interface: sim` e o executor nao for o Designer (tarefa de criacao: dispensada, anotada no cartao) | — | — | — |
 | Regras de formato da entrada definidas pelo Engenheiro, com exemplos validos e invalidos | se houver entrada de usuario (conferir que a regra existe e foi seguida) | ✅ se definir entrada | — | — |
 | Critérios de aceite atendidos | ✅ | ✅ | — | — |
 | Diagramas coerentes com o código | se mudou modelo | ✅ | — | — |

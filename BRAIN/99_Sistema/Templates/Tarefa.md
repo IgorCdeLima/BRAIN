@@ -76,7 +76,7 @@ tags: []
 
 ## Revisao visual
 
-<!-- So se interface: sim. Preenchido pelo Designer antes do Revisor fechar. Nao muda o status. -->
+<!-- So se interface: sim. Preenchido pelo Designer antes do Revisor fechar. Nao muda o status. Cartao de criacao do proprio Designer: "Dispensada: executor e o Designer (tarefa de criacao)". -->
 
 - **UX:**
 - **Commit avaliado:**
