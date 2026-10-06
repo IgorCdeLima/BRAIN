@@ -1,8 +1,8 @@
 ---
 tipo: decisao
-status: proposta
-decidido_em:
-decidido_por:
+status: aceita
+decidido_em: 2026-10-05
+decidido_por: humano
 substituida_por:
 criado: 2026-10-05
 tags: [ambiente, agentes, pesquisa, seguranca, rede, sandbox, lancador, perfis, adm-0029, adm-0030]
